@@ -50,7 +50,6 @@ local script = game:GetObjects(loadedassets["Asset.rbxmx"])[1]
 local Accessories = script.Accessories:Clone()
 local Animations = script.Animations:Clone()
 local Miscs = script.Miscs:Clone()
-local Zombie = script.Zombie:Clone()
 
 script:Destroy()
 
@@ -133,17 +132,6 @@ local HacklordInfo = {
 	UnstableEyeBuffDuration = 6.5;
 	UnstableEyeDebuffDuration = 6.5;
 	UnstableEyeAuraDuration = 5;
-	ZombieHealth = 10;
-	ZombieWalkSpeed = 6;
-	ZombieSprintSpeed = 17.5;
-	ZombieAttackCooldown = 3;
-	ZombieAttackDamage = 14;
-	ZombieAttackRange = 5;
-	ZombieTargetRange = 30;
-	ZombieLoseFocusRange = 50;
-	ZombieKillSpeedLevel = 1;
-	ZombieKillSpeedDuration = 10;
-	ZombieLifeTime = 20;
 	HighlightProperties = {
 		FillColor = Color3.fromRGB(113, 94, 255);
 		OutlineColor = Color3.fromRGB(2, 59, 10);
@@ -235,10 +223,7 @@ end
 
 pcall(function()
 	local Description = Humanoid:GetAppliedDescription()
-	Zombie.Parent = FolderStorage
-	Zombie.Zombie:FindFirstChildOfClass("Humanoid"):ApplyDescription(Description)
 	PreRender:Wait()
-	Zombie.Parent = nil
 end)
 
 Accessories.Parent = Character
@@ -571,168 +556,6 @@ local ApplyRagdoll = function(Character)
 	end
 end
 
-local ApplyAI = function(Model)
-	local Humanoid = Model:FindFirstChildOfClass("Humanoid")
-	local RootPart = Model:FindFirstChild("HumanoidRootPart")
-	local MaxDistance = HacklordInfo.ZombieTargetRange
-	local LoseFocusRange = HacklordInfo.ZombieLoseFocusRange
-	local LifeTime = HacklordInfo.ZombieLifeTime
-	local AttackRange = HacklordInfo.ZombieAttackRange
-	local AttackCooldown = HacklordInfo.ZombieAttackCooldown
-	local AttackDamage = HacklordInfo.ZombieAttackDamage
-	
-	if Humanoid then
-		local Descendants = Model:GetDescendants()
-		
-		local HealthInstance = InitHealthSystem(Humanoid)
-		
-		NewInstance("StringValue",Humanoid,{Name="HacklordAllies"})
-		
-		local AAnimator = AnimationModule.new(Humanoid)
-		local Idle = AAnimator:LoadAnimation(HacklordInfo.SavedAnimations["ZombieIdle"])
-		local Walk = AAnimator:LoadAnimation(HacklordInfo.SavedAnimations["ZombieWalk"])
-		local Run = AAnimator:LoadAnimation(HacklordInfo.SavedAnimations["ZombieRun"])
-		local Attack = AAnimator:LoadAnimation(HacklordInfo.SavedAnimations["ZombieAttack"])
-		local Summon = AAnimator:LoadAnimation(HacklordInfo.SavedAnimations["ZombieSummon"])
-		
-		Idle.Priority = Enum.AnimationPriority.Movement
-		Walk.Priority = Enum.AnimationPriority.Movement
-		Run.Priority = Enum.AnimationPriority.Movement
-		Attack.Priority = Enum.AnimationPriority.Action
-		Summon.Priority = Enum.AnimationPriority.Action2
-		
-		Summon:Play(1,10)
-		Summon.Ended:Wait()
-		Summon:Stop(1)
-		
-		local Distance = 9e9
-		local Wander = true
-		local Chasing = false
-		local TargetRoot, TargetPosition = nil, RootPart.Position
-		local ReturnNearestTarget = function()
-			for _,v in next,RootParts do
-				if typeof(v)=="Instance" and v:IsDescendantOf(Workspace) then
-					local Pos = v.Position
-					local CurrentDistance = (Pos-RootPart.Position).Magnitude
-					if CurrentDistance < Distance then
-						Distance = CurrentDistance
-						TargetRoot = v
-					end
-				end
-			end
-			if Distance <= MaxDistance then
-				if TargetRoot then
-					TargetPosition = TargetRoot.Position
-					Wander = false
-					Chasing = true
-				end
-			elseif Distance > LoseFocusRange then
-				Wander = true
-				Chasing = false
-			end
-		end
-		
-		HealthInstance:GetPropertyChangedSignal("Value"):Connect(function()
-			if Humanoid then
-				Humanoid.Health = 0
-			end
-		end)
-		
-		local End = function()
-			for _,v in next,Descendants do
-				local IsBasePart, IsDecal = v:IsA("BasePart"), v:IsA("Decal")
-				if IsBasePart or IsDecal then
-					if v.Transparency ~= 1 then
-						TweenService:Create(v,TweenInfo.new(0.3),{Transparency=1}):Play()
-					end
-				end
-			end
-			FWait(0.3)
-			Model:Destroy()
-			if AAnimator and not AAnimator._destroyed then AAnimator:Destroy() end
-		end
-		
-		local Con
-		local timecheck, timecheck2, cooldownasync = 0, 0, AttackCooldown
-		Con = PreRender:Connect(function(deltatime)
-			if PauseEverything then return end
-			if StopEverything then
-				if AAnimator and not AAnimator._destroyed then AAnimator:Destroy() end
-				Con:Disconnect()
-			end
-			cooldownasync += deltatime
-			timecheck += deltatime
-			if timecheck > 0.1 then
-				timecheck = 0
-				ReturnNearestTarget()
-			end
-			
-			if Distance <= AttackRange then
-				if cooldownasync > AttackCooldown then
-					Attack:Play(1,10)
-					cooldownasync = 0
-					local Model = TargetRoot.Parent
-					if typeof(Model)=="Instance" then
-						local Humanoid = Model:FindFirstChildOfClass("Humanoid")
-						if Humanoid then
-							Damage(Humanoid, AttackDamage)
-						end
-					end
-				end
-			end
-			
-			local MoveMagnitude = (RootPart.Velocity*Vector3.new(1,0,1)).Magnitude
-			if MoveMagnitude > HacklordInfo.ZombieWalkSpeed / 2 then
-				if Chasing then
-					if not Run.IsPlaying then
-						Run:Play(1,10)
-						Idle:Stop(1)
-						Walk:Stop(1)
-					end
-				else
-					if not Walk.IsPlaying then
-						Walk:Play(1,10)
-						Idle:Stop(1)
-						Run:Stop(1)
-					end
-				end
-			else
-				if not Idle.IsPlaying then
-					Idle:Play(1,10)
-					Walk:Stop(1)
-					Run:Stop(1)
-				end
-			end
-			
-			if Wander then
-				Humanoid.WalkSpeed = HacklordInfo.ZombieWalkSpeed
-				timecheck2 += deltatime
-				if timecheck2 > 2.5 then
-					timecheck2 = 0
-					Humanoid:MoveTo(RootPart.Position+Vector3.new(math.random(-20,20),0,math.random(-20,20)))
-				end
-			else
-				Humanoid.WalkSpeed = HacklordInfo.ZombieSprintSpeed
-				Humanoid:MoveTo(TargetPosition)
-			end
-		end)
-		Humanoid.Died:Once(function()
-			if Con then Con:Disconnect() end
-			if Model then task.spawn(End) end
-		end)
-		task.spawn(function()
-			local stop = osclock()+LifeTime
-			while osclock()<=stop do
-				if not Model then
-					break
-				end
-				Heartbeat:Wait()
-			end
-			if Model then End() end
-			if Con then Con:Disconnect() end
-		end)
-	end
-end
 
 local Sprinting = function()
 	IsSprinting = not IsSprinting
