@@ -5248,7 +5248,7 @@ end)
 lbl("original by shackluster")
 lbl("the classics never die")
 
-btn("metamorphosis vibe", function()
+btn("custom reanimation", function()
 	local t=reanimate()
 	if type(t)~="table" then return end
 	local addmode=t.addmode
