@@ -2114,8 +2114,8 @@ btn("custom reanimation", function()
 	local Sword2Weld=getPartJoint(sword2)
 	local sword4=getPartFromMesh(5278721954, 5278777022)
 	local Sword4Weld=getPartJoint(sword4)
-	t.setJumpPower(100)
-	t.setWalkSpeed(24)
+	t.setJumpPower(80)
+	t.setWalkSpeed(40)
 
 	addmode("default",{
 		idle=function()
