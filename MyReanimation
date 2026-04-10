@@ -2089,7 +2089,6 @@ btn("custom reanimation", function()
 	local RightHip=getJoint("Right Hip")
 	local LeftHip=getJoint("Left Hip")
 	local Neck=getJoint("Neck")
-	local sword=getPartFromMesh(5254583415, 5268538095)
 	local s1_1=sword and getPartJoint(sword) or {C0=cf_0} -- VoidLord Sword
 	local sword2=getPartFromMesh(5278721954, 5316471565) or getPartFromMesh(5278721954, 5692006383)
 	local s1_2=sword2 and getPartJoint(sword2) or {C0=cf_0} -- Aurora Sword or Halloween Sword
