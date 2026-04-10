@@ -2089,7 +2089,13 @@ btn("custom reanimation", function()
 	local RightHip=getJoint("Right Hip")
 	local LeftHip=getJoint("Left Hip")
 	local Neck=getJoint("Neck")
+	local SWAtt1=getAccWeldFromMesh("5254583415", "5268538095") -- VoidLordSword
+	local SWAtt2=getAccWeldFromMesh("5278721954", "5316471565") or getAccWeldFromMesh("5278721954", "5692006383") -- Aurora Sword or Halloween Sword
+	local SWAtt3=getAccWeldFromMesh("5278721954", "5316510551") -- RainbowGodSword
+	local SWAtt4=getAccWeldFromMesh("5278721954", "5278777022") -- DemonGodSword
+	local sword2=getPartFromMesh(5278721954, 5316471565) or getPartFromMesh(5278721954, 5692006383)
 	local s1_2=sword2 and getPartJoint(sword2) or {C0=cf_0} -- Aurora Sword or Halloween Sword
+	local sword4=getPartFromMesh(5278721954, 5278777022)
 	local s1_4=sword4 and getPartJoint(sword4) or {C0=cf_0} -- Demon God Sword
 	t.setJumpPower(100)
 	t.setWalkSpeed(24)
