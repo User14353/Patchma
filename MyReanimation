@@ -2117,7 +2117,7 @@ btn("custom reanimation", function()
 	t.setJumpPower(80)
 	t.setWalkSpeed(40)
 
-	addmode("default",{
+	addmode("e",{
 		idle=function()
 			Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1-0.06*sin(sine*1),0),angles(-1.9198621771937625-0.06981317007977318*sin(sine*1),-0.017453292519943295*sin(sine*1),3.141592653589793)),deltaTime) 
 			
