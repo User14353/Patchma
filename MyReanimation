@@ -2078,27 +2078,6 @@ end
 
 
 btn("custom reanimation", function()
---	local getPart=t.getPart
-	local velYchg=t.velYchg 
-	local Yvel=t.Yvel
-	local raycastlegs=t.raycastlegs
-	local velbycfrvec=t.velbycfrvec
-	local setWalkSpeed=t.setWalkSpeed
-	local rgb=Color3.fromRGB
-	local R6parts=t.R6parts
-	local setCamOffset=t.setCamOffset
-	local Player=game.Players.LocalPlayer
-	local getVel=t.getVel
-	local IsWalking=t.IsWalking
-	local getJoint=t.getJoint
-	local setCfr=t.setCfr
-	local cframes=t.cframes
-	local joints=t.joints
-	local refreshjoints=t.refreshjoints
-	local onnewcamera=t.onnewcamera
-	local SoundService=game.SoundService
-	local setHipHeight=t.setHipHeight
-	local getAccWeldFromMesh=t.getAccWeldFromMesh
 	local t=reanimate()
 	if type(t)~="table" then return end
 	local addmode=t.addmode
@@ -2110,12 +2089,7 @@ btn("custom reanimation", function()
 	local RightHip=getJoint("Right Hip")
 	local LeftHip=getJoint("Left Hip")
 	local Neck=getJoint("Neck")
-	local s1_1=sword and getPartJoint(sword) or {C0=cf_0} -- VoidLord Sword
-	local sword2=getPartFromMesh(5278721954, 5316471565) or getPartFromMesh(5278721954, 5692006383)
 	local s1_2=sword2 and getPartJoint(sword2) or {C0=cf_0} -- Aurora Sword or Halloween Sword
-	local sword3=getPartFromMesh(5278721954, 5316510551)
-	local s1_3=sword3 and getPartJoint(sword3) or {C0=cf_0} -- Rainbow Sword
-	local sword4=getPartFromMesh(5278721954, 5278777022)
 	local s1_4=sword4 and getPartJoint(sword4) or {C0=cf_0} -- Demon God Sword
 	t.setJumpPower(100)
 	t.setWalkSpeed(24)
