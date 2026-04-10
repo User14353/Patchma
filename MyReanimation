@@ -2078,6 +2078,27 @@ end
 
 
 btn("custom reanimation", function()
+	local getPart=t.getPart
+	local velYchg=t.velYchg 
+	local Yvel=t.Yvel
+	local raycastlegs=t.raycastlegs
+	local velbycfrvec=t.velbycfrvec
+	local setWalkSpeed=t.setWalkSpeed
+	local rgb=Color3.fromRGB
+	local R6parts=t.R6parts
+	local setCamOffset=t.setCamOffset
+	local Player=game.Players.LocalPlayer
+	local getVel=t.getVel
+	local IsWalking=t.IsWalking
+	local getJoint=t.getJoint
+	local setCfr=t.setCfr
+	local cframes=t.cframes
+	local joints=t.joints
+	local refreshjoints=t.refreshjoints
+	local onnewcamera=t.onnewcamera
+	local SoundService=game.SoundService
+	local setHipHeight=t.setHipHeight
+	local getAccWeldFromMesh=t.getAccWeldFromMesh
 	local t=reanimate()
 	if type(t)~="table" then return end
 	local addmode=t.addmode
