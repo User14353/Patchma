@@ -2078,7 +2078,7 @@ end
 
 
 btn("custom reanimation", function()
-	local getPart=t.getPart
+--	local getPart=t.getPart
 	local velYchg=t.velYchg 
 	local Yvel=t.Yvel
 	local raycastlegs=t.raycastlegs
