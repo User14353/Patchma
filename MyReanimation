@@ -2089,7 +2089,7 @@ btn("custom reanimation", function()
 	local RightHip=getJoint("Right Hip")
 	local LeftHip=getJoint("Left Hip")
 	local Neck=getJoint("Neck")
-	local SWAtt1=getAccWeldFromMesh("5254583415", "5268538095") -- VoidLordSword
+--	local SWAtt1=getAccWeldFromMesh("5254583415", "5268538095") -- VoidLordSword
 	local SWAtt2=getAccWeldFromMesh("5278721954", "5316471565") or getAccWeldFromMesh("5278721954", "5692006383") -- Aurora Sword or Halloween Sword
 	local SWAtt3=getAccWeldFromMesh("5278721954", "5316510551") -- RainbowGodSword
 	local SWAtt4=getAccWeldFromMesh("5278721954", "5278777022") -- DemonGodSword
@@ -2108,9 +2108,9 @@ btn("custom reanimation", function()
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,1-0.1*sin(sine*0.9),-0.3),angles(2.600540585471551+0.10471975511965978*sin(sine*1),1.7453292519943295+0.10471975511965978*sin(sine*1),0)),deltaTime) 
 			
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5-0.1*sin(sine*0.8),0),angles(-0.3490658503988659+0.06981317007977318*sin(sine*1),-1.3962634015954636+0.10471975511965978*sin(sine*1),0)),deltaTime) 
-			s1_4.C0=Lerp(AccessoryWeld.C0,cfMul(cf(0,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
+			s1_4.C0=Lerp(s1_4.C0,cfMul(cf(0,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
 
-			s1_2.C0=Lerp(AccessoryWeld.C0,cfMul(cf(0,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,0)),deltaTime) 
+			s1_2.C0=Lerp(s1_2.C0,cfMul(cf(0,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,0)),deltaTime) 
 			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,4+0.2*sin(sine*1),0),angles(-1.2042771838760873+0.05235987755982989*sin(sine*0.4),0,3.141592653589793)),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.3490658503988659+0.06981317007977318*sin(sine*1),-1.3962634015954636+0.06981317007977318*sin(sine*1),0)),deltaTime) 
 			
