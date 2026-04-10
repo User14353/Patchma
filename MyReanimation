@@ -1,4 +1,3 @@
-
 local osclock=os.clock
 local tspawn=task.spawn
 local twait=task.wait
@@ -2079,7 +2078,7 @@ end
 
 btn("custom reanimation", function()
 	local t=reanimate()
-	local getAccWeldFromMesh=t.getAccWeldFromMesh
+	local getAccWeldFromMesh=t.getAccWeldFromMesh 
 	if type(t)~="table" then return end
 	local addmode=t.addmode
 	local getJoint=t.getJoint
