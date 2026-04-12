@@ -2114,6 +2114,10 @@ btn("star glitcher", function()
 	local Sword2Weld=getPartJoint(sword2)
 	local sword4=getPartFromMesh(5278721954, 5278777022)
 	local Sword4Weld=getPartJoint(sword4)
+	local sword3=getPartFromMesh(5278721954, 5316471565)
+	local Sword3Weld=getPartJoint(sword3)
+	local sword1=getPartFromMesh(5278721954, 5316510551)
+	local Sword1Weld=getPartJoint(sword1)
 	t.setJumpPower(80)
 	t.setWalkSpeed(40)
 
@@ -2222,6 +2226,9 @@ btn("star glitcher", function()
 	})
 	addmode("e",{
 		idle=function()
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(8,1,0),angles(0.7852236304722489,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(0.7852236304722489,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
+
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1.6,0.5,-0.2),angles(2.2689280275926285+0.10471975511965978*sin(sine*-2),-3.3161255787892263+0.10471975511965978*sin(sine*-2),1.2042771838760873+0.10471975511965978*sin(sine*-2))),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(8,1 * sin(sine*1),-2 * sin(sine*-2)),angles(0.7852236304722489-0.10471975511965978*sin(sine*-2),3.490658503988659,6283185307.179586*sin(sine*-2.6e-09))),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1.6,0.5,-0.2),angles(2.2689280275926285+0.10471975511965978*sin(sine*-2),3.3161255787892263+0.10471975511965978*sin(sine*-2),-1.2042771838760873+0.10471975511965978*sin(sine*-2))),deltaTime) 
@@ -2234,6 +2241,8 @@ btn("star glitcher", function()
 		end,
 		walk=function()
 			local fw,rt=velbycfrvec()
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(8,1,0),angles(-2.2689280275926285,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(-2.2689280275926285,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
 
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5,0),angles(-1.2042771838760873-0.10471975511965978*sin(sine*-2),-1.3962634015954636-0.10471975511965978*sin(sine*-2),0)),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(8,1 * sin(sine*1),-2 * sin(sine*-2)),angles(-2.0943951023931953-0.10471975511965978*sin(sine*-2),3.490658503988659,6283185307.179586*sin(sine*-2.6e-09))),deltaTime) 
@@ -2246,6 +2255,9 @@ btn("star glitcher", function()
 			--MW_animatorProgressSave: LeftArm,-1,0,0,1,-69,-6,0,-2,0.5,0,0,1,-80,-6,0,-2,0,0,0,1,0,0,0,1,RainbowGodSword_Handle,8,0,0,1,-120,-6,0,-2,0,1,0,1,200,0,0,1,0,-2,0,-2,0,360000000000,0,-0.0000000026,RightArm,1,0,0,1,-69,-6,0,-2,0.5,0,0,1,80,-6,0,-2,0,0,0,1,0,0,0,1,Torso,0,0,0,1,-110,3,0,-2,8,1,0,2,0,3,0,-2,0,0,0,1,180,0,0,1,RightLeg,1,0,0,1,-40,6,3,-2,-0.6,0,0,1,69,6,0,2,-1,0,0,1,0,0,0,1,Head,0,0,0,1,-69,6,0,-2,1,0,0,1,0,6,0,1,0,0,0,1,180,0,0,1,LeftLeg,-1,0,0,1,-49,6,0,-2,-1,0,0,1,-69,6,0,2,0,0,0,1,0,0,0,1,DemonGodSword_Handle,-4.99,0,0,1,-120,-6,0,-2,0,1,0,1,180,0,0,1,0,-2,0,-2,0,360000000000,0,0.000000002
 		end,
 		fall=function()
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(8,1,0),angles(0.7852236304722489,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(0.7852236304722489,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
+
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1.6,0.5,-0.2),angles(2.2689280275926285+0.10471975511965978*sin(sine*-2),-3.3161255787892263+0.10471975511965978*sin(sine*-2),1.2042771838760873+0.10471975511965978*sin(sine*-2))),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(8,1 * sin(sine*1),-2 * sin(sine*-2)),angles(0.7852236304722489-0.10471975511965978*sin(sine*-2),3.490658503988659,6283185307.179586*sin(sine*-2.6e-09))),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1.6,0.5,-0.2),angles(2.2689280275926285+0.10471975511965978*sin(sine*-2),3.3161255787892263+0.10471975511965978*sin(sine*-2),-1.2042771838760873+0.10471975511965978*sin(sine*-2))),deltaTime) 
@@ -2257,6 +2269,9 @@ btn("star glitcher", function()
 			--MW_animatorProgressSave: LeftArm,-1.6,0,0,1,130,6,0,-2,0.5,0,0,1,-190,6,0,-2,-0.2,0,0,1,69,6,0,-2,RainbowGodSword_Handle,8,0,0,1,44.99,-6,0,-2,0,1,0,1,200,0,0,1,0,-2,0,-2,0,360000000000,0,-0.0000000026,RightArm,1.6,0,0,1,130,6,0,-2,0.5,0,0,1,190,6,0,-2,-0.2,0,0,1,-69,6,0,-2,Torso,0,0,0,1,-80,3,0,-2,8,1,0,2,0,3,0,-2,0,0,0,1,180,0,0,1,RightLeg,1,0,0,1,-20,6,3,-2,-1,0,0,1,69,6,0,2,0,0,0,1,0,0,0,1,Head,0,0,0,1,-69,6,0,-2,1,0,0,1,0,6,0,1,0,0,0,1,180,0,0,1,LeftLeg,-1,0,0,1,-30,6,0,-2,-1,0,0,1,-69,6,0,2,0,0,0,1,0,0,0,1,DemonGodSword_Handle,-4.99,0,0,1,44.99,-6,0,-2,0,1,0,1,180,0,0,1,0,-2,0,-2,0,360000000000,0,0.000000002
 		end,
 		jump=function()
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(8,1,0),angles(0.7852236304722489,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(0.7852236304722489,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
+
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1.6,0.5,-0.2),angles(2.2689280275926285+0.10471975511965978*sin(sine*-2),-3.3161255787892263+0.10471975511965978*sin(sine*-2),1.2042771838760873+0.10471975511965978*sin(sine*-2))),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(8,1 * sin(sine*1),-2 * sin(sine*-2)),angles(0.7852236304722489-0.10471975511965978*sin(sine*-2),3.490658503988659,6283185307.179586*sin(sine*-2.6e-09))),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1.6,0.5,-0.2),angles(2.2689280275926285+0.10471975511965978*sin(sine*-2),3.3161255787892263+0.10471975511965978*sin(sine*-2),-1.2042771838760873+0.10471975511965978*sin(sine*-2))),deltaTime) 
