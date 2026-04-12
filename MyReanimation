@@ -2134,7 +2134,7 @@ btn("Star-Glitcher", function()
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
 
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,0)),deltaTime) 
-			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+0.2*sin(sine*1),0),angles(-1.2042771838760873+0.05235987755982989*sin(sine*0.4),0,3.141592653589793)),deltaTime) 
+			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,10+0.2*sin(sine*1),0),angles(-1.2042771838760873+0.05235987755982989*sin(sine*0.4),0,3.141592653589793)),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.3490658503988659+0.06981317007977318*sin(sine*1),-1.3962634015954636+0.06981317007977318*sin(sine*1),0)),deltaTime) 
 			
 			--MW_animatorProgressSave: Head,0,0,0,1,-110,-4,0,1,1,-0.06,0,1,0,-1,0,1,0,0,0,1,180,0,0,1,Accessory(Black)_Handle,0.00021648406982421875,0,0,1,0,0,0,1,0.6004776954650879,0,0,1,0,0,0,1,-0.0005645751953125,0,0,1,0,0,0,1,Accessory(LARM)_Handle,-0.5,0,0,1,0,0,0,1,0.4529995918273926,0,0,1,-90,0,0,1,-1.1920928955078125e-07,0,0,1,0,0,0,1,RightLeg,1,0,0,1,-30,4,0,1,-0.69,-0.1,0,0.8,80,2,0,1,-1,0,0,1,0,0,0,1,RightArm,1,0,0,1,149,6,0,1,1,-0.1,0,0.9,100,6,0,1,-0.3,0,0,1,0,0,0,1,Accessory(RARM)_Handle,-0.4999990463256836,0,0,1,0,0,0,1,0.4529995918273926,0,0,1,-90,0,0,1,3.552713678800501e-15,0,0,1,0,0,0,1,LeftArm,-1,0,0,1,-20,4,0,1,0.5,-0.1,0,0.8,-80,6,0,1,0,0,0,1,0,0,0,1,RainbowGodSword_Handle,-6,0,0,1,20,-3,0,1,-4,0,0,1,180,0,0,1,4,0,0,1,1,0,0,1,Accessory(RARM)_Handle,-0.4999990463256836,0,0,1,0,0,0,1,0.4529995918273926,0,0,1,-90,0,0,1,3.552713678800501e-15,0,0,1,0,0,0,1,DemonGodSword_Handle,6,0,0,1,20,-3,0,1,-4,0,0,1,180,0,0,1,4,0,0,1,1,0,0,1,Torso,0,0,0,1,-69,3,0,0.4,3,0.2,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftLeg,-1,0,0,1,-20,4,0,1,-1,0,0,1,-80,4,0,1,0,0,0,1,0,0,0,1,Accessory(LARM)_Handle,-0.5,0,0,1,0,0,0,1,0.4529995918273926,0,0,1,-90,0,0,1,-1.1920928955078125e-07,0,0,1,0,0,0,1,BlackHood_Handle,0.0006301403045654297,0,0,1,0,0,0,1,0.3773369789123535,0,0,1,0,0,0,1,-0.0116424560546875,0,0,1,0,0,0,1
@@ -2142,10 +2142,12 @@ btn("Star-Glitcher", function()
 		walk=function()
 			local fw,rt=velbycfrvec()
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(6,8,10),angles(6283185307.179586*sin(sine*1e-09),-1.5707963267948966,0)),deltaTime) 
 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-6,-8,-10),angles(-6283185307.179586*sin(sine*1e-09),1.5707963267948966,1.5707963267948966)),deltaTime) 
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,0)),deltaTime) 
 			RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.3-0.1*sin(sine*1),-1),angles(-0.3490658503988659+0.05235987755982989*sin(sine*1),1.3962634015954636+0.05235987755982989*sin(sine*1),0)),deltaTime) 
-			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+0.2*sin(sine*1),0),angles(-2.600540585471551-0.05235987755982989*sin(sine*1),0,3.141592653589793)),deltaTime) 
+			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,10+0.2*sin(sine*1),0),angles(-2.600540585471551-0.05235987755982989*sin(sine*1),0,3.141592653589793)),deltaTime) 
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5-0.1*sin(sine*1),0),angles(-0.24434609527920614+0.05235987755982989*sin(sine*1),-1.3962634015954636+0.05235987755982989*sin(sine*1),0)),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1-0.1*sin(sine*1),0),angles(-0.3490658503988659-0.05235987755982989*sin(sine*1),-1.5707963267948966,0)),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5-0.1*sin(sine*1),0),angles(-0.24434609527920614+0.05235987755982989*sin(sine*1),1.3962634015954636+0.05235987755982989*sin(sine*1),0)),deltaTime) 
@@ -2154,25 +2156,29 @@ btn("Star-Glitcher", function()
 		end,
 		fall=function()
 			Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1-0.08*sin(sine*2),0),angles(-1.2042771838760873-0.03490658503988659*sin(sine*2),0.05235987755982989*sin(sine*2),3.141592653589793)),deltaTime) 
-			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+0.2*sin((sine-0.1)*3.2),0),angles(-1.3962634015954636+0.03490658503988659*sin(sine*2),0,3.141592653589793)),deltaTime) 
+			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,10+0.2*sin((sine-0.1)*3.2),0),angles(-1.3962634015954636+0.03490658503988659*sin(sine*2),0,3.141592653589793)),deltaTime) 
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.4-0.1*sin(sine*2.6),0),angles(0.05235987755982989*sin(sine*2),-1.3962634015954636+0.05235987755982989*sin(sine*2),0)),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.3490658503988659+0.05235987755982989*sin(sine*2),-1.3962634015954636-0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.6,-1),angles(-0.4537856055185257-0.05235987755982989*sin(sine*2),1.3962634015954636-0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,1-0.1*sin(sine*2),0),angles(2.792526803190927+0.05235987755982989*sin(sine*2),1.7453292519943295+0.05235987755982989*sin(sine*2),0)),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(6,8,10),angles(6283185307.179586*sin(sine*1e-09),-1.5707963267948966,0)),deltaTime) 
 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-6,-8,-10),angles(-6283185307.179586*sin(sine*1e-09),1.5707963267948966,1.5707963267948966)),deltaTime) 
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,0)),deltaTime) 
 			--MW_animatorProgressSave: Head,0,0,0,2,-69,-2,0,2,1,-0.08,0,2,0,3,0,2,0,0,0,2,180,0,0,2,Torso,0,0,0,2,-80,2,0,2,2,0.2,-0.1,3.2,0,0,0,2,0,0,0,2,180,0,0,2,LeftArm,-1,0,0,2,0,3,0,2,0.4,-0.1,0,2.6,-80,3,0,2,0,0,0,2,0,0,0,2,LeftLeg,-1,0,0,2,-20,3,0,2,-1,0,0,2,-80,-4,0,2,0,0,0,2,0,0,0,2,RightLeg,1,0,0,2,-26,-3,0,2,-0.6,0,0,2,80,-4,0,2,-1,0,0,2,0,0,0,2,RightArm,1,0,0,2,160,3,0,2,1,-0.1,0,2,100,3,0,2,0,0,0,2,0,0,0,2
 		end,
 		jump=function()
 			Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1-0.08*sin(sine*2),0),angles(-1.2042771838760873-0.03490658503988659*sin(sine*2),0.05235987755982989*sin(sine*2),3.141592653589793)),deltaTime) 
-			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+0.2*sin((sine-0.1)*3.2),0),angles(-1.3962634015954636+0.03490658503988659*sin(sine*2),0,3.141592653589793)),deltaTime) 
+			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,10+0.2*sin((sine-0.1)*3.2),0),angles(-1.3962634015954636+0.03490658503988659*sin(sine*2),0,3.141592653589793)),deltaTime) 
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.4-0.1*sin(sine*2.6),0),angles(0.05235987755982989*sin(sine*2),-1.3962634015954636+0.05235987755982989*sin(sine*2),0)),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.3490658503988659+0.05235987755982989*sin(sine*2),-1.3962634015954636-0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.6,-1),angles(-0.4537856055185257-0.05235987755982989*sin(sine*2),1.3962634015954636-0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,1-0.1*sin(sine*2),0),angles(2.792526803190927+0.05235987755982989*sin(sine*2),1.7453292519943295+0.05235987755982989*sin(sine*2),0)),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(6,8,10),angles(6283185307.179586*sin(sine*1e-09),-1.5707963267948966,0)),deltaTime) 
 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-6,-8,-10),angles(-6283185307.179586*sin(sine*1e-09),1.5707963267948966,1.5707963267948966)),deltaTime) 
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,0)),deltaTime) 
 			--MW_animatorProgressSave: Head,0,0,0,2,-69,-2,0,2,1,-0.08,0,2,0,3,0,2,0,0,0,2,180,0,0,2,Torso,0,0,0,2,-80,2,0,2,2,0.2,-0.1,3.2,0,0,0,2,0,0,0,2,180,0,0,2,LeftArm,-1,0,0,2,0,3,0,2,0.4,-0.1,0,2.6,-80,3,0,2,0,0,0,2,0,0,0,2,LeftLeg,-1,0,0,2,-20,3,0,2,-1,0,0,2,-80,-4,0,2,0,0,0,2,0,0,0,2,RightLeg,1,0,0,2,-26,-3,0,2,-0.6,0,0,2,80,-4,0,2,-1,0,0,2,0,0,0,2,RightArm,1,0,0,2,160,3,0,2,1,-0.1,0,2,100,3,0,2,0,0,0,2,0,0,0,2
 		end
