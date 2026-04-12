@@ -2075,8 +2075,8 @@ local reanimate=function()
 end
 
 
-
-btn("custom reanimation", function() 
+-- custom reanimation
+btn("star glitcher", function() 
 	local t=reanimate()
 	local velYchg=t.velYchg 
 	local Yvel=t.Yvel
@@ -2224,7 +2224,7 @@ btn("custom reanimation", function()
 			--MW_animatorProgressSave: RightLeg,1,0,0,1,-40,4,0,2,-0.4,0,0,1,80,4,0,2,-1,0,0,1,0,0,0,1,DemonGodSword_Handle,3,0,0,1,230,3,0,-2,,0,0,1,10,3,0,-2,0,0,0,1,-90,3,0,2,LeftLeg,-1,0,0,1,-40,3,0,2,-1,0,0,1,-80,3,0,-2,0,0,0,1,0,0,0,1,RainbowGodSword_Handle,-4,0,0,1,-44.999999,3,0,2,-1.4,0,0,1,90,3,0,-2,1,0,0,1,0,3,0,-2,Head,0,0,0,1,-80,4,0,-2,1,0,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,100,3,0,-2,1.8,0,0,1,10,3,0,2,-0.9,0,0,1,80,3,0,-2,Torso,0,0,0,1,-60,3,0,2,6,0.2,0,-2,0,3,0,-2,0,0,0,1,180,0,0,1,RightArm,1,0,0,1,-20,4,0,-2,0.5,0,0,1,80,4,0,2,0,0,0,1,0,0,0,1
 		end
 	})
-	addmode("e",{
+--[[	addmode("e",{
 		t.setJumpPower(60)
 		t.setWalkSpeed(80)
 		idle=function()
@@ -2273,7 +2273,8 @@ btn("custom reanimation", function()
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(-4.99,1 * sin(sine*1),-2 * sin(sine*-2)),angles(0.7852236304722489-0.10471975511965978*sin(sine*-2),3.141592653589793,6283185307.179586*sin(sine*2e-09))),deltaTime) 
 			--MW_animatorProgressSave: LeftArm,-1.6,0,0,1,130,6,0,-2,0.5,0,0,1,-190,6,0,-2,-0.2,0,0,1,69,6,0,-2,RainbowGodSword_Handle,8,0,0,1,44.99,-6,0,-2,0,1,0,1,200,0,0,1,0,-2,0,-2,0,360000000000,0,-0.0000000026,RightArm,1.6,0,0,1,130,6,0,-2,0.5,0,0,1,190,6,0,-2,-0.2,0,0,1,-69,6,0,-2,Torso,0,0,0,1,-80,3,0,-2,8,1,0,2,0,3,0,-2,0,0,0,1,180,0,0,1,RightLeg,1,0,0,1,-20,6,3,-2,-1,0,0,1,69,6,0,2,0,0,0,1,0,0,0,1,Head,0,0,0,1,-69,6,0,-2,1,0,0,1,0,6,0,1,0,0,0,1,180,0,0,1,LeftLeg,-1,0,0,1,-30,6,0,-2,-1,0,0,1,-69,6,0,2,0,0,0,1,0,0,0,1,DemonGodSword_Handle,-4.99,0,0,1,44.99,-6,0,-2,0,1,0,1,180,0,0,1,0,-2,0,-2,0,360000000000,0,0.000000002
 		end
-	})
+	}) --]]
+
 end)
 
 lbl("Cool text")
