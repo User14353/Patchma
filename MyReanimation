@@ -2185,6 +2185,8 @@ btn("Star-Glitcher", function()
 	})
 	addmode("q",{
 		idle=function()
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,-1.5707963267948966)),deltaTime) 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,1.5707963267948966)),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(4+1*sin(sine*-1),6,0),angles(628318.5307179586*sin(sine*0.00001),0,1.5707963267948966)),deltaTime) 
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(-4+1*sin(sine*-1),6,0),angles(628318.5307179586*sin(sine*0.00001),0,-1.5707963267948966)),deltaTime) 
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,1+0.1*sin(sine*1),0),angles(2.949606435870417+0.05235987755982989*sin(sine*1),-1.7453292519943295+0.05235987755982989*sin(sine*1),0)),deltaTime) 
@@ -2197,7 +2199,8 @@ btn("Star-Glitcher", function()
 		end,
 		walk=function()
 			local fw,rt=velbycfrvec()
-			
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(4,0,0),angles(-2.3736477827122884+0.10471975511965978*sin(sine*-2),3.141592653589793+0.10471975511965978*sin(sine*-2),0.10471975511965978*sin(sine*-2))),deltaTime) 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-4,0,0),angles(-2.3736477827122884+0.10471975511965978*sin(sine*2),3.141592653589793+0.10471975511965978*sin(sine*2),0.10471975511965978*sin(sine*2))),deltaTime) 
 			Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.2042771838760873+0.15707963267948966*sin(sine*1),0.05235987755982989*sin(sine*1),3.141592653589793)),deltaTime) 
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,1,0),angles(3.3161255787892263+0.10471975511965978*sin(sine*1),-1.7453292519943295+0.10471975511965978*sin(sine*1),0)),deltaTime) 
 			RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+1*sin(sine*1),0),angles(1.9198621771937625+0.05235987755982989*sin(sine*1),0,0)),deltaTime) 
@@ -2209,7 +2212,8 @@ btn("Star-Glitcher", function()
 			--MW_animatorProgressSave: Head,0,0,0,1,-69,9,0,1,1,0,0,1,0,3,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,190,6,0,1,1,0,0,1,-100,6,0,1,0,0,0,1,0,0,0,1,Torso,0,0,0,1,110,3,0,1,8,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,RightArm,1,0,0,1,-16,6,0,1,0.5,0,0,1,80,6,0,1,0,0,0,1,0,0,0,1,LeftLeg,-1,0,0,1,-20,6,0,1,-1,0,0,1,-80,6,0,1,0,0,0,1,0,0,0,1,RainbowGodSword_Handle,-4,0,0,1,0,3600000000000,0,0.0000000001,6,,0,1,60,0,0,1,0,0,0,1,-90,0,0,1,DemonGodSword_Handle,4,0,0,1,0,3600000000000,0,0.0000000001,6,,0,1,-60,0,0,1,0,0,0,1,90,0,0,1,RightLeg,1,0,0,1,-30,6,0,1,-0.3,0,0,1,80,6,0,1,-1,0,0,1,0,0,0,1
 		end,
 		fall=function()
-			
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-4,0,0),angles(-2.3736477827122884+0.10471975511965978*sin(sine*-2),0.10471975511965978*sin(sine*-2),0.10471975511965978*sin(sine*-2))),deltaTime) 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(4,0,0),angles(-2.3736477827122884+0.10471975511965978*sin(sine*2),0.10471975511965978*sin(sine*2),0.10471975511965978*sin(sine*2))),deltaTime) 
 			RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.4,-1),angles(-0.6981317007977318+0.06981317007977318*sin(sine*2),1.3962634015954636+0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(3,0,0),angles(4.014257279586958+0.05235987755982989*sin(sine*-2),0.17453292519943295+0.05235987755982989*sin(sine*-2),-1.5707963267948966+0.05235987755982989*sin(sine*2))),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.6981317007977318+0.05235987755982989*sin(sine*2),-1.3962634015954636+0.05235987755982989*sin(sine*-2),0)),deltaTime) 
@@ -2221,6 +2225,8 @@ btn("Star-Glitcher", function()
 			--MW_animatorProgressSave: RightLeg,1,0,0,1,-40,4,0,2,-0.4,0,0,1,80,4,0,2,-1,0,0,1,0,0,0,1,DemonGodSword_Handle,3,0,0,1,230,3,0,-2,,0,0,1,10,3,0,-2,0,0,0,1,-90,3,0,2,LeftLeg,-1,0,0,1,-40,3,0,2,-1,0,0,1,-80,3,0,-2,0,0,0,1,0,0,0,1,RainbowGodSword_Handle,-4,0,0,1,-44.999999,3,0,2,-1.4,0,0,1,90,3,0,-2,1,0,0,1,0,3,0,-2,Head,0,0,0,1,-80,4,0,-2,1,0,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,100,3,0,-2,1.8,0,0,1,10,3,0,2,-0.9,0,0,1,80,3,0,-2,Torso,0,0,0,1,-60,3,0,2,6,0.2,0,-2,0,3,0,-2,0,0,0,1,180,0,0,1,RightArm,1,0,0,1,-20,4,0,-2,0.5,0,0,1,80,4,0,2,0,0,0,1,0,0,0,1
 		end,
 		jump=function()
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-4,0,0),angles(-2.3736477827122884+0.10471975511965978*sin(sine*-2),0.10471975511965978*sin(sine*-2),0.10471975511965978*sin(sine*-2))),deltaTime) 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(4,0,0),angles(-2.3736477827122884+0.10471975511965978*sin(sine*2),0.10471975511965978*sin(sine*2),0.10471975511965978*sin(sine*2))),deltaTime) 
 			RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.4,-1),angles(-0.6981317007977318+0.06981317007977318*sin(sine*2),1.3962634015954636+0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(3,0,0),angles(4.014257279586958+0.05235987755982989*sin(sine*-2),0.17453292519943295+0.05235987755982989*sin(sine*-2),-1.5707963267948966+0.05235987755982989*sin(sine*2))),deltaTime) 
 			LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.6981317007977318+0.05235987755982989*sin(sine*2),-1.3962634015954636+0.05235987755982989*sin(sine*-2),0)),deltaTime) 
