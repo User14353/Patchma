@@ -2347,9 +2347,9 @@ btn("Star-Glitcher", function()
 			Sword2Weld.C0=Lerp(Sword2Weld.C0,cfMul(cf(1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),-1.5707963267948966,0)),deltaTime) 
 			
 			Sword4Weld.C0=Lerp(Sword4Weld.C0,cfMul(cf(1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),-1.5707963267948966,0)),deltaTime) 
-			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
 			
-			Sword3Weld.C0=Lerp(Sword3Weld.C0,cfMul(cf(-1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime)
+			Sword1Weld.C0=Lerp(Sword1Weld.C0,cfMul(cf(-1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
 			RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.24434609527920614-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
 			RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.4,-1),angles(-0.5235987755982988+0.10471975511965978*sin((sine+3)*-2),1.3962634015954636,0)),deltaTime) 
 			Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.2042771838760873+0.10471975511965978*sin(sine*-2),0,3.141592653589793)),deltaTime) 
