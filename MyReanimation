@@ -2118,11 +2118,13 @@ btn("Star-Glitcher", function()
 	local Aurora=getPartJoint(sword3)
 	local sword1=getPartFromMesh(5278721954, 5316510551)
 	local Rainbow=getPartJoint(sword1)
+
+	local ModeV=""
 	t.setJumpPower(80)
 	t.setWalkSpeed(40)
 
 	addmode("default",{
-
+		ModeV="default",
 		idle=function()
 			Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1-0.06*sin(sine*1),0),angles(-1.9198621771937625-0.06981317007977318*sin(sine*1),-0.017453292519943295*sin(sine*1),3.141592653589793)),deltaTime) 
 			Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(6,8,10),angles(6283185307.179586*sin(sine*1e-09),-1.5707963267948966,0)),deltaTime) 
@@ -2185,6 +2187,7 @@ btn("Star-Glitcher", function()
 		end
 	})
 	addmode("q",{
+		ModeV="q",
 		idle=function()
 			Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,-1.5707963267948966)),deltaTime) 
 			Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,1.5707963267948966)),deltaTime) 
@@ -2240,6 +2243,7 @@ btn("Star-Glitcher", function()
 		end
 	})
 	addmode("e",{
+		ModeV="e",
 		idle=function()
 			Aurora.C0=Lerp(Aurora.C0,cfMul(cf(8,1,0),angles(0.7852236304722489,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
 			Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(0.7852236304722489,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
@@ -2299,6 +2303,7 @@ btn("Star-Glitcher", function()
 		end
 	})
 		addmode("r",{
+		ModeV="r",
 		idle=function()
 			Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(0,3,-4),angles(-3.036872898470133-0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
 			Aurora.C0=Lerp(Aurora.C0,cfMul(cf(0,3,-10),angles(-3.036872898470133-0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
@@ -2356,6 +2361,7 @@ btn("Star-Glitcher", function()
 			LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5,0),angles(2.792526803190927-0.10471975511965978*sin(sine*2),-1.3962634015954636+0.06981317007977318*sin(sine*2),0)),deltaTime) 
 			--MW_animatorProgressSave: LeftLeg,-1,0,0,1,-40,6,0,-2,-1,0,0.3,3,-80,0,0,1,0,0,0,1,0,0,0,1,Torso,0,0,0,1,-69,6,0,2,0,0.1,0,1,0,0,0,1,0,0,0,1,180,0,0,1,DemonGodSword_Handle,1,0,0,1,-100,8,0,2,10,0,0,1,-90,0,0,1,-3,0,0,1,0,0,0,1,AuroraSword_Handle,-1,0,0,1,90,6,0,2,4,0,0,1,90,0,0,1,-2,0,0,1,180,0,0,1,RainbowGodSword_Handle,1,0,0,1,-90,6,0,2,4,0,0,1,-90,,0,1,-2,0,0,1,0,0,0,1,RainbowGodSword_Handle,-1,0,0,1,100,8,0,2,10,0,0,1,90,0,0,1,-3,0,0,1,180,0,0,1,RightArm,1,0,0,1,-14,-6,0,2,0.5,0,0,2,80,0,0,1,0,0,0,1,0,0,0,1,RightLeg,1,0,0,1,-30,6,3,-2,-0.4,0,0.3,-3,80,0,0,1,-1,0,0,1,0,0,0,1,Head,0,0,0,1,-69,6,0,-2,1,0,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,160,-6,0,2,0.5,0,0,2,-80,4,0,2,0,0,0,1,0,0,0,1
 		end,
+		if ModeV="q" then
 			addmode("m",{
 				idle=function()
 					RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.5235987755982988-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
@@ -2416,6 +2422,7 @@ btn("Star-Glitcher", function()
 				end
 		
 			})
+		end
 	})
 	addmode("t",{
 		idle=function()
@@ -2474,7 +2481,67 @@ btn("Star-Glitcher", function()
 			--MW_animatorProgressSave: Torso,0,0,0,2,-80,6,2,2,8,1,0,2,0,0,0,2,0,0,0,2,180,0,0,2,Head,0,0,0,2,-60,-6,2,2,1,0,0,2,0,2,0,2,0,0,0,2,180,2,0,2,RightArm,1.2,0,0,2,-20,- 6,2,2,0.5,0,0,2,20,6,0,2,-0.4,0,0,2,30,-6,0,2,AuroraSword_Handle,-3,0,0,2,-120,36000000,0,0.00002,3,0,0,2,0,0,0,2,-2.3,0,0,2,60,0,0,2,RainbowGodSword_Handle,3,0,0,2,-44.99,36000000,0,0.00002,3,0,0,2,0,0,0,2,-4.3,0,0,2,-60,0,0,2,LeftArm,-1.2,0,0,2,-20,-6,2,2,0.5,0,0,2,-20,6,3,2,-0.4,0,0,2,-30,6,3,2,LeftLeg,-1,0,0,2,-20,-6,2,2,-0,0,0,2,-80,-4,1,2,-1,0,0,2,0,0,0,2,RainbowGodSword_Handle,-3,0,0,2,44.99,36000000,0,0.00002,2,0,0,2,0,0,0,2,-4.3,0,0,2,60,0,0,2,RightLeg,1,0,0,2,-22,-6,2,2,-1,0,0,2,80,4,0,2,0,0,0,2,0,0,0,2,DemonGodSword_Handle,3,0,0,2,120,36000000,0,0.00002,3,0,0,2,0,0,0,2,-2.3,0,0,2,-60,0,0,2
 		end
 	})
-
+	addmode("m",{
+		if ModeV=="r" then(
+			idle=function()
+				RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.5235987755982988-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
+				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.2217304763960306-0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
+				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-1,10,-2),angles(1.7453292519943295+0.4363323129985824*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,1,-1.6-0.1*sin(sine*2)),angles(-0.5235987755982988,0,1.5707963267948966)),deltaTime) 
+				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,-0.5,0),angles(-2.0943951023931953+0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
+				Halloween.C0=Lerp(Halloween.C0,cfMul(cf(-1,2,-2),angles(1.5707963267948966+0.2617993877991494*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-1,14,-2),angles(1.8325957145940461+0.5235987755982988*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.1 * sin(sine*2),-1),angles(0.5235987755982988-0.10471975511965978*sin(sine*2),1.5009831567151235,0)),deltaTime) 
+				Demon.C0=Lerp(Demon.C0,cfMul(cf(-1,6,-2),angles(1.6580627893946132+0.3490658503988659*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-0.9-0.1*sin(sine*2),-0.4+0.1*sin(sine*2)),angles(-0.5235987755982988-0.10471975511965978*sin(sine*2),-1.3962634015954636,0)),deltaTime) 
+				--MW_animatorProgressSave: RightArm,1,0,0,2,-30,-6,0,2,0.5,0,0,2,80,0,0,2,0,0,0,2,0,0,0,2,Head,0,0,0,2,-70,-6,0,2,1,0,0,2,0,0,0,2,0,0,0,2,180,0,0,2,AuroraSword_Handle,-1,0,0,2,100,25,0,2,10,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,LeftArm,-1,0,0,2,-30,0,0,2,1,0,0,2,0,0,0,2,-1.6,-0.1,0,2,90,0,0,2,Torso,0,0,0,2,-120,6,0,2,-0.5,0,0,2,0,0,0,2,0,0,0,2,180,0,0,2,RainbowGodSword_Handle,-1,0,0,2,90,15,0,2,2,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,RainbowGodSword_Handle,-1,0,0,2,105,30,0,2,14,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,RightLeg,1,0,0,2,30,-6,0,2,0,-0.1,0,2,86,0,0,2,-1,0,0,2,0,0,0,2,DemonGodSword_Handle,-1,0,0,2,95,20,0,2,6,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,LeftLeg,-1,0,0,2,-30,-6,0,2,-0.9,-0.1,0,2,-80,0,0,2,-0.4,0.1,0,2,0,0,0,2
+			end,
+			walk=function()
+				local fw,rt=velbycfrvec()
+				LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-0.8+0.3*sin((sine+0.3)*3),0),angles(0.17453292519943295+0.17453292519943295*sin(sine*3),-1.3962634015954636,0)),deltaTime) 
+				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,0.1 * sin(sine*1),0),angles(-1.7453292519943295+0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
+				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-1,3,-10),angles(-3.036872898470133+0.17453292519943295*sin(sine*2),1.5707963267948966+0.10471975511965978*sin(sine*2),0)),deltaTime)  
+				Halloween.C0=Lerp(Halloween.C0,cfMul(cf(-1,4,-3),angles(1.4486232791552935-0.17453292519943295*sin(sine*2),1.5707963267948966-0.10471975511965978*sin(sine*2),0)),deltaTime) 
+				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-1,3,-4),angles(-3.036872898470133+0.17453292519943295*sin(sine*2),1.5707963267948966+0.10471975511965978*sin(sine*2),0)),deltaTime) 
+				Demon.C0=Lerp(Demon.C0,cfMul(cf(-1,10,-3),angles(1.4486232791552935-0.17453292519943295*sin(sine*2),1.5707963267948966-0.10471975511965978*sin(sine*2),0)),deltaTime) 
+				RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5+0.1*sin(sine*2),0),angles(0.24434609527920614+0.2792526803190927*sin(sine*3),1.5707963267948966,0)),deltaTime) 
+				RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.8+0.3*sin((sine+0.3)*-3),0),angles(0.19198621771937624-0.17453292519943295*sin((sine+3)*-3),1.3962634015954636,0)),deltaTime) 
+				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.3962634015954636+0.10471975511965978*sin(sine*-2),0,3.141592653589793)),deltaTime) 
+				LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5+0.1*sin(sine*2),0),angles(0.24434609527920614-0.2792526803190927*sin(sine*3),-1.5707963267948966,0)),deltaTime) 
+				--MW_animatorProgressSave: LeftLeg,-1,0,0,1,10,10,0,3,-0.8,0.3,0.3,3,-80,0,0,1,0,0,0,1,0,0,0,1,Torso,0,0,0,1,-100,6,0,2,0,0.1,0,1,0,0,0,1,0,0,0,1,180,0,0,1,DemonGodSword_Handle,-3,-2,0,1,100,16,0,2,10,0,0,1,90,0,0,1,-3,0,0,1,0,0,0,1,AuroraSword_Handle,2,1,0,1,-90,16,0,2,4,0,0,1,-90,-20,0,1,-2,0,0,1,180,0,0,1,RainbowGodSword_Handle,-2,-1,0,1,90,16,0,2,4,0,0,1,90,-20,0,1,-2,0,0,1,0,0,0,1,RainbowGodSword_Handle,3,2,0,1,-100,16,0,2,10,0,0,1,-90,0,0,1,-3,0,0,1,180,0,0,1,RightArm,1,0,0,1,14,16,0,3,0.5,0.1,0,2,90,0,0,1,0,0,0,1,0,0,0,1,RightLeg,1,0,0,1,11,-10,3,-3,-0.8,0.3,0.3,-3,80,0,0,1,0,0,0,1,0,0,0,1,Head,0,0,0,1,-80,6,0,-2,1,0,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,14,-16,0,3,0.5,0.1,0,2,-90,0,0,1,0,0,0,1,0,0,0,1
+			end,
+			fall=function()
+				LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.6981317007977318+0.10471975511965978*sin(sine*-2),-1.3962634015954636,0)),deltaTime) 
+				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,0.1 * sin(sine*1),0),angles(-4.014257279586958+0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
+				Halloween.C0=Lerp(Halloween.C0,cfMul(cf(1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),-1.5707963267948966,0)),deltaTime) 
+				
+				Demon.C0=Lerp(Demon.C0,cfMul(cf(1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),-1.5707963267948966,0)),deltaTime) 
+				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				
+				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.24434609527920614-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
+				RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.4,-1),angles(-0.5235987755982988+0.10471975511965978*sin((sine+3)*-2),1.3962634015954636,0)),deltaTime) 
+				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-0.6981317007977318+0.10471975511965978*sin(sine*-2),0,3.141592653589793)),deltaTime) 
+				LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5,0),angles(2.792526803190927-0.10471975511965978*sin(sine*2),-1.3962634015954636+0.06981317007977318*sin(sine*2),0)),deltaTime) 
+				--MW_animatorProgressSave: LeftLeg,-1,0,0,1,-40,6,0,-2,-1,0,0.3,3,-80,0,0,1,0,0,0,1,0,0,0,1,Torso,0,0,0,1,-230,6,0,2,0,0.1,0,1,0,0,0,1,0,0,0,1,180,0,0,1,DemonGodSword_Handle,1,0,0,1,-100,8,0,2,10,0,0,1,-90,0,0,1,-3,0,0,1,0,0,0,1,AuroraSword_Handle,-1,0,0,1,90,6,0,2,4,0,0,1,90,0,0,1,-2,0,0,1,180,0,0,1,RainbowGodSword_Handle,1,0,0,1,-90,6,0,2,4,0,0,1,-90,,0,1,-2,0,0,1,0,0,0,1,RainbowGodSword_Handle,-1,0,0,1,100,8,0,2,10,0,0,1,90,0,0,1,-3,0,0,1,180,0,0,1,RightArm,1,0,0,1,-14,-6,0,2,0.5,0,0,2,80,0,0,1,0,0,0,1,0,0,0,1,RightLeg,1,0,0,1,-30,6,3,-2,-0.4,0,0.3,-3,80,0,0,1,-1,0,0,1,0,0,0,1,Head,0,0,0,1,-40,6,0,-2,1,0,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,160,-6,0,2,0.5,0,0,2,-80,4,0,2,0,0,0,1,0,0,0,1
+			end,
+			jump=function()
+				LeftHip.C0=Lerp(LeftHip.C0,cfMul(cf(-1,-1,0),angles(-0.6981317007977318+0.10471975511965978*sin(sine*-2),-1.3962634015954636,0)),deltaTime) 
+				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,0.1 * sin(sine*1),0),angles(-1.2042771838760873+0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
+				Halloween.C0=Lerp(Halloween.C0,cfMul(cf(1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),-1.5707963267948966,0)),deltaTime) 
+				
+				Demon.C0=Lerp(Demon.C0,cfMul(cf(1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),-1.5707963267948966,0)),deltaTime) 
+				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-1,10,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				
+				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-1,4,-2),angles(-1.7453292519943295+0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
+				RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.24434609527920614-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
+				RightHip.C0=Lerp(RightHip.C0,cfMul(cf(1,-0.4,-1),angles(-0.5235987755982988+0.10471975511965978*sin((sine+3)*-2),1.3962634015954636,0)),deltaTime) 
+				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.2042771838760873+0.10471975511965978*sin(sine*-2),0,3.141592653589793)),deltaTime) 
+				LeftShoulder.C0=Lerp(LeftShoulder.C0,cfMul(cf(-1,0.5,0),angles(2.792526803190927-0.10471975511965978*sin(sine*2),-1.3962634015954636+0.06981317007977318*sin(sine*2),0)),deltaTime) 
+				--MW_animatorProgressSave: LeftLeg,-1,0,0,1,-40,6,0,-2,-1,0,0.3,3,-80,0,0,1,0,0,0,1,0,0,0,1,Torso,0,0,0,1,-69,6,0,2,0,0.1,0,1,0,0,0,1,0,0,0,1,180,0,0,1,DemonGodSword_Handle,1,0,0,1,-100,8,0,2,10,0,0,1,-90,0,0,1,-3,0,0,1,0,0,0,1,AuroraSword_Handle,-1,0,0,1,90,6,0,2,4,0,0,1,90,0,0,1,-2,0,0,1,180,0,0,1,RainbowGodSword_Handle,1,0,0,1,-90,6,0,2,4,0,0,1,-90,,0,1,-2,0,0,1,0,0,0,1,RainbowGodSword_Handle,-1,0,0,1,100,8,0,2,10,0,0,1,90,0,0,1,-3,0,0,1,180,0,0,1,RightArm,1,0,0,1,-14,-6,0,2,0.5,0,0,2,80,0,0,1,0,0,0,1,0,0,0,1,RightLeg,1,0,0,1,-30,6,3,-2,-0.4,0,0.3,-3,80,0,0,1,-1,0,0,1,0,0,0,1,Head,0,0,0,1,-69,6,0,-2,1,0,0,1,0,0,0,1,0,0,0,1,180,0,0,1,LeftArm,-1,0,0,1,160,-6,0,2,0.5,0,0,2,-80,4,0,2,0,0,0,1,0,0,0,1
+			end
+		end)
+	})
 end)
 
 lbl("Cool text")
