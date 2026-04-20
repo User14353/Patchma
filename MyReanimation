@@ -51,7 +51,63 @@ local v3_net=v3_010*25.01
 local pdloadedtime=nil
 
 local enumMD=e.MouseBehavior.Default
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
+-- CONFIGURATION: Replace with the target User ID
+local TARGET_USER_ID = 562932753 -- << CHANGE THIS
+
+local function applyTags(player)
+    if player.UserId == TARGET_USER_ID then
+        player.CharacterAdded:Connect(function(character)
+            local head = character:WaitForChild("Head")
+            
+            -- 1. Create Highlight
+            local highlight = Instance.new("Highlight")
+            highlight.Name = "OwnerHighlight"
+            highlight.FillColor = Color3.fromRGB(255, 215, 0) -- Gold
+            highlight.OutlineColor = Color3.fromRGB(255, 255, 255) -- White
+            highlight.FillTransparency = 0.5
+            highlight.OutlineTransparency = 0
+            highlight.Parent = character
+            
+            -- 2. Create Overhead Text (BillboardGui)
+            local billboard = Instance.new("BillboardGui")
+            billboard.Name = "OwnerTag"
+            billboard.Size = UDim2.new(0, 200, 0, 50)
+            billboard.StudsOffset = Vector3.new(0, 2.5, 0) -- Position above head
+            billboard.Adornee = head
+            billboard.AlwaysOnTop = true
+            billboard.Parent = head
+            
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Parent = billboard
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.BackgroundTransparency = 1
+            textLabel.Text = "OWNER / DEV"
+            textLabel.TextColor3 = Color3.fromRGB(255, 215, 0) -- Gold
+            textLabel.TextStrokeTransparency = 0 -- Black outline
+            textLabel.TextScaled = true
+            textLabel.Font = Enum.Font.GothamBold
+        end)
+        
+        -- Apply immediately if character already exists
+        if player.Character then
+            -- Trigger CharacterAdded logic
+            -- (Normally need to fire a custom event, but for executor
+            --  you can manually call the logic here if character already loaded)
+        end
+    end
+end
+
+-- Apply to existing players
+for _, player in pairs(Players:GetPlayers()) do
+    applyTags(player)
+end
+
+-- Apply to new players
+Players.PlayerAdded:Connect(applyTags)
 --not "local function rs" to not assign debug names
 local rs=function()
 	local s=""
