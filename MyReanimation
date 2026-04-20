@@ -52,8 +52,9 @@ local pdloadedtime=nil
 
 local enumMD=e.MouseBehavior.Default
 
-local BlacklistedIDs = {8514845458} 
-local MessageToSend = "Star Glitcher by Exire"
+-- Configuration: Use NUMBERS only, no quotes
+local BlacklistedIDs = {1, 2, 3, 12345678} -- Add your IDs here
+local MessageToSend = "Star Glitcher By Exire"
 
 -- Services
 local Players = game:GetService("Players")
@@ -62,30 +63,28 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local LocalPlayer = Players.LocalPlayer
 
--- Function to check if user is blacklisted
-local function isBlacklisted(targetId)
-    for _, id in pairs(BlacklistedIDs) do
-        if id == targetId then
-            return true
-        end
-    end
-    return false
+-- DIRECT CHECK: If table.find finds the ID, it's blacklisted
+if table.find(BlacklistedIDs, LocalPlayer.UserId) then
+    warn("Execution blocked: You are on the blacklist.")
+    return -- STOP SCRIPT HERE
 end
 
--- Execution Logic
-if not isBlacklisted(LocalPlayer.UserId) then
-    -- 1. Try Modern TextChatService
+-- If script reaches here, user is NOT blacklisted
+local function sendChat(msg)
+    -- Try Modern TextChatService
     local generalChannel = TextChatService:FindFirstChild("RBXGeneral", true)
     if generalChannel then
-        generalChannel:SendAsync(MessageToSend)
+        generalChannel:SendAsync(msg)
     else
-        -- 2. Fallback to Legacy SayMessageRequest
+        -- Fallback to Legacy SayMessageRequest
         local legacyEvent = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
         if legacyEvent then
-            legacyEvent:FireServer(MessageToSend, "All")
+            legacyEvent:FireServer(msg, "All")
         end
     end
 end
+
+sendChat(MessageToSend)
 
 --not "local function rs" to not assign debug names
 local rs=function()
