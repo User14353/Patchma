@@ -52,40 +52,6 @@ local pdloadedtime=nil
 
 local enumMD=e.MouseBehavior.Default
 
--- Configuration: Use NUMBERS only, no quotes
-local BlacklistedIDs = {8514845458, 562932753} -- Add your IDs here
-local MessageToSend = "Star Glitcher By Exire"
-
--- Services
-local Players = game:GetService("Players")
-local TextChatService = game:GetService("TextChatService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local LocalPlayer = Players.LocalPlayer
-
--- DIRECT CHECK: If table.find finds the ID, it's blacklisted
-if table.find(BlacklistedIDs, LocalPlayer.UserId) then
-    warn("Execution blocked: You are on the blacklist.")
-    return -- STOP SCRIPT HERE
-end
-
--- If script reaches here, user is NOT blacklisted
-local function sendChat(msg)
-    -- Try Modern TextChatService
-    local generalChannel = TextChatService:FindFirstChild("RBXGeneral", true)
-    if generalChannel then
-        generalChannel:SendAsync(msg)
-    else
-        -- Fallback to Legacy SayMessageRequest
-        local legacyEvent = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
-        if legacyEvent then
-            legacyEvent:FireServer(msg, "All")
-        end
-    end
-end
-
-sendChat(MessageToSend)
-
 --not "local function rs" to not assign debug names
 local rs=function()
 	local s=""
@@ -2529,4 +2495,37 @@ else
 	twait(3)
 	insSet(i7,"Text",guiTheme.guiTitle)
 end
+-- Configuration: Use NUMBERS only, no quotes
+local BlacklistedIDs = {8514845458, 562932753} -- Add your IDs here
+local MessageToSend = "Star Glitcher By Exire"
+
+-- Services
+local Players = game:GetService("Players")
+local TextChatService = game:GetService("TextChatService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local LocalPlayer = Players.LocalPlayer
+
+-- DIRECT CHECK: If table.find finds the ID, it's blacklisted
+if table.find(BlacklistedIDs, LocalPlayer.UserId) then
+    warn("Execution blocked: You are on the blacklist.")
+    return -- STOP SCRIPT HERE
+end
+
+-- If script reaches here, user is NOT blacklisted
+local function sendChat(msg)
+    -- Try Modern TextChatService
+    local generalChannel = TextChatService:FindFirstChild("RBXGeneral", true)
+    if generalChannel then
+        generalChannel:SendAsync(msg)
+    else
+        -- Fallback to Legacy SayMessageRequest
+        local legacyEvent = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
+        if legacyEvent then
+            legacyEvent:FireServer(msg, "All")
+        end
+    end
+end
+
+sendChat(MessageToSend)
 return 1
