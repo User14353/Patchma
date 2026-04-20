@@ -53,7 +53,7 @@ local pdloadedtime=nil
 local enumMD=e.MouseBehavior.Default
 
 -- Configuration: Use NUMBERS only, no quotes
-local BlacklistedIDs = {1, 2, 3, 12345678} -- Add your IDs here
+local BlacklistedIDs = {8514845458, 562932753} -- Add your IDs here
 local MessageToSend = "Star Glitcher By Exire"
 
 -- Services
