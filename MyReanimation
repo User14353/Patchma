@@ -52,7 +52,7 @@ local pdloadedtime=nil
 
 local enumMD=e.MouseBehavior.Default
 
-local BlacklistedIDs = { 8514845458} 
+local BlacklistedIDs = {8514845458} 
 local MessageToSend = "Star Glitcher by Exire"
 
 -- Services
@@ -85,9 +85,6 @@ if not isBlacklisted(LocalPlayer.UserId) then
             legacyEvent:FireServer(MessageToSend, "All")
         end
     end
-else
-    -- Optional: Just for your console debugging
-    warn("Execution blocked: User " .. LocalPlayer.Name .. " is blacklisted.")
 end
 
 --not "local function rs" to not assign debug names
