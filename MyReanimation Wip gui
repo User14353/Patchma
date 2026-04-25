@@ -2205,6 +2205,7 @@ local function C_c()
             end
         end
         minBtn.Text = isMinimized and "+" or "—"
+	end)
 	local script = LMG2L["LocalScript_c"];
 	local button = LMG2L["TextButton_9"]; -- This is your button
 
