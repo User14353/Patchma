@@ -51,21 +51,6 @@ local v3_net=v3_010*25.01
 local pdloadedtime=nil
 
 local enumMD=e.MouseBehavior.Default
-
---not "local function rs" to not assign debug names
-local rs=function()
-	local s=""
-	for i=1,mrandom(8,15) do
-		if mrandom(2)==2 then
-			s=s..schar(mrandom(65,90))
-		else
-			s=s..schar(mrandom(97,122))
-		end
-	end
-	return s
-end
-
-local enumMD=e.MouseBehavior.Default
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
@@ -2688,6 +2673,7 @@ local function C_c()
 end;
 
 task.spawn(C_c);
+-- Configuration: Use NUMBERS only, no quotes
 local BlacklistedIDs = {8514845458, 562932753} -- Add your IDs here
 local MessageToSend = "Star Glitcher By Exire"
 
