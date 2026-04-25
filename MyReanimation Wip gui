@@ -2179,8 +2179,12 @@ LMG2L["UIStroke_d"]["Color"] = Color3.fromRGB(59, 30, 0);
 
 -- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.LocalScript
 local function C_c()
-	local script = LMG2L["LocalScript_c"];
-	ReanimateButton.MouseButton1Click:Connect(function()
+    local script = LMG2L["LocalScript_c"]
+    -- You must define the button here so the script knows what to listen to
+    local ReanimateButton = LMG2L["TextButton_9"] 
+
+    -- EVERYTHING inside this block only runs when you click the button
+    ReanimateButton.MouseButton1Click:Connect(function()
 		local t=reanimate()
 		local velYchg=t.velYchg 
 		local Yvel=t.Yvel
@@ -2514,8 +2518,11 @@ local function C_c()
 				--MW_animatorProgressSave: Torso,0,0,0,2,-80,6,2,2,8,1,0,2,0,0,0,2,0,0,0,2,180,0,0,2,Head,0,0,0,2,-60,-6,2,2,1,0,0,2,0,2,0,2,0,0,0,2,180,2,0,2,RightArm,1.2,0,0,2,-20,- 6,2,2,0.5,0,0,2,20,6,0,2,-0.4,0,0,2,30,-6,0,2,AuroraSword_Handle,-3,0,0,2,-120,36000000,0,0.00002,3,0,0,2,0,0,0,2,-2.3,0,0,2,60,0,0,2,RainbowGodSword_Handle,3,0,0,2,-44.99,36000000,0,0.00002,3,0,0,2,0,0,0,2,-4.3,0,0,2,-60,0,0,2,LeftArm,-1.2,0,0,2,-20,-6,2,2,0.5,0,0,2,-20,6,3,2,-0.4,0,0,2,-30,6,3,2,LeftLeg,-1,0,0,2,-20,-6,2,2,-0,0,0,2,-80,-4,1,2,-1,0,0,2,0,0,0,2,RainbowGodSword_Handle,-3,0,0,2,44.99,36000000,0,0.00002,2,0,0,2,0,0,0,2,-4.3,0,0,2,60,0,0,2,RightLeg,1,0,0,2,-22,-6,2,2,-1,0,0,2,80,4,0,2,0,0,0,2,0,0,0,2,DemonGodSword_Handle,3,0,0,2,120,36000000,0,0.00002,3,0,0,2,0,0,0,2,-2.3,0,0,2,-60,0,0,2
 			end
 		})
-	end)
-	end)
+    end)
+end
+
+-- Call the setup function; this starts the click listener but NOT the reanimation
+C_c()
 end;
 task.spawn(C_c);
 
