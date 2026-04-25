@@ -2076,201 +2076,75 @@ end
 local TweenService = game:GetService("TweenService")
 local LMG2L = {};
 
+-- 1. Setup the ScreenGui
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", playerGui)
+LMG2L["ScreenGui_1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LMG2L["ScreenGui_1"].ResetOnSpawn = false
 
--- Players.cillfall.PlayerGui.ScreenGui
-LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
-LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
-LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false;
+-- 2. Create the Frame
+LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"])
+LMG2L["Frame_2"].Size = UDim2.new(0, 450, 0, 186)
+LMG2L["Frame_2"].Position = UDim2.new(0.5, -225, 0.5, -93) -- Centered
+LMG2L["Frame_2"].BackgroundColor3 = Color3.fromRGB(255, 170, 115)
+LMG2L["Frame_2"].BackgroundTransparency = 0.3
+Instance.new("UICorner", LMG2L["Frame_2"]).CornerRadius = UDim.new(0, 12)
 
-local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
+-- 3. Create the DRAG DETECTOR (Parented to the Frame)
+local drag = Instance.new("UIDragDetector", LMG2L["Frame_2"])
+drag.DragStyle = Enum.UIDragDetectorDragStyle.TranslatePlane
 
+-- 4. Create UI Elements (Labels)
+LMG2L["Title"] = Instance.new("TextLabel", LMG2L["Frame_2"])
+LMG2L["Title"].Size = UDim2.new(1, 0, 0, 50)
+LMG2L["Title"].Text = "Star Glitcher - Exire"
+LMG2L["Title"].BackgroundTransparency = 0.5
+LMG2L["Title"].BackgroundColor3 = Color3.fromRGB(158, 67, 12)
+Instance.new("UICorner", LMG2L["Title"]).CornerRadius = UDim.new(0, 12)
 
--- Players.cillfall.PlayerGui.ScreenGui.Frame
-LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
-LMG2L["Frame_2"]["BorderSizePixel"] = 0;
-LMG2L["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(255, 170, 115);
-LMG2L["Frame_2"]["Size"] = UDim2.new(0, 450, 0, 186);
-LMG2L["Frame_2"]["Position"] = UDim2.new(0, 672, 0, 412);
-LMG2L["Frame_2"]["BackgroundTransparency"] = 0.3;
+-- 5. Create the REANIMATE Button
+LMG2L["TextButton_9"] = Instance.new("TextButton", LMG2L["Frame_2"])
+LMG2L["TextButton_9"].Size = UDim2.new(0, 194, 0, 82)
+LMG2L["TextButton_9"].Position = UDim2.new(0, 230, 0, 76)
+LMG2L["TextButton_9"].Text = "Reanimate"
+LMG2L["TextButton_9"].BackgroundColor3 = Color3.fromRGB(149, 52, 0)
+Instance.new("UICorner", LMG2L["TextButton_9"]).CornerRadius = UDim.new(0, 12)
 
+-- 6. Create the MINIMIZE Button (Creating it HERE ensures it isn't nil)
+LMG2L["MinButton"] = Instance.new("TextButton", LMG2L["Frame_2"])
+LMG2L["MinButton"].Size = UDim2.new(0, 30, 0, 30)
+LMG2L["MinButton"].Position = UDim2.new(1, -35, 0, 5)
+LMG2L["MinButton"].Text = "—"
+LMG2L["MinButton"].BackgroundColor3 = Color3.fromRGB(158, 67, 12)
+Instance.new("UICorner", LMG2L["MinButton"]).CornerRadius = UDim.new(0, 8)
 
--- Players.cillfall.PlayerGui.ScreenGui.Frame.UICorner
-LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Frame_2"]);
-LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 12);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel
-LMG2L["TextLabel_4"] = Instance.new("TextLabel", LMG2L["Frame_2"]);
-LMG2L["TextLabel_4"]["BorderSizePixel"] = 0;
-LMG2L["TextLabel_4"]["TextSize"] = 24;
-LMG2L["TextLabel_4"]["BackgroundColor3"] = Color3.fromRGB(158, 67, 12);
-LMG2L["TextLabel_4"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["TextLabel_4"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
-LMG2L["TextLabel_4"]["BackgroundTransparency"] = 0.699;
-LMG2L["TextLabel_4"]["Size"] = UDim2.new(0, 450, 0, 54);
-LMG2L["TextLabel_4"]["Text"] = [[Star Glitcher - Exire]];
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel.UICorner
-LMG2L["UICorner_5"] = Instance.new("UICorner", LMG2L["TextLabel_4"]);
-LMG2L["UICorner_5"]["CornerRadius"] = UDim.new(0, 12);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel2
-LMG2L["TextLabel2_6"] = Instance.new("TextLabel", LMG2L["Frame_2"]);
-LMG2L["TextLabel2_6"]["TextWrapped"] = true;
-LMG2L["TextLabel2_6"]["BorderSizePixel"] = 0;
-LMG2L["TextLabel2_6"]["TextSize"] = 12;
-LMG2L["TextLabel2_6"]["BackgroundColor3"] = Color3.fromRGB(158, 67, 12);
-LMG2L["TextLabel2_6"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["TextLabel2_6"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
-LMG2L["TextLabel2_6"]["BackgroundTransparency"] = 0.699;
-LMG2L["TextLabel2_6"]["Size"] = UDim2.new(0, 204, 0, 82);
-LMG2L["TextLabel2_6"]["Text"] = [[This is a star glitcher script by Exire if you find it please give me credit - Exire]];
-LMG2L["TextLabel2_6"]["Name"] = [[TextLabel2]];
-LMG2L["TextLabel2_6"]["Position"] = UDim2.new(0, 14, 0, 76);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel2.UICorner
-LMG2L["UICorner_7"] = Instance.new("UICorner", LMG2L["TextLabel2_6"]);
-LMG2L["UICorner_7"]["CornerRadius"] = UDim.new(0, 12);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel2.UIStroke
-LMG2L["UIStroke_8"] = Instance.new("UIStroke", LMG2L["TextLabel2_6"]);
-LMG2L["UIStroke_8"]["Transparency"] = 0.3;
-LMG2L["UIStroke_8"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_8"]["Thickness"] = 2;
-LMG2L["UIStroke_8"]["Color"] = Color3.fromRGB(59, 30, 0);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton
-LMG2L["TextButton_9"] = Instance.new("TextButton", LMG2L["Frame_2"]);
-LMG2L["TextButton_9"]["BorderSizePixel"] = 0;
-LMG2L["TextButton_9"]["TextSize"] = 24;
-LMG2L["TextButton_9"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
-LMG2L["TextButton_9"]["BackgroundColor3"] = Color3.fromRGB(149, 52, 0);
-LMG2L["TextButton_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["TextButton_9"]["BackgroundTransparency"] = 0.8;
-LMG2L["TextButton_9"]["Size"] = UDim2.new(0, 194, 0, 82);
-LMG2L["TextButton_9"]["Text"] = [[Reanimate]];
-LMG2L["TextButton_9"]["Position"] = UDim2.new(0, 230, 0, 76);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.UICorner
-LMG2L["UICorner_a"] = Instance.new("UICorner", LMG2L["TextButton_9"]);
-LMG2L["UICorner_a"]["CornerRadius"] = UDim.new(0, 12);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.UIStroke
-LMG2L["UIStroke_b"] = Instance.new("UIStroke", LMG2L["TextButton_9"]);
-LMG2L["UIStroke_b"]["Transparency"] = 0.3;
-LMG2L["UIStroke_b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_b"]["Thickness"] = 2;
-LMG2L["UIStroke_b"]["Color"] = Color3.fromRGB(59, 30, 0);
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.LocalScript
-LMG2L["LocalScript_c"] = Instance.new("LocalScript", LMG2L["TextButton_9"]);
-
-
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.UIStroke
-LMG2L["UIStroke_d"] = Instance.new("UIStroke", LMG2L["Frame_2"]);
-LMG2L["UIStroke_d"]["Transparency"] = 0.3;
-LMG2L["UIStroke_d"]["Thickness"] = 3;
-LMG2L["UIStroke_d"]["Color"] = Color3.fromRGB(59, 30, 0);
-local tweenInfo = TweenInfo.new(
-    0.3,                          -- Time (0.3 seconds)
-    Enum.EasingStyle.Quart,       -- Easing Style (smooth acceleration)
-    Enum.EasingDirection.Out      -- Easing Direction
-)
-
-local mainFrame = LMG2L["Frame_2"]
-local minBtn = LMG2L["MinButton"]
-local isMinimized = false
-local originalSize = mainFrame.Size
-
-minBtn.MouseButton1Click:Connect(function()
-    isMinimized = not isMinimized
-    
-    -- Prepare animation targets
-    local sizeTarget = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
-    local buttonPosTarget = isMinimized and UDim2.new(0, 5, 0, 5) or UDim2.new(1, -35, 0, 5)
-    
-    -- 1. Create and Play the Frame Resize Tween
-    local frameTween = TweenService:Create(mainFrame, tweenInfo, {Size = sizeTarget})
-    local buttonTween = TweenService:Create(minBtn, tweenInfo, {Position = buttonPosTarget})
-    
-    frameTween:Play() --
-    buttonTween:Play()
-    
-    -- 2. Handle Content Visibility
-    if isMinimized then
-        minBtn.Text = "+"
-        for _, child in pairs(mainFrame:GetChildren()) do
-            if child ~= minBtn and child:IsA("GuiObject") then
-                child.Visible = false
-            end
-        end
-    else
-        -- Wait for animation to finish before showing full text again
-        frameTween.Completed:Wait() --
-        minBtn.Text = "—"
-        for _, child in pairs(mainFrame:GetChildren()) do
-            if child:IsA("GuiObject") then
-                child.Visible = true
-            end
-        end
-    end
-end)
-
-
-local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
-
--- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.LocalScript
-local function C_c()
+-- 7. Logic Function (Runs after all objects exist)
+local function InitializeLogic()
     local mainFrame = LMG2L["Frame_2"]
     local minBtn = LMG2L["MinButton"]
-    local reanimateBtn = LMG2L["TextButton_9"]
+    local reBtn = LMG2L["TextButton_9"]
     local isMinimized = false
     local originalSize = mainFrame.Size
-    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+    local tInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
-    -- 1. Explicitly setup the DragDetector
-    local dragDetector = mainFrame:FindFirstChildWhichIsA("UIDragDetector")
-    if dragDetector then
-        dragDetector.Enabled = true
-        -- Set to 'TranslatePlane' to allow movement in any direction on screen
-        dragDetector.DragStyle = Enum.UIDragDetectorDragStyle.TranslatePlane 
-    end
-
-    -- 2. Minimize Logic
+    -- Minimize Function
     minBtn.MouseButton1Click:Connect(function()
         isMinimized = not isMinimized
-        local sizeTarget = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
+        local targetSize = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
         
-        -- Play Resize Tween
-        TweenService:Create(mainFrame, tweenInfo, {Size = sizeTarget}):Play()
+        TweenService:Create(mainFrame, tInfo, {Size = targetSize}):Play()
         
-        -- Toggle child visibility
+        -- Hide everything except the minimize button
         for _, child in pairs(mainFrame:GetChildren()) do
             if child ~= minBtn and child:IsA("GuiObject") then
                 child.Visible = not isMinimized
             end
         end
-        
-        -- Disable dragging when minimized so it doesn't accidentally move
-        if dragDetector then dragDetector.Enabled = not isMinimized end
-        
         minBtn.Text = isMinimized and "+" or "—"
     end)
-	local script = LMG2L["LocalScript_c"];
-	local button = LMG2L["TextButton_9"]; -- This is your button
 
-	-- Connect the function to the MouseButton1Click event
-	button.MouseButton1Click:Connect(function()
-		print("Button clicked!")
+    -- Reanimate Function
+    reBtn.MouseButton1Click:Connect(function()
 	local t=reanimate()
 	local velYchg=t.velYchg 
 	local Yvel=t.Yvel
@@ -2671,7 +2545,9 @@ local function C_c()
 			--MW_animatorProgressSave: RightArm,1,0,0,2,-10,-6,0,2,0.5,0,0,2,80,0,0,2,0,0,0,2,0,0,0,2,Head,0,0,0,2,-30,-6,0,2,1,0,0,2,0,0,0,2,0,0,0,2,180,0,0,2,LeftLeg,-1,0,0,2,-20,-6,0,2,-1,0,0,2,-80,0,0,2,0,0,0,2,0,0,0,2,Torso,0,0,0,2,-100,6,0,2,0,0,0,2,0,0,0,2,0,0,0,2,180,0,0,2,RainbowGodSword_Handle,-1,0,0,2,95,10,0,2,2,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,DemonGodSword_Handle,-1,0,0,2,105,20,0,2,8,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,LeftArm,-1,0,0,2,-60,-6,0,2,1.4,0,0,2,0,0,0,2,-0.7,0,0,2,100,0,0,2,RainbowGodSword_Handle,-1,0,0,2,110,25,0,2,11,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,RightLeg,1,0,0,2,-15,-6,0,2,-0.3,0,0,2,80,0,0,2,-1,0,0,2,0,0,0,2,AuroraSword_Handle,-1,0,0,2,100,15,0,2,5,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2
 		end
 	})
-	end)
-end;
-task.spawn(C_c);
+
+    end)
+end
+
+-- Start the script
 return 1
