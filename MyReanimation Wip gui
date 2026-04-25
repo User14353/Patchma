@@ -2180,7 +2180,53 @@ LMG2L["UIStroke_d"] = Instance.new("UIStroke", LMG2L["Frame_2"]);
 LMG2L["UIStroke_d"]["Transparency"] = 0.3;
 LMG2L["UIStroke_d"]["Thickness"] = 3;
 LMG2L["UIStroke_d"]["Color"] = Color3.fromRGB(59, 30, 0);
+local tweenInfo = TweenInfo.new(
+    0.3,                          -- Time (0.3 seconds)
+    Enum.EasingStyle.Quart,       -- Easing Style (smooth acceleration)
+    Enum.EasingDirection.Out      -- Easing Direction
+)
 
+local mainFrame = LMG2L["Frame_2"]
+local minBtn = LMG2L["MinButton"]
+local isMinimized = false
+local originalSize = mainFrame.Size
+
+minBtn.MouseButton1Click:Connect(function()
+    isMinimized = not isMinimized
+    
+    -- Prepare animation targets
+    local sizeTarget = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
+    local buttonPosTarget = isMinimized and UDim2.new(0, 5, 0, 5) or UDim2.new(1, -35, 0, 5)
+    
+    -- 1. Create and Play the Frame Resize Tween
+    local frameTween = TweenService:Create(mainFrame, tweenInfo, {Size = sizeTarget})
+    local buttonTween = TweenService:Create(minBtn, tweenInfo, {Position = buttonPosTarget})
+    
+    frameTween:Play() --
+    buttonTween:Play()
+    
+    -- 2. Handle Content Visibility
+    if isMinimized then
+        minBtn.Text = "+"
+        for _, child in pairs(mainFrame:GetChildren()) do
+            if child ~= minBtn and child:IsA("GuiObject") then
+                child.Visible = false
+            end
+        end
+    else
+        -- Wait for animation to finish before showing full text again
+        frameTween.Completed:Wait() --
+        minBtn.Text = "—"
+        for _, child in pairs(mainFrame:GetChildren()) do
+            if child:IsA("GuiObject") then
+                child.Visible = true
+            end
+        end
+    end
+end)
+
+
+local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
 
 -- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.LocalScript
 local function C_c()
@@ -2614,52 +2660,5 @@ local function C_c()
 	})
 	end)
 end;
-local tweenInfo = TweenInfo.new(
-    0.3,                          -- Time (0.3 seconds)
-    Enum.EasingStyle.Quart,       -- Easing Style (smooth acceleration)
-    Enum.EasingDirection.Out      -- Easing Direction
-)
-
-local mainFrame = LMG2L["Frame_2"]
-local minBtn = LMG2L["MinButton"]
-local isMinimized = false
-local originalSize = mainFrame.Size
-
-minBtn.MouseButton1Click:Connect(function()
-    isMinimized = not isMinimized
-    
-    -- Prepare animation targets
-    local sizeTarget = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
-    local buttonPosTarget = isMinimized and UDim2.new(0, 5, 0, 5) or UDim2.new(1, -35, 0, 5)
-    
-    -- 1. Create and Play the Frame Resize Tween
-    local frameTween = TweenService:Create(mainFrame, tweenInfo, {Size = sizeTarget})
-    local buttonTween = TweenService:Create(minBtn, tweenInfo, {Position = buttonPosTarget})
-    
-    frameTween:Play() --
-    buttonTween:Play()
-    
-    -- 2. Handle Content Visibility
-    if isMinimized then
-        minBtn.Text = "+"
-        for _, child in pairs(mainFrame:GetChildren()) do
-            if child ~= minBtn and child:IsA("GuiObject") then
-                child.Visible = false
-            end
-        end
-    else
-        -- Wait for animation to finish before showing full text again
-        frameTween.Completed:Wait() --
-        minBtn.Text = "—"
-        for _, child in pairs(mainFrame:GetChildren()) do
-            if child:IsA("GuiObject") then
-                child.Visible = true
-            end
-        end
-    end
-end)
-
-
-local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
 task.spawn(C_c);
 return 1
