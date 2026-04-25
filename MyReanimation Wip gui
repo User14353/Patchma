@@ -2129,13 +2129,15 @@ local reanimate=function()
 		setHipHeight=setHipHeight
 	}
 end
-local TweenService = game:GetService("TweenService") -- Added at the top
+local TweenService = game:GetService("TweenService")
 local LMG2L = {};
 
--- 1. SCREEN GUI SETUP
-LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+local player = game:GetService("Players").LocalPlayer 
+local playerGui = player:WaitForChild("PlayerGui")
+
+LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", playerGui);
 LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
-LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false; -- Makes GUI persist through death
+LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false;
 
 
 -- Players.cillfall.PlayerGui.ScreenGui.Frame
