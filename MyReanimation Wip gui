@@ -2081,7 +2081,8 @@ LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").Loca
 LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false; -- Makes GUI persist through death
 
--- 2. MAIN FRAME
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame
 LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
 LMG2L["Frame_2"]["BorderSizePixel"] = 0;
 LMG2L["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(255, 170, 115);
@@ -2093,21 +2094,87 @@ LMG2L["Frame_2"]["BackgroundTransparency"] = 0.3;
 local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
 dragDetector.DragStyle = Enum.UIDragDetectorDragStyle.TranslatePlane
 
--- 4. VISUALS (Corners, Labels, Strokes)
-Instance.new("UICorner", LMG2L["Frame_2"]).CornerRadius = UDim.new(0, 12);
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.UICorner
+LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["Frame_2"]);
+LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 12);
 
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel
 LMG2L["TextLabel_4"] = Instance.new("TextLabel", LMG2L["Frame_2"]);
+LMG2L["TextLabel_4"]["BorderSizePixel"] = 0;
+LMG2L["TextLabel_4"]["TextSize"] = 24;
+LMG2L["TextLabel_4"]["BackgroundColor3"] = Color3.fromRGB(158, 67, 12);
+LMG2L["TextLabel_4"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["TextLabel_4"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
+LMG2L["TextLabel_4"]["BackgroundTransparency"] = 0.699;
 LMG2L["TextLabel_4"]["Size"] = UDim2.new(0, 450, 0, 54);
 LMG2L["TextLabel_4"]["Text"] = [[Star Glitcher - Exire]];
-LMG2L["TextLabel_4"]["BackgroundColor3"] = Color3.fromRGB(158, 67, 12);
-Instance.new("UICorner", LMG2L["TextLabel_4"]).CornerRadius = UDim.new(0, 12);
 
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel.UICorner
+LMG2L["UICorner_5"] = Instance.new("UICorner", LMG2L["TextLabel_4"]);
+LMG2L["UICorner_5"]["CornerRadius"] = UDim.new(0, 12);
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel2
+LMG2L["TextLabel2_6"] = Instance.new("TextLabel", LMG2L["Frame_2"]);
+LMG2L["TextLabel2_6"]["TextWrapped"] = true;
+LMG2L["TextLabel2_6"]["BorderSizePixel"] = 0;
+LMG2L["TextLabel2_6"]["TextSize"] = 12;
+LMG2L["TextLabel2_6"]["BackgroundColor3"] = Color3.fromRGB(158, 67, 12);
+LMG2L["TextLabel2_6"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["TextLabel2_6"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
+LMG2L["TextLabel2_6"]["BackgroundTransparency"] = 0.699;
+LMG2L["TextLabel2_6"]["Size"] = UDim2.new(0, 204, 0, 82);
+LMG2L["TextLabel2_6"]["Text"] = [[This is a star glitcher script by Exire if you find it please give me credit - Exire]];
+LMG2L["TextLabel2_6"]["Name"] = [[TextLabel2]];
+LMG2L["TextLabel2_6"]["Position"] = UDim2.new(0, 14, 0, 76);
+
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel2.UICorner
+LMG2L["UICorner_7"] = Instance.new("UICorner", LMG2L["TextLabel2_6"]);
+LMG2L["UICorner_7"]["CornerRadius"] = UDim.new(0, 12);
+
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextLabel2.UIStroke
+LMG2L["UIStroke_8"] = Instance.new("UIStroke", LMG2L["TextLabel2_6"]);
+LMG2L["UIStroke_8"]["Transparency"] = 0.3;
+LMG2L["UIStroke_8"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_8"]["Thickness"] = 2;
+LMG2L["UIStroke_8"]["Color"] = Color3.fromRGB(59, 30, 0);
+
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton
 LMG2L["TextButton_9"] = Instance.new("TextButton", LMG2L["Frame_2"]);
+LMG2L["TextButton_9"]["BorderSizePixel"] = 0;
+LMG2L["TextButton_9"]["TextSize"] = 24;
+LMG2L["TextButton_9"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
+LMG2L["TextButton_9"]["BackgroundColor3"] = Color3.fromRGB(149, 52, 0);
+LMG2L["TextButton_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["TextButton_9"]["BackgroundTransparency"] = 0.8;
 LMG2L["TextButton_9"]["Size"] = UDim2.new(0, 194, 0, 82);
 LMG2L["TextButton_9"]["Text"] = [[Reanimate]];
 LMG2L["TextButton_9"]["Position"] = UDim2.new(0, 230, 0, 76);
-LMG2L["TextButton_9"]["BackgroundColor3"] = Color3.fromRGB(149, 52, 0);
-Instance.new("UICorner", LMG2L["TextButton_9"]).CornerRadius = UDim.new(0, 12);
+
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.UICorner
+LMG2L["UICorner_a"] = Instance.new("UICorner", LMG2L["TextButton_9"]);
+LMG2L["UICorner_a"]["CornerRadius"] = UDim.new(0, 12);
+
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.UIStroke
+LMG2L["UIStroke_b"] = Instance.new("UIStroke", LMG2L["TextButton_9"]);
+LMG2L["UIStroke_b"]["Transparency"] = 0.3;
+LMG2L["UIStroke_b"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_b"]["Thickness"] = 2;
+LMG2L["UIStroke_b"]["Color"] = Color3.fromRGB(59, 30, 0);
+
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.LocalScript
+LMG2L["LocalScript_c"] = Instance.new("LocalScript", LMG2L["TextButton_9"]);
+
+-- Players.cillfall.PlayerGui.ScreenGui.Frame.UIStroke
+LMG2L["UIStroke_d"] = Instance.new("UIStroke", LMG2L["Frame_2"]);
+LMG2L["UIStroke_d"]["Transparency"] = 0.3;
+LMG2L["UIStroke_d"]["Thickness"] = 3;
+LMG2L["UIStroke_d"]["Color"] = Color3.fromRGB(59, 30, 0);
 
 -- 5. MINIMIZE BUTTON (Top Right)
 LMG2L["MinButton"] = Instance.new("TextButton", LMG2L["Frame_2"])
