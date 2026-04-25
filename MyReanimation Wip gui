@@ -2073,78 +2073,78 @@ local reanimate=function()
 		setHipHeight=setHipHeight
 	}
 end
-local TweenService = game:GetService("TweenService")
+local TweenService = game:GetService("TweenService") -- Added at the top
 local LMG2L = {};
 
--- 1. Setup the ScreenGui
-local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", playerGui)
-LMG2L["ScreenGui_1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-LMG2L["ScreenGui_1"].ResetOnSpawn = false
+-- 1. SCREEN GUI SETUP
+LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false; -- Makes GUI persist through death
 
--- 2. Create the Frame
-LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"])
-LMG2L["Frame_2"].Size = UDim2.new(0, 450, 0, 186)
-LMG2L["Frame_2"].Position = UDim2.new(0.5, -225, 0.5, -93) -- Centered
-LMG2L["Frame_2"].BackgroundColor3 = Color3.fromRGB(255, 170, 115)
-LMG2L["Frame_2"].BackgroundTransparency = 0.3
-Instance.new("UICorner", LMG2L["Frame_2"]).CornerRadius = UDim.new(0, 12)
+-- 2. MAIN FRAME
+LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
+LMG2L["Frame_2"]["BorderSizePixel"] = 0;
+LMG2L["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(255, 170, 115);
+LMG2L["Frame_2"]["Size"] = UDim2.new(0, 450, 0, 186);
+LMG2L["Frame_2"]["Position"] = UDim2.new(0, 672, 0, 412);
+LMG2L["Frame_2"]["BackgroundTransparency"] = 0.3;
 
--- 3. Create the DRAG DETECTOR (Parented to the Frame)
-local drag = Instance.new("UIDragDetector", LMG2L["Frame_2"])
-drag.DragStyle = Enum.UIDragDetectorDragStyle.TranslatePlane
+-- 3. DRAG DETECTOR (This makes it draggable)
+local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
+dragDetector.DragStyle = Enum.UIDragDetectorDragStyle.TranslatePlane
 
--- 4. Create UI Elements (Labels)
-LMG2L["Title"] = Instance.new("TextLabel", LMG2L["Frame_2"])
-LMG2L["Title"].Size = UDim2.new(1, 0, 0, 50)
-LMG2L["Title"].Text = "Star Glitcher - Exire"
-LMG2L["Title"].BackgroundTransparency = 0.5
-LMG2L["Title"].BackgroundColor3 = Color3.fromRGB(158, 67, 12)
-Instance.new("UICorner", LMG2L["Title"]).CornerRadius = UDim.new(0, 12)
+-- 4. VISUALS (Corners, Labels, Strokes)
+Instance.new("UICorner", LMG2L["Frame_2"]).CornerRadius = UDim.new(0, 12);
 
--- 5. Create the REANIMATE Button
-LMG2L["TextButton_9"] = Instance.new("TextButton", LMG2L["Frame_2"])
-LMG2L["TextButton_9"].Size = UDim2.new(0, 194, 0, 82)
-LMG2L["TextButton_9"].Position = UDim2.new(0, 230, 0, 76)
-LMG2L["TextButton_9"].Text = "Reanimate"
-LMG2L["TextButton_9"].BackgroundColor3 = Color3.fromRGB(149, 52, 0)
-Instance.new("UICorner", LMG2L["TextButton_9"]).CornerRadius = UDim.new(0, 12)
+LMG2L["TextLabel_4"] = Instance.new("TextLabel", LMG2L["Frame_2"]);
+LMG2L["TextLabel_4"]["Size"] = UDim2.new(0, 450, 0, 54);
+LMG2L["TextLabel_4"]["Text"] = [[Star Glitcher - Exire]];
+LMG2L["TextLabel_4"]["BackgroundColor3"] = Color3.fromRGB(158, 67, 12);
+Instance.new("UICorner", LMG2L["TextLabel_4"]).CornerRadius = UDim.new(0, 12);
 
--- 6. Create the MINIMIZE Button (Creating it HERE ensures it isn't nil)
+LMG2L["TextButton_9"] = Instance.new("TextButton", LMG2L["Frame_2"]);
+LMG2L["TextButton_9"]["Size"] = UDim2.new(0, 194, 0, 82);
+LMG2L["TextButton_9"]["Text"] = [[Reanimate]];
+LMG2L["TextButton_9"]["Position"] = UDim2.new(0, 230, 0, 76);
+LMG2L["TextButton_9"]["BackgroundColor3"] = Color3.fromRGB(149, 52, 0);
+Instance.new("UICorner", LMG2L["TextButton_9"]).CornerRadius = UDim.new(0, 12);
+
+-- 5. MINIMIZE BUTTON (Top Right)
 LMG2L["MinButton"] = Instance.new("TextButton", LMG2L["Frame_2"])
-LMG2L["MinButton"].Size = UDim2.new(0, 30, 0, 30)
-LMG2L["MinButton"].Position = UDim2.new(1, -35, 0, 5)
-LMG2L["MinButton"].Text = "—"
-LMG2L["MinButton"].BackgroundColor3 = Color3.fromRGB(158, 67, 12)
-Instance.new("UICorner", LMG2L["MinButton"]).CornerRadius = UDim.new(0, 8)
+local minBtn = LMG2L["MinButton"]
+minBtn.Size = UDim2.new(0, 30, 0, 30)
+minBtn.Position = UDim2.new(1, -35, 0, 5)
+minBtn.BackgroundColor3 = Color3.fromRGB(158, 67, 12)
+minBtn.Text = "—"
+minBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+Instance.new("UICorner", minBtn).CornerRadius = UDim.new(0, 8)
 
--- 7. Logic Function (Runs after all objects exist)
-local function InitializeLogic()
-    local mainFrame = LMG2L["Frame_2"]
-    local minBtn = LMG2L["MinButton"]
-    local reBtn = LMG2L["TextButton_9"]
-    local isMinimized = false
-    local originalSize = mainFrame.Size
-    local tInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+-- 6. THE LOGIC (Minimize and Reanimate)
+local function C_c()
+	local mainFrame = LMG2L["Frame_2"]
+	local minBtn = LMG2L["MinButton"]
+	local reBtn = LMG2L["TextButton_9"]
+	local isMinimized = false
+	local originalSize = mainFrame.Size
+	local tInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
-    -- Minimize Function
-    minBtn.MouseButton1Click:Connect(function()
-        isMinimized = not isMinimized
-        local targetSize = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
-        
-        TweenService:Create(mainFrame, tInfo, {Size = targetSize}):Play()
-        
-        -- Hide everything except the minimize button
-        for _, child in pairs(mainFrame:GetChildren()) do
-            if child ~= minBtn and child:IsA("GuiObject") then
-                child.Visible = not isMinimized
-            end
-        end
-        minBtn.Text = isMinimized and "+" or "—"
-    end)
+	-- Minimize Logic with Animation
+	minBtn.MouseButton1Click:Connect(function()
+		isMinimized = not isMinimized
+		local targetSize = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
+		
+		TweenService:Create(mainFrame, tInfo, {Size = targetSize}):Play()
+		
+		for _, child in pairs(mainFrame:GetChildren()) do
+			if child ~= minBtn and child:IsA("GuiObject") then
+				child.Visible = not isMinimized
+			end
+		end
+		minBtn.Text = isMinimized and "+" or "—"
+	end)
 
-    -- Reanimate Function
-    reBtn.MouseButton1Click:Connect(function()
+	-- Reanimate Logic
+	reBtn.MouseButton1Click:Connect(function()
 	local t=reanimate()
 	local velYchg=t.velYchg 
 	local Yvel=t.Yvel
@@ -2546,9 +2546,9 @@ local function InitializeLogic()
 		end
 	})
 
-    end)
-end
+	end)
+end;
 
--- Start the script
-InitializeLogic()
+task.spawn(C_c);
+
 return 1
