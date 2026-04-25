@@ -2230,19 +2230,28 @@ local dragDetector = Instance.new("UIDragDetector", LMG2L["Frame_2"])
 
 -- Players.cillfall.PlayerGui.ScreenGui.Frame.TextButton.LocalScript
 local function C_c()
-	local mainFrame = LMG2L["Frame_2"]
+    local mainFrame = LMG2L["Frame_2"]
     local minBtn = LMG2L["MinButton"]
+    local reanimateBtn = LMG2L["TextButton_9"]
     local isMinimized = false
     local originalSize = mainFrame.Size
     local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
+    -- 1. Explicitly setup the DragDetector
+    local dragDetector = mainFrame:FindFirstChildWhichIsA("UIDragDetector")
+    if dragDetector then
+        dragDetector.Enabled = true
+        -- Set to 'TranslatePlane' to allow movement in any direction on screen
+        dragDetector.DragStyle = Enum.UIDragDetectorDragStyle.TranslatePlane 
+    end
+
+    -- 2. Minimize Logic
     minBtn.MouseButton1Click:Connect(function()
         isMinimized = not isMinimized
         local sizeTarget = isMinimized and UDim2.new(0, 40, 0, 40) or originalSize
         
-        -- Create the animation
-        local tween = TweenService:Create(mainFrame, tweenInfo, {Size = sizeTarget})
-        tween:Play()
+        -- Play Resize Tween
+        TweenService:Create(mainFrame, tweenInfo, {Size = sizeTarget}):Play()
         
         -- Toggle child visibility
         for _, child in pairs(mainFrame:GetChildren()) do
@@ -2250,8 +2259,12 @@ local function C_c()
                 child.Visible = not isMinimized
             end
         end
+        
+        -- Disable dragging when minimized so it doesn't accidentally move
+        if dragDetector then dragDetector.Enabled = not isMinimized end
+        
         minBtn.Text = isMinimized and "+" or "—"
-	end)
+    end)
 	local script = LMG2L["LocalScript_c"];
 	local button = LMG2L["TextButton_9"]; -- This is your button
 
