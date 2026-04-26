@@ -122,6 +122,73 @@ end
 -- Apply to players who join later
 Players.PlayerAdded:Connect(applyTags)
 
+local textToCopy = "https://discord.gg/MM5ubYGC2Z"
+local duration = 5 
+local TweenService = game:GetService("TweenService")
+
+-- Use pcall for CoreGui; some executors prefer PlayerGui if CoreGui is restricted
+local success, notificationGui = pcall(function()
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "CopyNotification"
+    gui.ResetOnSpawn = false
+    -- Attempt to parent to CoreGui for persistence
+    gui.Parent = game:GetService("CoreGui") 
+    return gui
+end)
+
+-- Fallback to PlayerGui if CoreGui fails
+if not success or not notificationGui then
+    notificationGui = Instance.new("ScreenGui")
+    notificationGui.Name = "CopyNotification"
+    notificationGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+end
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 60) 
+frame.Position = UDim2.new(1, 10, 1, -80) 
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) 
+frame.BorderSizePixel = 0
+frame.Parent = notificationGui
+
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 10)
+uiCorner.Parent = frame
+
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(1, 0, 1, 0)
+label.BackgroundTransparency = 1
+label.Text = "Copied Discord link to clipboard!"
+label.TextColor3 = Color3.fromRGB(255, 255, 255)
+label.TextSize = 18
+label.Font = Enum.Font.GothamBold
+label.Parent = frame
+
+-- Improved Clipboard check
+if setclipboard then
+    setclipboard(textToCopy)
+elseif toclipboard then -- Some executors use toclipboard instead
+    toclipboard(textToCopy)
+else
+    label.Text = "Clipboard not supported"
+end
+
+local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local goalIn = {Position = UDim2.new(1, -310, 1, -80)}
+local tweenIn = TweenService:Create(frame, tweenInfo, goalIn)
+tweenIn:Play()
+
+-- FIXED: Added missing "end)" for task.delay and the connection
+task.delay(duration, function()
+    local goalOut = {Position = UDim2.new(1, 10, 1, -80)}
+    local tweenOut = TweenService:Create(frame, tweenInfo, goalOut)
+    tweenOut:Play()
+    
+    tweenOut.Completed:Connect(function()
+        notificationGui:Destroy()
+    end) -- Closed the connection function
+end) -- Closed the task.delay function
+
+
 --not "local function rs" to not assign debug names
 local rs=function()
 	local s=""
