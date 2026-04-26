@@ -2246,6 +2246,12 @@ minBtn.BackgroundColor3 = Color3.fromRGB(158, 67, 12)
 minBtn.Text = "—"
 minBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 Instance.new("UICorner", minBtn).CornerRadius = UDim.new(0, 8)
+MinStroke = Instance.new("UIStroke", minBtn)
+MinStroke.Transparency = 0.3;
+MinStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+MinStroke.Thickness = 2;
+MinStroke.Color = Color3.fromRGB(59, 30, 0);
+
 
 -- 6. THE LOGIC (Minimize and Reanimate)
 local function C_c()
