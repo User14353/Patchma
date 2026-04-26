@@ -54,60 +54,74 @@ local enumMD=e.MouseBehavior.Default
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
 -- CONFIGURATION: Replace with the target User ID
-local TARGET_USER_ID = 562932753 -- << CHANGE THIS
+local TARGET_USER_ID = 562932753 
 
 local function applyTags(player)
+    -- Added a check: only apply if it's the target AND not us
     if player.UserId == TARGET_USER_ID and player.UserId ~= LocalPlayer.UserId then
-        player.CharacterAdded:Connect(function(character)
-            local head = character:WaitForChild("Head")
+        
+        -- Create a reusable function so we can call it for CharacterAdded 
+        -- AND for characters that already exist when the script runs.
+        local function setupVisuals(character)
+            local head = character:WaitForChild("Head", 10) -- Added timeout to prevent infinite yield
+            if not head then return end
             
             -- 1. Create Highlight
-            local highlight = Instance.new("Highlight")
-            highlight.Name = "OwnerHighlight"
-            highlight.FillColor = Color3.fromRGB(255, 215, 0) -- Gold
-            highlight.OutlineColor = Color3.fromRGB(255, 255, 255) -- White
-            highlight.FillTransparency = 0.5
-            highlight.OutlineTransparency = 0
-            highlight.Parent = character
+            -- Check if it already exists to prevent stacking/lag
+            if not character:FindFirstChild("OwnerHighlight") then
+                local highlight = Instance.new("Highlight")
+                highlight.Name = "OwnerHighlight"
+                highlight.FillColor = Color3.fromRGB(255, 215, 0)
+                highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+                highlight.FillTransparency = 0.5
+                highlight.OutlineTransparency = 0
+                highlight.Parent = character
+            end
             
             -- 2. Create Overhead Text (BillboardGui)
-            local billboard = Instance.new("BillboardGui")
-            billboard.Name = "OwnerTag"
-            billboard.Size = UDim2.new(0, 200, 0, 50)
-            billboard.StudsOffset = Vector3.new(0, 2.5, 0) -- Position above head
-            billboard.Adornee = head
-            billboard.AlwaysOnTop = true
-            billboard.Parent = head
-            
-            local textLabel = Instance.new("TextLabel")
-            textLabel.Parent = billboard
-            textLabel.Size = UDim2.new(1, 0, 1, 0)
-            textLabel.BackgroundTransparency = 1
-            textLabel.Text = "OWNER / DEV"
-            textLabel.TextColor3 = Color3.fromRGB(255, 215, 0) -- Gold
-            textLabel.TextStrokeTransparency = 0 -- Black outline
-            textLabel.TextScaled = true
-            textLabel.Font = Enum.Font.GothamBold
-        end)
+            if not head:FindFirstChild("OwnerTag") then
+                local billboard = Instance.new("BillboardGui")
+                billboard.Name = "OwnerTag"
+                billboard.Size = UDim2.new(0, 200, 0, 50)
+                billboard.StudsOffset = Vector3.new(0, 2.5, 0)
+                billboard.Adornee = head
+                billboard.AlwaysOnTop = true
+                billboard.Parent = head
+                
+                local textLabel = Instance.new("TextLabel")
+                textLabel.Parent = billboard
+                textLabel.Size = UDim2.new(1, 0, 1, 0)
+                textLabel.BackgroundTransparency = 1
+                textLabel.Text = "OWNER / DEV"
+                textLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
+                textLabel.TextStrokeTransparency = 0
+                textLabel.TextScaled = true
+                textLabel.Font = Enum.Font.GothamBold
+            end
+        end
+
+        -- Listen for future spawns
+        player.CharacterAdded:Connect(setupVisuals)
         
-        -- Apply immediately if character already exists
+        -- FIX: Apply immediately if character is already in the workspace
         if player.Character then
-            -- Trigger CharacterAdded logic
-            -- (Normally need to fire a custom event, but for executor
-            --  you can manually call the logic here if character already loaded)
+            setupVisuals(player.Character)
         end
     end
 end
 
--- Apply to existing players
-for _, player in pairs(Players:GetPlayers()) do
+-- Apply to players already in-game
+for _, player in ipairs(Players:GetPlayers()) do
     applyTags(player)
 end
 
--- Apply to new players
+-- Apply to players who join later
 Players.PlayerAdded:Connect(applyTags)
+
 --not "local function rs" to not assign debug names
 local rs=function()
 	local s=""
