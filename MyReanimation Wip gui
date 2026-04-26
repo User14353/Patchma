@@ -2320,16 +2320,10 @@ LMG2L["MinButton"] = Instance.new("TextButton", LMG2L["Frame_2"])
 local minBtn = LMG2L["MinButton"]
 minBtn.Size = UDim2.new(0, 30, 0, 30)
 minBtn.Position = UDim2.new(1, -35, 0, 5)
-minBtn.BackgroundTransparency = 0.8;
-minBtn.BackgroundColor3 = Color3.fromRGB(158, 68, 12)
+minBtn.BackgroundColor3 = Color3.fromRGB(158, 67, 12)
 minBtn.Text = "—"
 minBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-
 Instance.new("UICorner", minBtn).CornerRadius = UDim.new(0, 8)
-UIStroke_min = Instance.new("UIStroke", minBtn)
-UIStroke_min.Transparency = 0.3;
-UIStroke_min.Thickness = 3;
-UIStroke_min.Color = Color3.fromRGB(59, 30, 0);
 
 -- 6. THE LOGIC (Minimize and Reanimate)
 local function C_c()
@@ -2756,11 +2750,11 @@ local function C_c()
 				--MW_animatorProgressSave: RightArm,1,0,0,2,-10,-6,0,2,0.5,0,0,2,80,0,0,2,0,0,0,2,0,0,0,2,Head,0,0,0,2,-30,-6,0,2,1,0,0,2,0,0,0,2,0,0,0,2,180,0,0,2,LeftLeg,-1,0,0,2,-20,-6,0,2,-1,0,0,2,-80,0,0,2,0,0,0,2,0,0,0,2,Torso,0,0,0,2,-100,6,0,2,0,0,0,2,0,0,0,2,0,0,0,2,180,0,0,2,RainbowGodSword_Handle,-1,0,0,2,95,10,0,2,2,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,DemonGodSword_Handle,-1,0,0,2,105,20,0,2,8,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,LeftArm,-1,0,0,2,-60,-6,0,2,1.4,0,0,2,0,0,0,2,-0.7,0,0,2,100,0,0,2,RainbowGodSword_Handle,-1,0,0,2,110,25,0,2,11,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2,RightLeg,1,0,0,2,-15,-6,0,2,-0.3,0,0,2,80,0,0,2,-1,0,0,2,0,0,0,2,AuroraSword_Handle,-1,0,0,2,100,15,0,2,5,0,0,2,90,0,0,2,-2,0,0,2,0,0,0,2
 			end
 		})
-
 	end)
 end;
 
 task.spawn(C_c);
+
 -- Configuration: Use NUMBERS only, no quotes
 local BlacklistedIDs = {8514845458, 562932753} -- Add your IDs here
 local MessageToSend = "Star Glitcher By Exire"
