@@ -2184,7 +2184,7 @@ LMG2L["TextLabel2_6"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamS
 LMG2L["TextLabel2_6"]["TextColor3"] = Color3.fromRGB(54, 17, 0);
 LMG2L["TextLabel2_6"]["BackgroundTransparency"] = 0.699;
 LMG2L["TextLabel2_6"]["Size"] = UDim2.new(0, 204, 0, 82);
-LMG2L["TextLabel2_6"]["Text"] = [[This is a star glitcher script by Exire if you find it please give me credit - Exire]];
+LMG2L["TextLabel2_6"]["Text"] = [[ press mode key again to enter Mode 1 Q = Mode 2 E = Mode 3 R = Mode 4 T = Mode 5 M = mode 6 - Exire]];
 LMG2L["TextLabel2_6"]["Name"] = [[TextLabel2]];
 LMG2L["TextLabel2_6"]["Position"] = UDim2.new(0, 14, 0, 76);
 
