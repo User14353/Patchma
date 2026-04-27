@@ -3062,8 +3062,6 @@ local function C_c()
 			end)
 		end
 	end)
-
-
 	end)
 end;
 
