@@ -2836,12 +2836,12 @@ local function C_c()
 		modeLabel.Size, modeLabel.BackgroundTransparency = UDim2.new(1, 0, 1, 0), 1
 		modeLabel.Font, modeLabel.TextScaled = Enum.Font.Arcade, true
 
-		-- 2. Sigil (25% Screen Size - Locked to Bottom Right Corner)
+		-- 2. Sigil (Fixed Position & 25% Scale)
 		local sigil = Instance.new("ImageLabel", sg)
-		sigil.Size = UDim2.new(0.25, 0, 0.25, 0) -- 25% of the screen
-		sigil.Position = UDim2.new(1, 0, 1, 0) -- Moves the origin to the bottom-right corner
-		sigil.AnchorPoint = Vector2.new(0, 0) -- Forces the center of the image onto the corner
-		sigil.BackgroundTransparency, sigil.Image = 1, "rbxassetid://85967406604142"
+		sigil.Size = UDim2.new(0.25, 0, 0.25, 0) 
+		sigil.Position = UDim2.new(1, 0, 1, 0) -- Locked to bottom right
+		sigil.AnchorPoint = Vector2.new(1, 1) -- Keeps it on screen
+		sigil.BackgroundTransparency, sigil.Image = 1, "rbxassetid://124888284000698"
 		sigil.ScaleType = Enum.ScaleType.Fit
 		sigil.ZIndex = 0
 		local sigilGradient = Instance.new("UIGradient", sigil)
@@ -2851,10 +2851,12 @@ local function C_c()
 		scifiLabel.Size, scifiLabel.Position = UDim2.new(0.2, 0, 0.06, 0), UDim2.new(0.03, 0, 0.88, 0)
 		scifiLabel.BackgroundTransparency, scifiLabel.Font, scifiLabel.TextScaled = 1, Enum.Font.SciFi, true
 
-		-- 4. Edge Glows
+		-- 4. Edge Glows (Lower Opacity)
 		local function createEdge(name, size, pos, rot)
 				local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
 				local g = Instance.new("UIGradient", f); g.Rotation = rot
+				-- Set to 0.8 for a much more subtle fade
+				g.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.8), NumberSequenceKeypoint.new(1, 1)})
 				return g
 		end
 		local bottomG = createEdge("BG", UDim2.new(1, 0, 0.2, 0), UDim2.new(0, 0, 0.8, 0), 270)
@@ -2900,23 +2902,24 @@ local function C_c()
 		local lastM, count = "", 0
 		RunService.RenderStepped:Connect(function(dt)
 				count = count + dt
-				sigil.Rotation -= 100 * dt -- Counter-clockwise spin
+				sigil.Rotation -= 100 * dt 
 				scifiLabel.Rotation = math.sin(count * 2) * 5
 				scifiLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(count * 1.5) * 0.02), 0)
 				
-				-- Flicker logic for Chaos and Corruption
+				-- Flicker logic (More subtle)
 				local mode = tostring(_G.ModeV)
 				if mode == "Chaos" or mode == "Corruption" then
-						local vis = math.random() > 0.9 and 1 or math.random(0.3, 0.6)
+						local vis = math.random() > 0.9 and 1 or math.random(0.7, 0.9)
 						local flicker = NumberSequence.new({NumberSequenceKeypoint.new(0, vis), NumberSequenceKeypoint.new(1, 1)})
 						bottomG.Transparency, leftG.Transparency, rightG.Transparency = flicker, flicker, flicker
 				else
-						local norm = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)})
+						local norm = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.8), NumberSequenceKeypoint.new(1, 1)})
 						bottomG.Transparency, leftG.Transparency, rightG.Transparency = norm, norm, norm
 				end
 				
 				if _G.ModeV ~= lastM then lastM = _G.ModeV; updateUI() end
 		end)
+
 
 
 	end)
