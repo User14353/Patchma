@@ -2900,8 +2900,8 @@ local function C_c()
 	RunService.RenderStepped:Connect(function(dt)
 			counter += dt
 			sigil.Rotation -= 140 * dt 
-			modeLabel.Rotation = math.sin(counter * 2) * 5
-			modeLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(counter * 1.5) * 0.02), 0) -- Floating in %
+			scifiLabel.Rotation = math.sin(counter * 2) * 5
+			scifiLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(counter * 1.5) * 0.02), 0) -- Floating in %
 			if _G.mode ~= lastMode then lastMode = _G.mode; updateUI() end
 	end)
 end;
