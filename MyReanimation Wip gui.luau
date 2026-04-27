@@ -2821,64 +2821,45 @@ local function C_c()
 		local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
 		-- Cleanup
-		if PlayerGui:FindFirstChild("StarGlitcherHUD_Final") then PlayerGui.StarGlitcherHUD_Final:Destroy() end
+		if PlayerGui:FindFirstChild("StarGlitcherFinalHUD") then PlayerGui.StarGlitcherFinalHUD:Destroy() end
 
-		local sg = Instance.new("ScreenGui", PlayerGui); sg.Name = "StarGlitcherHUD_Final"
+		local sg = Instance.new("ScreenGui", PlayerGui); sg.Name = "StarGlitcherFinalHUD"
 		sg.IgnoreGuiInset, sg.ResetOnSpawn = true, false 
 
-		-- 1. Left Corner Decorative Elements
-		local shootingStar = Instance.new("TextLabel", sg)
-		shootingStar.Size, shootingStar.Position = UDim2.new(0.1, 0, 0.03, 0), UDim2.new(0.02, 0, 0.82, 0)
-		shootingStar.BackgroundTransparency, shootingStar.Font, shootingStar.TextScaled = 1, Enum.Font.SciFi, true
-		shootingStar.TextColor3, shootingStar.Text = Color3.new(1, 1, 1), "⑧ Shooting Star"
-		shootingStar.TextXAlignment = Enum.TextXAlignment.Left
+		-- 1. Visual FX: Edge Glows (Re-Added)
+		local function createEdge(name, size, pos, rot)
+				local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
+				local g = Instance.new("UIGradient", f); g.Rotation = rot
+				return g
+		end
+		local bottomG = createEdge("BG", UDim2.new(1, 0, 0.2, 0), UDim2.new(0, 0, 0.8, 0), 270)
+		local leftG   = createEdge("LG", UDim2.new(0.12, 0, 1, 0), UDim2.new(0, 0, 0, 0), 0)
+		local rightG  = createEdge("RG", UDim2.new(0.12, 0, 1, 0), UDim2.new(0.88, 0, 0, 0), 180)
 
-		-- Decorative Bars (Non-functional, purely visual)
+		-- 2. Corner Sigil (Set to 25% screen size, top-left quadrant only)
+		local sigil = Instance.new("ImageLabel", sg)
+		sigil.Size = UDim2.new(0.25, 0, 0.25, 0) -- Exactly 25% of screen
+		sigil.Position = UDim2.new(1, 0, 1, 0) -- Anchored to corner
+		sigil.AnchorPoint = Vector2.new(0, 0) -- Centers the texture on the corner
+		sigil.BackgroundTransparency = 1; sigil.Image = "rbxassetid://85967406604142"; sigil.ZIndex = 0
+		local sigilG = Instance.new("UIGradient", sigil)
+
+		-- 3. Decorative Elements (Bars/Labels)
 		local function createDecoBar(pos, labelText)
-				local frame = Instance.new("Frame", sg)
-				frame.Size, frame.Position = UDim2.new(0.15, 0, 0.015, 0), pos
-				frame.BackgroundColor3, frame.BackgroundTransparency, frame.BorderSizePixel = Color3.new(0, 0, 0), 0.6, 0
-				
-				local inner = Instance.new("Frame", frame)
-				inner.Size, inner.BorderSizePixel = UDim2.new(0.7, 0, 1, 0), 0
-				
-				local label = Instance.new("TextLabel", frame)
-				label.Size, label.Position = UDim2.new(1, 0, 1, 0), UDim2.new(0, 5, 0, 0)
-				label.BackgroundTransparency, label.Font, label.TextScaled = 1, Enum.Font.SciFi, true
-				label.TextColor3, label.Text = Color3.new(1, 1, 1), labelText
-				label.TextXAlignment = Enum.TextXAlignment.Left
-				
+				local frame = Instance.new("Frame", sg); frame.Size = UDim2.new(0.12, 0, 0.015, 0); frame.Position = pos; frame.BackgroundColor3 = Color3.new(0,0,0); frame.BackgroundTransparency = 0.5; frame.BorderSizePixel = 0
+				local inner = Instance.new("Frame", frame); inner.Size = UDim2.new(0.8, 0, 1, 0); inner.BorderSizePixel = 0
+				local label = Instance.new("TextLabel", frame); label.Size = UDim2.new(1, 0, 1, 0); label.BackgroundTransparency = 1; label.Font = Enum.Font.SciFi; label.TextScaled = true; label.TextColor3 = Color3.new(1,1,1); label.Text = labelText; label.TextXAlignment = Enum.TextXAlignment.Left
 				return inner
 		end
 
-		local bar1 = createDecoBar(UDim2.new(0.02, 0, 0.86, 0), "COSMIC")
-		local bar2 = createDecoBar(UDim2.new(0.02, 0, 0.88, 0), "HEALTH")
+		local bar1 = createDecoBar(UDim2.new(0.02, 0, 0.15, 0), " COSMIC")
+		local bar2 = createDecoBar(UDim2.new(0.02, 0, 0.17, 0), " HEALTH")
+		local shootingStar = Instance.new("TextLabel", sg); shootingStar.Size = UDim2.new(0.1, 0, 0.03, 0); shootingStar.Position = UDim2.new(0.02, 0, 0.12, 0); shootingStar.BackgroundTransparency, shootingStar.Font, shootingStar.TextScaled = 1, Enum.Font.SciFi, true; shootingStar.TextColor3, shootingStar.Text = Color3.new(1,1,1), "⑧ Shooting Star"; shootingStar.TextXAlignment = Enum.TextXAlignment.Left
 
-		-- 2. Main Mode Text (Floating)
-		local modeLabel = Instance.new("TextLabel", sg)
-		modeLabel.Size, modeLabel.Position = UDim2.new(0.2, 0, 0.08, 0), UDim2.new(0.02, 0, 0.73, 0)
-		modeLabel.BackgroundTransparency, modeLabel.Font, modeLabel.TextScaled = 1, Enum.Font.Arcade, true
-		modeLabel.TextXAlignment = Enum.TextXAlignment.Left
-
-		-- 3. Center Mode List
-		local listLabel = Instance.new("TextLabel", sg)
-		listLabel.Size, listLabel.Position = UDim2.new(0.4, 0, 0.04, 0), UDim2.new(0.3, 0, 0.8, 0)
-		listLabel.BackgroundTransparency, listLabel.Font, listLabel.TextScaled = 1, Enum.Font.SciFi, true
-		listLabel.RichText = true
-		listLabel.Text = [[Submodes | 2   Modes | [Q] E R T Y U M]]
-
-		-- 4. Right Corner Description
-		local rightDesc = Instance.new("TextLabel", sg)
-		rightDesc.Size, rightDesc.Position = UDim2.new(0.3, 0, 0.04, 0), UDim2.new(0.68, 0, 0.8, 0)
-		rightDesc.BackgroundTransparency, rightDesc.Font, rightDesc.TextScaled = 1, Enum.Font.SciFi, true
-		rightDesc.TextXAlignment = Enum.TextXAlignment.Right
-
-		-- 5. Giant Corner Sigil
-		local sigil = Instance.new("ImageLabel", sg)
-		sigil.Size = UDim2.new(0.5, 0, 0.8, 0); sigil.Position = UDim2.new(1, 0, 1, 0)
-		sigil.AnchorPoint = Vector2.new(0.3, 0.3); sigil.BackgroundTransparency = 1
-		sigil.Image = "rbxassetid://85967406604142"; sigil.ZIndex = 0
-		local sigilG = Instance.new("UIGradient", sigil)
+		-- 4. Mode Text
+		local modeLabel = Instance.new("TextLabel", sg); modeLabel.Size = UDim2.new(0.25, 0, 0.08, 0); modeLabel.Position = UDim2.new(0.02, 0, 0.04, 0); modeLabel.BackgroundTransparency, modeLabel.Font, modeLabel.TextScaled = 1, Enum.Font.Arcade, true; modeLabel.TextXAlignment = Enum.TextXAlignment.Left
+		local listLabel = Instance.new("TextLabel", sg); listLabel.Size = UDim2.new(0.4, 0, 0.04, 0); listLabel.Position = UDim2.new(0.3, 0, 0.1, 0); listLabel.BackgroundTransparency, listLabel.Font, listLabel.TextScaled = 1, Enum.Font.SciFi, true; listLabel.Text = "Submodes | 2 Modes | [Q] E R T Y U M"
+		local statusLabel = Instance.new("TextLabel", sg); statusLabel.Size = UDim2.new(0.3, 0, 0.04, 0); statusLabel.Position = UDim2.new(0.68, 0, 0.1, 0); statusLabel.BackgroundTransparency, statusLabel.Font, statusLabel.TextScaled = 1, Enum.Font.SciFi, true; statusLabel.TextXAlignment = Enum.TextXAlignment.Right
 
 		-- Settings
 		_G.ModeV = "Purity"
@@ -2898,25 +2879,26 @@ local function C_c()
 				local mode = tostring(_G.ModeV)
 				local grad = gradients[mode] or gradients["Purity"]
 				local col = grad.Keypoints[1].Value
-				
-				modeLabel.Text = mode:upper()
-				rightDesc.Text = "System Status: " .. mode:upper()
-				modeLabel.TextColor3, bar1.BackgroundColor3, bar2.BackgroundColor3, rightDesc.TextColor3 = col, col, col, col
-				sigilG.Color = grad
+				modeLabel.Text, statusLabel.Text = mode:upper(), "System Status: "..mode:upper()
+				modeLabel.TextColor3, bar1.BackgroundColor3, bar2.BackgroundColor3, statusLabel.TextColor3 = col, col, col, col
+				sigilG.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
 		end
 
-		-- Logic
-		UserInputService.InputBegan:Connect(function(i, gp) 
-				if not gp and keyBinds[i.KeyCode] then 
-						_G.ModeV = (_G.ModeV == keyBinds[i.KeyCode]) and "Purity" or keyBinds[i.KeyCode] 
-				end 
-		end)
+		-- Input & Animation Loop
+		UserInputService.InputBegan:Connect(function(i, gp) if not gp and keyBinds[i.KeyCode] then _G.ModeV = (_G.ModeV == keyBinds[i.KeyCode]) and "Purity" or keyBinds[i.KeyCode] end end)
 
 		local lastM, count = "", 0
 		RunService.RenderStepped:Connect(function(dt)
 				count = count + dt
-				sigil.Rotation = sigil.Rotation - (45 * dt)
-				modeLabel.Position = UDim2.new(0.02, 0, 0.73 + (math.sin(count * 2) * 0.01), 0)
+				sigil.Rotation -= 60 * dt
+				
+				-- Flicker FX for Chaos/Corruption
+				local mode = tostring(_G.ModeV)
+				local trans = 0.5
+				if mode == "Chaos" or mode == "Corruption" then trans = math.random() > 0.9 and 1 or math.random(0.3, 0.7) end
+				local fSeq = NumberSequence.new({NumberSequenceKeypoint.new(0, trans), NumberSequenceKeypoint.new(1, 1)})
+				bottomG.Transparency, leftG.Transparency, rightG.Transparency = fSeq, fSeq, fSeq
+				
 				if _G.ModeV ~= lastM then lastM = _G.ModeV; updateUI() end
 		end)
 
