@@ -2898,7 +2898,7 @@ local function C_c()
 		    
 		    -- Float
 		    scifiLabel.Position = UDim2.new(0, 30, 1, -80 + (math.sin(counter * 1.5) * 12))
-		    
+		    updateUI()
 		    if _G.mode ~= lastMode then lastMode = _G.mode; updateUI() end
 		end)
 end;
