@@ -243,18 +243,7 @@ local accessorylimbs={
 	{
 	meshid="126825022897778",textureid="130689541138804",C0=angles(0,0,0),Name="Torso"
 	},
-	{
-	meshid="100128920324073",textureid="133680105074740",C0=angles(rad(-75),rad(15),rad(-20)),Name="Right Leg"
-	},
-	{
-	meshid="130309145260656",textureid="82390202293774",C0=angles(rad(-75),rad(-15),rad(20)),Name="Left Arm"
-	},
-	{
-	meshid="130309145260656",textureid="93374633946646",C0=angles(rad(-75),rad(-15),rad(20)),Name="Left Leg"
-	},
-	{
-	meshid="100128920324073",textureid="97155254696037",C0=angles(rad(-75),rad(15),rad(-20)),Name="Right Arm"
-	},
+
 	{ meshid = "18919712035", Name = "Torso", C0 = CFrame.identity, textureid = "18430134193" },--95290698984301
 
 
