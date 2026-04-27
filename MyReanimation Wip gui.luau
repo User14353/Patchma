@@ -3016,6 +3016,79 @@ local function C_c()
 				[Enum.KeyCode.U] = "Supernova", [Enum.KeyCode.T] = "Corruption", [Enum.KeyCode.M] = "Mayhem",
 				[Enum.KeyCode.Y] = "Divinity"
 			}
+			local Folder = "MusicCache"
+			if isfolder and not isfolder(Folder) then makefolder(Folder) end
+			local Path = Folder.."/"
+
+			-- Configuration: Link your GitHub raw URLs here
+			local SongLinks = {
+					["Purity"]     = "https://github.com/bayly098764321/Hat-FE/blob/main/Purity.mp3?raw=true",
+					["Equinox"]    = "https://github.com/bayly098764321/Hat-FE/blob/main/Equinox.mp3?raw=true",
+					["Chaos"]      = "https://github.com/bayly098764321/Hat-FE/blob/main/Chaos.mp3?raw=true",
+					["Destiny"]    = "https://github.com/bayly098764321/Hat-FE/blob/main/Destiny.mp3?raw=true",
+					["Supernova"]  = "https://github.com/bayly098764321/Hat-FE/blob/main/Supernova.mp3?raw=true",
+					["Corruption"] = "https://github.com/bayly098764321/Hat-FE/blob/main/Corruption.mp3?raw=true",
+					["Mayhem"]     = "https://github.com/bayly098764321/Hat-FE/blob/main/Mayhem.mp3?raw=true",
+					["Divinity"]   = "https://github.com/bayly098764321/Hat-FE/blob/main/Divinity.mp3?raw=true"
+			}
+
+			-- Downloads and returns the asset ID
+			function getmp3(modeName)
+					local filename = modeName..".mp3"
+					local fullPath = Path..filename
+					
+					if not isfile(fullPath) then
+							local url = SongLinks
+							if url then
+									writefile(fullPath, game:HttpGet(url))
+							else
+									warn("No URL found for mode: " .. modeName)
+									return nil
+							end
+					end
+					
+					repeat task.wait() until isfile(fullPath)
+					return getcustomasset(fullPath)
+			end
+
+			-- Function to play the sound based on current _G.ModeV
+			local currentSound = nil
+			function playModeMusic()
+					if currentSound then currentSound:Destroy() end -- Stop previous song
+					
+					local assetId = getmp3(_G.ModeV)
+					if assetId then
+							currentSound = Instance.new("Sound")
+							currentSound.Parent = game:GetService("SoundService") -- Or your character
+							currentSound.SoundId = assetId
+							currentSound.Volume = 1
+							currentSound.Looped = true
+							currentSound:Play()
+					end
+			end
+
+			-- Setup Keybinds
+			local UIS = game:GetService("UserInputService")
+			_G.ModeV = "Purity" -- Default
+
+			local keyBinds = {
+					[Enum.KeyCode.Q] = "Equinox", [Enum.KeyCode.E] = "Chaos", [Enum.KeyCode.R] = "Destiny",
+					[Enum.KeyCode.U] = "Supernova", [Enum.KeyCode.T] = "Corruption", [Enum.KeyCode.M] = "Mayhem",
+					[Enum.KeyCode.Y] = "Divinity"
+			}
+
+			UIS.InputBegan:Connect(function(input, gpe)
+					if gpe then return end
+					if keyBinds[input.KeyCode] then
+							_G.ModeV = keyBinds[input.KeyCode]
+							print("Switched to Mode: " .. _G.ModeV)
+							playModeMusic()
+					end
+			end)
+
+			-- Initial play
+			playModeMusic()
+
 
 			local modeGradients = {
 				["Purity"]      = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
