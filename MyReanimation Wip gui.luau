@@ -2328,6 +2328,7 @@ local function C_c()
 	
 		addmode("default",{
 			ModeV="Purity",
+			print(ModeV),
 			idle=function()
 				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1-0.06*sin(sine*1),0),angles(-1.9198621771937625-0.06981317007977318*sin(sine*1),-0.017453292519943295*sin(sine*1),3.141592653589793)),deltaTime) 
 				Demon.C0=Lerp(Demon.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
@@ -2390,6 +2391,7 @@ local function C_c()
 		})
 		addmode("q",{
 			ModeV="Equinox",
+			print(ModeV),
 			idle=function()
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,-1.5707963267948966)),deltaTime) 
 				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,1.5707963267948966)),deltaTime) 
@@ -2446,6 +2448,7 @@ local function C_c()
 		})
 		addmode("e",{
 			ModeV="Chaos",
+			print(ModeV),
 			idle=function()
 				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(8,1,0),angles(0.7852236304722489,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(0.7852236304722489,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
@@ -2506,6 +2509,7 @@ local function C_c()
 		})
 		addmode("r",{
 			ModeV="Destiny",
+			print(ModeV),
 			idle=function()
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(0,3,-4),angles(-3.036872898470133-0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
 				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(0,3,-10),angles(-3.036872898470133-0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
@@ -2566,6 +2570,7 @@ local function C_c()
 		})
 		addmode("u",{
 			ModeV="Supernova",
+			print(ModeV),
 			idle=function()
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(1,-7-0.5*sin(sine*2),-7),angles(-0.7853981633974483+0.17453292519943295*sin((sine+0.1)*1.9),-1.5707963267948966,0)),deltaTime) 
 				Halloween.C0=Lerp(Halloween.C0,cfMul(cf(-1,-7-0.5*sin(sine*2),-7),angles(-0.7853981633974483+0.17453292519943295*sin((sine+0.1)*1.9),1.5707963267948966,0)),deltaTime) 
@@ -2633,6 +2638,7 @@ local function C_c()
 		})
 		addmode("t",{
 			ModeV="Corruption",
+			print(ModeV),
 			idle=function()
 				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+1*sin(sine*2),0),angles(-1.0471975511965976+0.10471975511965978*sin((sine+2)*2),0,3.141592653589793)),deltaTime) 
 				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.0471975511965976-0.10471975511965978*sin((sine+2)*2),0.03490658503988659*sin(sine*2),3.141592653589793+0.03490658503988659*sin(sine*2))),deltaTime) 
@@ -2691,6 +2697,7 @@ local function C_c()
 		})
 		addmode("m",{
 			ModeV="Mayhem",
+			print(ModeV),
 			idle=function()
 				RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.5235987755982988-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
 				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.2217304763960306-0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
@@ -2750,6 +2757,7 @@ local function C_c()
 		})
 		addmode("y",{
 			ModeV="Divinity",
+			print(ModeV),
 			idle=function()
 				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+1*sin(sine*2),0.6 * sin(sine*1)),angles(-1.5707963267948966-0.17453292519943295*sin(sine*1),0.08726646259971647*sin(sine*2),3.141592653589793)),deltaTime) 
 				Demon.C0=Lerp(Demon.C0,cfMul(cf(10,1 * sin(sine*2),0),angles(0.7853981633974483,-1.5707963267948966+62831853071.79586*sin(sine*-2e-10),0.5235987755982988)),deltaTime) 
