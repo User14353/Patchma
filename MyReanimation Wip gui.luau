@@ -2816,7 +2816,8 @@ local function C_c()
 				--MW_animatorProgressSave: Torso,0,0,0,2,-130,-10,0,1,8,1,0,2,0,5,0,2,0,0.6,0,1,180,0,0,2,DemonGodSword_Handle,10,0,0,2,45,0,0,2,0,1,0,2,-90,3600000000000,0,-0.0000000002,0,0,0,2,30,0,0,2,RightLeg,1,0,0,2,-30,20,0,1,-0.6,0,0,2,70,10,0,2,-1,0,0,2,0,-10,0,2,RightArm,1.4,0,0,2,-40,-10,0,1,0,0,0,2,0,10,0,2,-0.6,0,0,2,10,-10,0,2,AuroraSword_Handle,-10,0,0,2,-135,0,0,2,0,1,0,1,90,3600000000000,0,-0.0000000002,0,0,0,2,-30,0,0,2,LeftLeg,-1,0,0,2,-30,-10,0,1,-1,0,0,2,-70,-5,0,2,-0.7,0,0,2,0,10,0,2,RainbowGodSword_Handle,-10,0,0,2,-135,0,0,2,0,1,0,1,-90,3600000000000,0,-0.0000000002,0,0,0,2,-30,0,0,2,RainbowGodSword_Handle,10,0,0,2,45,0,0,2,0,1,0,2,90,3600000000000,0,-0.0000000002,0,0,0,2,30,10,0,1,Head,0,0,0,2,-70,5,0,1,1,0,0,2,0,-5,0,2,0,0,0,2,180,0,0,2,LeftArm,-1.4,0,0,2,-40,10,0,1,0,0,0,2,0,-10,0,2,-0.6,0,0,2,-10,10,0,2			end,
 			end
 		})
-		local RunService = game:GetService("RunService")
+	end)
+			local RunService = game:GetService("RunService")
 		local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 		
 		-- Cleanup
@@ -2900,7 +2901,6 @@ local function C_c()
 		    
 		    if _G.mode ~= lastMode then lastMode = _G.mode; updateUI() end
 		end)
-	end)
 end;
 
 task.spawn(C_c);
