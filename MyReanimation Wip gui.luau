@@ -2327,7 +2327,7 @@ local function C_c()
 		t.setWalkSpeed(40)
 	
 		addmode("default",{
-			ModeV="default",
+			ModeV="Purity",
 			idle=function()
 				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1-0.06*sin(sine*1),0),angles(-1.9198621771937625-0.06981317007977318*sin(sine*1),-0.017453292519943295*sin(sine*1),3.141592653589793)),deltaTime) 
 				Demon.C0=Lerp(Demon.C0,cfMul(cf(-1,4,0),angles(628318530717958700000*sin(sine*1e-20),1.5707963267948966,3.141592653589793)),deltaTime) 
@@ -2389,7 +2389,7 @@ local function C_c()
 			end
 		})
 		addmode("q",{
-			ModeV="q",
+			ModeV="Equinox",
 			idle=function()
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,-1.5707963267948966)),deltaTime) 
 				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(-4.99,4,0),angles(0.7852236304722489+628318.5307179586*sin(sine*0.00001),0,1.5707963267948966)),deltaTime) 
@@ -2445,7 +2445,7 @@ local function C_c()
 			end
 		})
 		addmode("e",{
-			ModeV="e",
+			ModeV="Chaos",
 			idle=function()
 				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(8,1,0),angles(0.7852236304722489,3.3161255787892263,6283185307.179586*sin(sine*2.6e-09))),deltaTime) 
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(-4.99,0,1 * sin(sine*-2)),angles(0.7852236304722489,3.3161255787892263,-6283185307.179586*sin(sine*2e-09))),deltaTime) 
@@ -2504,8 +2504,8 @@ local function C_c()
 				--MW_animatorProgressSave: LeftArm,-1.6,0,0,1,130,6,0,-2,0.5,0,0,1,-190,6,0,-2,-0.2,0,0,1,69,6,0,-2,RainbowGodSword_Handle,8,0,0,1,44.99,-6,0,-2,0,1,0,1,200,0,0,1,0,-2,0,-2,0,360000000000,0,-0.0000000026,RightArm,1.6,0,0,1,130,6,0,-2,0.5,0,0,1,190,6,0,-2,-0.2,0,0,1,-69,6,0,-2,Torso,0,0,0,1,-80,3,0,-2,8,1,0,2,0,3,0,-2,0,0,0,1,180,0,0,1,RightLeg,1,0,0,1,-20,6,3,-2,-1,0,0,1,69,6,0,2,0,0,0,1,0,0,0,1,Head,0,0,0,1,-69,6,0,-2,1,0,0,1,0,6,0,1,0,0,0,1,180,0,0,1,LeftLeg,-1,0,0,1,-30,6,0,-2,-1,0,0,1,-69,6,0,2,0,0,0,1,0,0,0,1,DemonGodSword_Handle,-4.99,0,0,1,44.99,-6,0,-2,0,1,0,1,180,0,0,1,0,-2,0,-2,0,360000000000,0,0.000000002
 			end
 		})
-			addmode("r",{
-			ModeV="r",
+		addmode("r",{
+			ModeV="Destiny",
 			idle=function()
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(0,3,-4),angles(-3.036872898470133-0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
 				Aurora.C0=Lerp(Aurora.C0,cfMul(cf(0,3,-10),angles(-3.036872898470133-0.17453292519943295*sin(sine*2),1.5707963267948966,0)),deltaTime) 
@@ -2565,6 +2565,7 @@ local function C_c()
 			end,
 		})
 		addmode("u",{
+			ModeV="Supernova",
 			idle=function()
 				Rainbow.C0=Lerp(Rainbow.C0,cfMul(cf(1,-7-0.5*sin(sine*2),-7),angles(-0.7853981633974483+0.17453292519943295*sin((sine+0.1)*1.9),-1.5707963267948966,0)),deltaTime) 
 				Halloween.C0=Lerp(Halloween.C0,cfMul(cf(-1,-7-0.5*sin(sine*2),-7),angles(-0.7853981633974483+0.17453292519943295*sin((sine+0.1)*1.9),1.5707963267948966,0)),deltaTime) 
@@ -2631,6 +2632,7 @@ local function C_c()
 			end
 		})
 		addmode("t",{
+			ModeV="Corruption",
 			idle=function()
 				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+1*sin(sine*2),0),angles(-1.0471975511965976+0.10471975511965978*sin((sine+2)*2),0,3.141592653589793)),deltaTime) 
 				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.0471975511965976-0.10471975511965978*sin((sine+2)*2),0.03490658503988659*sin(sine*2),3.141592653589793+0.03490658503988659*sin(sine*2))),deltaTime) 
@@ -2688,6 +2690,7 @@ local function C_c()
 			end
 		})
 		addmode("m",{
+			ModeV="Mayhem",
 			idle=function()
 				RightShoulder.C0=Lerp(RightShoulder.C0,cfMul(cf(1,0.5,0),angles(-0.5235987755982988-0.10471975511965978*sin(sine*2),1.3962634015954636,0)),deltaTime) 
 				Neck.C0=Lerp(Neck.C0,cfMul(cf(0,1,0),angles(-1.2217304763960306-0.10471975511965978*sin(sine*2),0,3.141592653589793)),deltaTime) 
@@ -2746,6 +2749,7 @@ local function C_c()
 			end
 		})
 		addmode("y",{
+			ModeV="Divinity",
 			idle=function()
 				RootJoint.C0=Lerp(RootJoint.C0,cfMul(cf(0,8+1*sin(sine*2),0.6 * sin(sine*1)),angles(-1.5707963267948966-0.17453292519943295*sin(sine*1),0.08726646259971647*sin(sine*2),3.141592653589793)),deltaTime) 
 				Demon.C0=Lerp(Demon.C0,cfMul(cf(10,1 * sin(sine*2),0),angles(0.7853981633974483,-1.5707963267948966+62831853071.79586*sin(sine*-2e-10),0.5235987755982988)),deltaTime) 
@@ -2804,6 +2808,87 @@ local function C_c()
 				--MW_animatorProgressSave: Torso,0,0,0,2,-130,-10,0,1,8,1,0,2,0,5,0,2,0,0.6,0,1,180,0,0,2,DemonGodSword_Handle,10,0,0,2,45,0,0,2,0,1,0,2,-90,3600000000000,0,-0.0000000002,0,0,0,2,30,0,0,2,RightLeg,1,0,0,2,-30,20,0,1,-0.6,0,0,2,70,10,0,2,-1,0,0,2,0,-10,0,2,RightArm,1.4,0,0,2,-40,-10,0,1,0,0,0,2,0,10,0,2,-0.6,0,0,2,10,-10,0,2,AuroraSword_Handle,-10,0,0,2,-135,0,0,2,0,1,0,1,90,3600000000000,0,-0.0000000002,0,0,0,2,-30,0,0,2,LeftLeg,-1,0,0,2,-30,-10,0,1,-1,0,0,2,-70,-5,0,2,-0.7,0,0,2,0,10,0,2,RainbowGodSword_Handle,-10,0,0,2,-135,0,0,2,0,1,0,1,-90,3600000000000,0,-0.0000000002,0,0,0,2,-30,0,0,2,RainbowGodSword_Handle,10,0,0,2,45,0,0,2,0,1,0,2,90,3600000000000,0,-0.0000000002,0,0,0,2,30,10,0,1,Head,0,0,0,2,-70,5,0,1,1,0,0,2,0,-5,0,2,0,0,0,2,180,0,0,2,LeftArm,-1.4,0,0,2,-40,10,0,1,0,0,0,2,0,-10,0,2,-0.6,0,0,2,-10,10,0,2			end,
 			end
 		})
+		local RunService = game:GetService("RunService")
+		local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+		
+		-- Cleanup
+		if PlayerGui:FindFirstChild("StarGlitcherSystem") then PlayerGui.StarGlitcherSystem:Destroy() end
+		
+		local sg = Instance.new("ScreenGui", PlayerGui); sg.Name = "StarGlitcherSystem"; sg.IgnoreGuiInset = true
+		
+		-- 1. Main Mode Label (Center)
+		local mainFrame = Instance.new("Frame", sg)
+		mainFrame.Size = UDim2.new(0, 260, 0, 65); mainFrame.Position = UDim2.new(0.5, -130, 0.85, 0)
+		mainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10); mainFrame.BackgroundTransparency = 0.4; mainFrame.BorderSizePixel = 2
+		
+		local modeLabel = Instance.new("TextLabel", mainFrame)
+		modeLabel.Size = UDim2.new(1, 0, 1, 0); modeLabel.BackgroundTransparency = 1
+		modeLabel.Font = Enum.Font.Arcade; modeLabel.TextScaled = true; modeLabel.TextColor3 = Color3.new(1, 1, 1)
+		
+		-- 2. Spinning Sigil (Bottom Right - Constant Counter-Clockwise)
+		local sigil = Instance.new("ImageLabel", sg)
+		sigil.Size = UDim2.new(0, 200, 0, 200); sigil.Position = UDim2.new(1, -210, 1, -210)
+		sigil.BackgroundTransparency = 1; sigil.Image = "rbxassetid://85967406604142"
+		local sigilGradient = Instance.new("UIGradient", sigil)
+		
+		-- 3. Floating SciFi Text (Bottom Left - Oscillating & Mode Matching)
+		local scifiLabel = Instance.new("TextLabel", sg)
+		scifiLabel.Size = UDim2.new(0, 300, 0, 60); scifiLabel.Position = UDim2.new(0, 30, 1, -80)
+		scifiLabel.BackgroundTransparency = 1; scifiLabel.Font = Enum.Font.SciFi
+		scifiLabel.TextScaled = true
+		
+		-- 4. Edge Glows
+		local function createEdge(name, size, pos, rot)
+		    local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
+		    local g = Instance.new("UIGradient", f); g.Rotation = rot
+		    g.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)})
+		    return g
+		end
+		local bottomG = createEdge("BottomGlow", UDim2.new(1, 0, 0, 180), UDim2.new(0, 0, 1, -180), 270)
+		local leftG = createEdge("LeftGlow", UDim2.new(0, 180, 1, 0), UDim2.new(0, 0, 0, 0), 0)
+		local rightG = createEdge("RightGlow", UDim2.new(0, 180, 1, 0), UDim2.new(1, -180, 0, 0), 180)
+		
+		-- 8 Mode Gradients
+		_G.ModeV = "Mayhem"
+		local modeGradients = {
+		    ["Mayhem"] = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
+		    ["Purity"] = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
+		    ["Corruption"] = ColorSequence.new(Color3.fromRGB(150, 0, 255), Color3.fromRGB(30, 0, 80)),
+		    ["Chaos"] = ColorSequence.new(Color3.fromRGB(87, 75, 58), Color3.fromRGB(53, 34, 26)),
+		    ["Divinity"] = ColorSequence.new(Color3.fromRGB(255, 255, 100), Color3.fromRGB(255, 180, 0)),
+		    ["Equinox"] = ColorSequence.new(Color3.fromRGB(0, 255, 255), Color3.fromRGB(0, 30, 95)),
+		    ["Destiny"] = ColorSequence.new(Color3.fromRGB(217, 0, 255), Color3.fromRGB(59, 0, 60)),
+		    ["Supernova"] = ColorSequence.new(Color3.fromRGB(225, 255, 0), Color3.fromRGB(231, 255, 143))
+		}
+		
+		local function updateUI()
+		    local modeName = tostring(_G.ModeV)
+		    local grad = modeGradients[modeName] or ColorSequence.new(Color3.new(1,1,1))
+		    local color = grad.Keypoints[1].Value
+		    
+		    -- Update Both Labels
+		    modeLabel.Text = "[ " .. modeName:upper() .. " ]"
+		    scifiLabel.Text = modeName:upper() .. "_MODE"
+		    
+		    -- Apply Colors
+		    modeLabel.TextColor3 = color; mainFrame.BorderColor3 = color; scifiLabel.TextColor3 = color
+		    sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
+		end
+		
+		-- Render Loop
+		local lastMode, counter = "", 0
+		RunService.RenderStepped:Connect(function(dt)
+		    counter += dt
+		    
+		    -- Spin & Oscillation
+		    sigil.Rotation -= 140 * dt 
+		    scifiLabel.Rotation = math.sin(counter * 2) * 5 -- 5 Degrees back and forth
+		    
+		    -- Float
+		    scifiLabel.Position = UDim2.new(0, 30, 1, -80 + (math.sin(counter * 1.5) * 12))
+		    
+		    if _G.ModeV ~= lastMode then lastMode = _G.ModeV; updateUI() end
+		end)
 	end)
 end;
 
