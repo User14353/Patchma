@@ -2814,7 +2814,10 @@ local function C_c()
 		-- Cleanup
 		if PlayerGui:FindFirstChild("StarGlitcherSystem") then PlayerGui.StarGlitcherSystem:Destroy() end
 		
-		local sg = Instance.new("ScreenGui", PlayerGui); sg.Name = "StarGlitcherSystem"; sg.IgnoreGuiInset = true
+		local sg = Instance.new("ScreenGui", PlayerGui); sg.IgnoreGuiInset = true
+		sg.Name = "StarGlitcherSystem"
+		sg.IgnoreGuiInset = true
+		sg.ResetOnSpawn = false; sg.Name = "StarGlitcherSystem"
 		
 		-- 1. Main Mode Label (Center)
 		local mainFrame = Instance.new("Frame", sg)
