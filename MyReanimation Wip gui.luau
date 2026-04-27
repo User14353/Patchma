@@ -3069,20 +3069,46 @@ local function C_c()
 			end
 
 
-			-- Function to play the sound based on current _G.ModeV
 			local currentSound = nil
+			
 			function playModeMusic()
-					if currentSound then currentSound:Destroy() end -- Stop previous song
-					
-					local assetId = getmp3(_G.ModeV)
-					if assetId then
-							currentSound = Instance.new("Sound")
-							currentSound.Parent = game:GetService("SoundService") -- Or your character
-							currentSound.SoundId = assetId
-							currentSound.Volume = 1
-							currentSound.Looped = true
-							currentSound:Play()
-					end
+			    -- 1. Stop and cleanup the previous song immediately
+			    if currentSound then 
+			        currentSound:Stop()
+			        currentSound:Destroy() 
+			        currentSound = nil
+			    end
+			    
+			    local assetId = getmp3(_G.ModeV)
+			    
+			    if assetId then
+			        -- 2. Create the sound object
+			        local sound = Instance.new("Sound")
+			        sound.Name = "ModeMusic_" .. _G.ModeV
+			        sound.SoundId = assetId
+			        sound.Volume = 1
+			        sound.Looped = true
+			        
+			        -- 3. Parent it to SoundService (the best place for background music)
+			        sound.Parent = game:GetService("SoundService")
+			        
+			        -- 4. Wait for it to "register" the custom asset
+			        -- Local assets sometimes report TimeLength as 0 until they've primed
+			        task.spawn(function()
+			            local timeout = 0
+			            while sound.TimeLength == 0 and timeout < 50 do
+			                task.wait(0.1)
+			                timeout = timeout + 1
+			            end
+			            
+			            -- 5. Final play command
+			            sound:Play()
+			            currentSound = sound
+			            print("Now playing: " .. _G.ModeV)
+			        end)
+			    else
+			        warn("Could not get asset ID for: " .. _G.ModeV)
+			    end
 			end
 
 			-- Setup Keybinds
