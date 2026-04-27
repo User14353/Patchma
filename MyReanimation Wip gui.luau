@@ -199,6 +199,153 @@ local guiTheme={
 }
 
 local accessorylimbs={
+	{ meshid="110684113028749",textureid="70661572547971",C0=angles(0,0,0),Name="Torso" },
+	{ meshid="104613079991268",textureid="83269599235494",C0=angles(0,0,0),Name="Torso" },
+	{ meshid="125405780718494",textureid="136752500636691",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm" },
+	{ meshid="125405780718494",textureid="136752500636691",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm" },
+	{ meshid="125405780718494",textureid="136752500636691",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg" },
+	{ meshid="125405780718494",textureid="136752500636691",C0=angles(0,0,1.5707963267948966),Name="Right Leg" },
+	{ meshid="96333112188696",textureid="18807356481",C0=angles(0,0,0),Name="Left Arm" },
+	{ meshid="96130316788066",textureid="18807356481",C0=angles(0,0,0),Name="Right Arm" },
+
+
+
+
+	{meshid="11263221350",textureid="11263219250",C0=angles(0,0,0),Name="Left Arm"},
+
+	{meshid="11159370334",textureid="11159284657",C0=angles(0,0,0),Name="Right Arm"},
+
+
+	--// Noob Rigs 
+
+	{meshid="137702817952968",textureid="135650240593878",C0=angles(0,0,80.05),Name="Left Arm"},
+	{meshid="137702817952968",textureid="135650240593878",C0=angles(0,0,80.05),Name="Right Arm"},
+	{meshid="137702817952968",textureid="73798034827573",C0=angles(0,0,80.09),Name="Left Leg"},
+	{meshid="137702817952968",textureid="73798034827573",C0=angles(0,0,80.09),Name="Right Leg"},
+	{meshid="126825022897778",textureid="125975972015302",C0=angles(0,0,0),Name="Torso"},
+
+	--// White Rigs 
+
+	{
+	meshid="139733645770094",textureid="130809869695496",C0=angles(0,0,80.09),Name="Left Arm"
+	},
+	{
+	meshid="90736849096372",textureid="79186624401216",C0=angles(0,0,80.09),Name="Right Arm"
+	},
+	{
+	meshid="99608462237958",textureid="130809869695496",C0=angles(0,0,80.09),Name="Left Leg"
+	},
+	{
+	meshid="105141400603933",textureid="71060417496309",C0=angles(0,0,80.09),Name="Right Leg"
+	},
+
+
+	{
+	meshid="126825022897778",textureid="130689541138804",C0=angles(0,0,0),Name="Torso"
+	},
+	{
+	meshid="100128920324073",textureid="133680105074740",C0=angles(rad(-75),rad(15),rad(-20)),Name="Right Leg"
+	},
+	{
+	meshid="130309145260656",textureid="82390202293774",C0=angles(rad(-75),rad(-15),rad(20)),Name="Left Arm"
+	},
+	{
+	meshid="130309145260656",textureid="93374633946646",C0=angles(rad(-75),rad(-15),rad(20)),Name="Left Leg"
+	},
+	{
+	meshid="100128920324073",textureid="97155254696037",C0=angles(rad(-75),rad(15),rad(-20)),Name="Right Arm"
+	},
+	{ meshid = "18919712035", Name = "Torso", C0 = CFrame.identity, textureid = "18430134193" },--95290698984301
+
+
+
+
+
+
+
+
+
+	{meshid="14255522247",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
+	{meshid="14255522247",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
+
+	{meshid="12344207333",textureid="",C0=angles(2,0,0),Name="Left Arm"},
+	{meshid="12344206657",textureid="",C0=angles(2,0,0),Name="Right Arm"},
+
+	{meshid="13831073174",textureid="",C0=cfMul(cf(0.017,0,-0.23),angles(-1.4835298641951802,-0.15707963267948966,2.199114857512855)),Name="Left Arm"},
+	{meshid="13839903766",textureid="",C0=cfMul(cf(0,-0.62,-0.01),angles(1.6580627893946132,0.15707963267948966,-2.199114857512855)),Name="Right Arm"},
+
+	{meshid="11159370334",textureid="11159285454",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg"},
+	{meshid="12652772399",textureid="12652775021",C0=cf(0,-0.125,0),Name="Right Leg"},
+
+	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Left Leg"},
+	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Right Leg"},
+
+	{meshid="14768666349",textureid="",C0=cf_0,Name="Torso"},
+	{meshid="14241018198",textureid="",C0=cf_0,Name="Torso"},
+	{meshid="13421774668",textureid="",C0=cf_0,Name="Torso"},
+
+	{meshid="4324138105",textureid="4324138210",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(-0.125,0.3,0)),Name="Left Arm"},
+	{meshid="4154474745",textureid="4154474807",C0=cfMul(angles(1.5271630954950384,-1.5707963267948966,0),cf(-0.125,-0.3,0)),Name="Left Arm"},
+	{meshid="3030546036",textureid="3650191503",C0=cfMul(angles(1.5271630954950384,1.5707963267948966,0),cf(0.125,-0.3,0)),Name="Right Arm"},
+	{meshid="3030546036",textureid="3443321249",C0=cfMul(angles(-1.6144295580947547,-1.5707963267948966,0),cf(0.125,0.3,0)),Name="Right Arm"},
+	{meshid="3030546036",textureid="3360974849",C0=cfMul(angles(1.5271630954950384,1.5707963267948966,0),cf(-0.125,-0.35,0)),Name="Left Leg"},
+	{meshid="3030546036",textureid="3360978739",C0=cfMul(angles(-1.6144295580947547,-1.5707963267948966,0),cf(-0.125,0.3,0)),Name="Left Leg"},
+	{meshid="3030546036",textureid="3033898741",C0=cfMul(angles(1.5271630954950384,-1.5707963267948966,0),cf(0.125,-0.35,0)),Name="Right Leg"},
+	{meshid="3030546036",textureid="3409604993",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(0.125,0.3,0)),Name="Right Leg"},
+	{meshid="4324138105",textureid="4391374782",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(0.125,0.3,0)),Name="Right Arm"},
+	{meshid="4324138105",textureid="4391374782",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(0.125,0.3,0)),Name="Right Arm"},
+	{meshid="4819720316",textureid="4819722776",C0=angles(0,0,0.2617993877991494),Name="Torso"},
+
+
+	{meshid="117287001096396",textureid="",C0=cf_0,Name="Left Arm"},
+	{meshid="117287001096396",textureid="",C0=cf_0,Name="Right Arm"},
+
+	{meshid="90736849096372",textureid="",C0=angles(0,0,1.5707963267948966),Name="Left Arm"},
+	{meshid="105141400603933",textureid="",C0=angles(0,0,1.5707963267948966),Name="Right Arm"},
+
+	{meshid="11263221350",textureid="11263219250",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
+	{meshid="11159370334",textureid="11159284657",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
+
+	{meshid="14255522247",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
+	{meshid="14255522247",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
+
+	{meshid="17374767929",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
+	{meshid="17374767929",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
+
+	{meshid="12344207333",textureid="",C0=angles(2,0,0),Name="Left Arm"},
+	{meshid="12344206657",textureid="",C0=angles(2,0,0),Name="Right Arm"},
+
+	{meshid="13831073174",textureid="",C0=cf(0.017,0,-0.23)*angles(-1.4835298641951802,-0.15707963267948966,2.199114857512855),Name="Left Arm"},
+	{meshid="13839903766",textureid="",C0=cf(0,-0.62,-0.01)*angles(1.6580627893946132,0.15707963267948966,-2.199114857512855),Name="Right Arm"},
+
+	{meshid="121304376791439",textureid="",C0=cf_0,Name="Left Leg"},
+	{meshid="121304376791439",textureid="",C0=cf_0,Name="Right Leg"},
+
+	{meshid="11159370334",textureid="11159285454",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg"},
+	{meshid="12652772399",textureid="12652775021",C0=cf(0,-0.125,0),Name="Right Leg"},
+
+	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Left Leg"},
+	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Right Leg"},
+
+	{meshid="17387586286",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg"},
+	{meshid="17387586286",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Leg"},
+
+	{meshid="14768666349",textureid="",C0=cf_0,Name="Torso"},
+	{meshid="14241018198",textureid="",C0=cf_0,Name="Torso"},
+	{meshid="13421774668",textureid="",C0=cf_0,Name="Torso"},
+	{meshid="110684113028749",textureid="",C0=cf_0,Name="Torso"},
+	{meshid="127552124837034",textureid="",C0=angles(0,0,1.5707963267948966),Name="Torso"},
+
+	{meshid="4324138105",textureid="4324138210",C0=angles(-1.6144295580947547,1.5707963267948966,0)*cf(-0.125,0.3,0),Name="Left Arm"},
+	{meshid="4154474745",textureid="4154474807",C0=angles(1.5271630954950384,-1.5707963267948966,0)*cf(-0.125,-0.3,0),Name="Left Arm"},
+	{meshid="3030546036",textureid="3650191503",C0=angles(1.5271630954950384,1.5707963267948966,0)*cf(0.125,-0.3,0),Name="Right Arm"},
+	{meshid="3030546036",textureid="3443321249",C0=angles(-1.6144295580947547,-1.5707963267948966,0)*cf(0.125,0.3,0),Name="Right Arm"},
+	{meshid="3030546036",textureid="3360974849",C0=angles(1.5271630954950384,1.5707963267948966,0)*cf(-0.125,-0.35,0),Name="Left Leg"},
+	{meshid="3030546036",textureid="3360978739",C0=angles(-1.6144295580947547,-1.5707963267948966,0)*cf(-0.125,0.3,0),Name="Left Leg"},
+	{meshid="3030546036",textureid="3033898741",C0=angles(1.5271630954950384,-1.5707963267948966,0)*cf(0.125,-0.35,0),Name="Right Leg"},
+	{meshid="3030546036",textureid="3409604993",C0=angles(-1.6144295580947547,1.5707963267948966,0)*cf(0.125,0.3,0),Name="Right Leg"},
+	{meshid="4819720316",textureid="4819722776",C0=angles(0,0,0.2617993877991494),Name="Torso"},
+	
 	{meshid="117287001096396",textureid="",C0=cf_0,Name="Left Arm"},
 	{meshid="117287001096396",textureid="",C0=cf_0,Name="Right Arm"},
 
@@ -2819,112 +2966,95 @@ local function C_c()
 		local RunService = game:GetService("RunService")
 		local UserInputService = game:GetService("UserInputService")
 		local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-		
+
 		-- Cleanup
 		if PlayerGui:FindFirstChild("StarGlitcherHUD") then PlayerGui.StarGlitcherHUD:Destroy() end
-		
-		local sg = Instance.new("ScreenGui", PlayerGui)
-		sg.Name = "StarGlitcherHUD"
+
+		local sg = Instance.new("ScreenGui", PlayerGui); sg.Name = "StarGlitcherHUD"
 		sg.IgnoreGuiInset, sg.ResetOnSpawn = true, false 
-		
-		-- UI Elements (Responsive Scale)
-		local function createUI()
-		    local mainFrame = Instance.new("Frame", sg)
-		    mainFrame.Size, mainFrame.Position = UDim2.new(0.2, 0, 0.08, 0), UDim2.new(0.4, 0, 0.85, 0)
-		    mainFrame.BackgroundColor3, mainFrame.BackgroundTransparency, mainFrame.BorderSizePixel = Color3.fromRGB(10, 10, 10), 0.4, 2
-		    
-		    local modeL = Instance.new("TextLabel", mainFrame)
-		    modeL.Size, modeL.BackgroundTransparency, modeL.Font, modeL.TextScaled = UDim2.new(1, 0, 1, 0), 1, Enum.Font.Arcade, true
-		
-		    local sigil = Instance.new("ImageLabel", sg)
-		    sigil.Size, sigil.Position, sigil.BackgroundTransparency = UDim2.new(0.15, 0, 0.15, 0), UDim2.new(0.82, 0, 0.82, 0), 1
-		    sigil.Image, sigil.ScaleType = "rbxassetid://85967406604142", Enum.ScaleType.Fit
-		    local sigilG = Instance.new("UIGradient", sigil)
-		
-		    local scifiL = Instance.new("TextLabel", sg)
-		    scifiL.Size, scifiL.Position, scifiL.BackgroundTransparency = UDim2.new(0.25, 0, 0.07, 0), UDim2.new(0.03, 0, 0.88, 0), 1
-		    scifiL.Font, scifiL.TextScaled = Enum.Font.SciFi, true
-		
-		    return modeL, sigil, sigilG, scifiL, mainFrame
-		end
-		
-		local modeLabel, sigil, sigilGradient, scifiLabel, mainFrame = createUI()
-		
-		-- Edge Glows
+
+		-- 1. Main Mode Label (Center Bottom)
+		local mainFrame = Instance.new("Frame", sg)
+		mainFrame.Size, mainFrame.Position = UDim2.new(0.2, 0, 0.08, 0), UDim2.new(0.4, 0, 0.85, 0)
+		mainFrame.BackgroundColor3, mainFrame.BackgroundTransparency, mainFrame.BorderSizePixel = Color3.new(0,0,0), 0.5, 2
+
+		local modeLabel = Instance.new("TextLabel", mainFrame)
+		modeLabel.Size, modeLabel.BackgroundTransparency = UDim2.new(1, 0, 1, 0), 1
+		modeLabel.Font, modeLabel.TextScaled = Enum.Font.Arcade, true
+
+		-- 2. Sigil (Quarter-Circle Lock - 25% Scale)
+		local sigil = Instance.new("ImageLabel", sg)
+		sigil.Size = UDim2.new(0.25, 0, 0.25, 0) 
+		sigil.Position = UDim2.new(1, 0, 1, 0) -- Positioned at bottom-right corner
+		sigil.AnchorPoint = Vector2.new(0.5, 0.5) -- Centers the rotation point on the corner
+		sigil.BackgroundTransparency, sigil.Image = 1, "rbxassetid://124888284000698"
+		sigil.ScaleType = Enum.ScaleType.Fit; sigil.ZIndex = 0
+		local sigilGradient = Instance.new("UIGradient", sigil)
+
+		-- 3. Floating SciFi Text (Bottom Left)
+		local scifiLabel = Instance.new("TextLabel", sg)
+		scifiLabel.Size, scifiLabel.Position = UDim2.new(0.2, 0, 0.06, 0), UDim2.new(0.03, 0, 0.88, 0)
+		scifiLabel.BackgroundTransparency, scifiLabel.Font, scifiLabel.TextScaled = 1, Enum.Font.SciFi, true
+
+		-- 4. Edge Glows (Fixed Opacity & Size)
 		local function createEdge(name, size, pos, rot)
-		    local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
-		    local g = Instance.new("UIGradient", f); g.Rotation = rot
-		    g.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)})
-		    return g
+				local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
+				local g = Instance.new("UIGradient", f); g.Rotation = rot
+				-- 0.9 transparency makes it very subtle; 1 is invisible
+				g.Transparency = NumberSequence.new({
+						NumberSequenceKeypoint.new(0, 0.9), -- Very faint start
+						NumberSequenceKeypoint.new(1, 1)    -- Fade out
+				})
+				return g
 		end
-		local bottomG = createEdge("BGlow", UDim2.new(1, 0, 0.25, 0), UDim2.new(0, 0, 0.75, 0), 270)
-		local leftG   = createEdge("LGlow", UDim2.new(0.18, 0, 1, 0), UDim2.new(0, 0, 0, 0), 0)
-		local rightG  = createEdge("RGlow", UDim2.new(0.18, 0, 1, 0), UDim2.new(0.82, 0, 0, 0), 180)
-		
-		-- Configuration & Keys
+		local bottomG = createEdge("BG", UDim2.new(1, 0, 0.15, 0), UDim2.new(0, 0, 0.85, 0), 270)
+		local leftG   = createEdge("LG", UDim2.new(0.1, 0, 1, 0), UDim2.new(0, 0, 0, 0), 0)
+		local rightG  = createEdge("RG", UDim2.new(0.1, 0, 1, 0), UDim2.new(0.9, 0, 0, 0), 180)
+
+		-- Config
 		_G.ModeV = "Purity"
-		local keyBinds = {
-		    [Enum.KeyCode.Q] = "Equinox",
-		    [Enum.KeyCode.E] = "Chaos",
-		    [Enum.KeyCode.R] = "Destiny",
-		    [Enum.KeyCode.U] = "Supernova",
-		    [Enum.KeyCode.T] = "Corruption",
-		    [Enum.KeyCode.M] = "Mayhem",
-		    [Enum.KeyCode.Y] = "Divinity"
-		}
-		
+		local keyBinds = {[Enum.KeyCode.Q]="Equinox",[Enum.KeyCode.E]="Chaos",[Enum.KeyCode.R]="Destiny",[Enum.KeyCode.U]="Supernova",[Enum.KeyCode.T]="Corruption",[Enum.KeyCode.M]="Mayhem",[Enum.KeyCode.Y]="Divinity"}
 		local modeGradients = {
-		    ["Purity"]      = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
-		    ["Equinox"]     = ColorSequence.new(Color3.fromRGB(0, 255, 255), Color3.fromRGB(0, 80, 255)),
-		    ["Chaos"]       = ColorSequence.new(Color3.fromRGB(255, 150, 0), Color3.fromRGB(100, 30, 0)),
-		    ["Destiny"]     = ColorSequence.new(Color3.fromRGB(0, 255, 100), Color3.fromRGB(0, 60, 0)),
-		    ["Supernova"]   = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 0, 255)),
-		    ["Corruption"]  = ColorSequence.new(Color3.fromRGB(150, 0, 255), Color3.fromRGB(30, 0, 80)),
-		    ["Mayhem"]      = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
-		    ["Divinity"]    = ColorSequence.new(Color3.fromRGB(255, 255, 100), Color3.fromRGB(255, 180, 0))
+				["Purity"] = ColorSequence.new(Color3.new(1,1,1), Color3.fromRGB(150,150,255)),
+				["Equinox"] = ColorSequence.new(Color3.new(0,1,1), Color3.new(0,0,1)),
+				["Chaos"] = ColorSequence.new(Color3.new(1,0.5,0), Color3.new(0.5,0,0)),
+				["Destiny"] = ColorSequence.new(Color3.new(0,1,0), Color3.new(0,0.2,0)),
+				["Supernova"] = ColorSequence.new(Color3.new(1,1,0), Color3.new(1,1,1)),
+				["Corruption"] = ColorSequence.new(Color3.fromRGB(180,0,255), Color3.new(0.1,0,0.2)),
+				["Mayhem"] = ColorSequence.new(Color3.new(1,0,0), Color3.new(0.2,0,0)),
+				["Divinity"] = ColorSequence.new(Color3.fromRGB(255,215,0), Color3.new(1,1,0.5))
 		}
-		
+
 		local function updateUI()
-		    local modeName = tostring(_G.ModeV)
-		    local grad = modeGradients[modeName] or modeGradients["Purity"]
-		    
-		    local color = grad.Keypoints[1].Value
-		    
-		    modeLabel.Text = "[ " .. modeName:upper() .. " ]"
-		    scifiLabel.Text = modeName:upper() .. "_MODE"
-		    
-		    modeLabel.TextColor3 = color
-		    mainFrame.BorderColor3 = color
-		    scifiLabel.TextColor3 = color
-		    
-		    sigilGradient.Color = grad
-		    bottomG.Color = grad
-		    leftG.Color = grad
-		    rightG.Color = grad
+				local mode = tostring(_G.ModeV)
+				local grad = modeGradients[mode] or modeGradients["Purity"]
+				local col = grad.Keypoints[1].Value
+				modeLabel.Text, scifiLabel.Text = "[ "..mode:upper().." ]", mode:upper().."_MODE"
+				modeLabel.TextColor3, mainFrame.BorderColor3, scifiLabel.TextColor3 = col, col, col
+				sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
 		end
-		
-		-- Input Logic
-		UserInputService.InputBegan:Connect(function(input, gp)
-		    if gp then return end
-		    local target = keyBinds[input.KeyCode]
-		    if target then
-		        _G.ModeV = (_G.ModeV == target) and "Purity" or target
-		    end
-		end)
-		
+
 		-- Render Loop
 		local lastM, count = "", 0
 		RunService.RenderStepped:Connect(function(dt)
-		    count = count + dt
-		    sigil.Rotation = sigil.Rotation - (140 * dt)
-		    scifiLabel.Rotation = math.sin(count * 2) * 5
-		    scifiLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(count * 1.5) * 0.02), 0)
-		    
-		    if _G.ModeV ~= lastM then
-		        lastM = _G.ModeV
-		        updateUI()
-		    end
+				count = count + dt
+				sigil.Rotation -= 100 * dt 
+				scifiLabel.Rotation = math.sin(count * 2) * 5
+				scifiLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(count * 1.5) * 0.02), 0)
+				
+				local mode = tostring(_G.ModeV)
+				if mode == "Chaos" or mode == "Corruption" then
+						local vis = math.random() > 0.92 and 1 or math.random(0.85, 0.95)
+						local fSeq = NumberSequence.new({NumberSequenceKeypoint.new(0, vis), NumberSequenceKeypoint.new(1, 1)})
+						bottomG.Transparency, leftG.Transparency, rightG.Transparency = fSeq, fSeq, fSeq
+				else
+						local norm = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.9), NumberSequenceKeypoint.new(1, 1)})
+						bottomG.Transparency, leftG.Transparency, rightG.Transparency = norm, norm, norm
+				end
+				
+				if _G.ModeV ~= lastM then lastM = _G.ModeV; updateUI() end
 		end)
+		UserInputService.InputBegan:Connect(function(i, gp) if not gp and keyBinds[i.KeyCode] then _G.ModeV = (_G.ModeV == keyBinds[i.KeyCode]) and "Purity" or keyBinds[i.KeyCode] end end)
 
 	end)
 end;
