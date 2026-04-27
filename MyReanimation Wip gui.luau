@@ -2823,8 +2823,7 @@ local function C_c()
 		-- Cleanup
 		if PlayerGui:FindFirstChild("StarGlitcherHUD") then PlayerGui.StarGlitcherHUD:Destroy() end
 
-		local sg = Instance.new("ScreenGui", PlayerGui)
-		sg.Name = "StarGlitcherHUD"
+		local sg = Instance.new("ScreenGui", PlayerGui); sg.Name = "StarGlitcherHUD"
 		sg.IgnoreGuiInset, sg.ResetOnSpawn = true, false 
 
 		-- 1. Main Mode Label (Center Bottom)
@@ -2836,14 +2835,13 @@ local function C_c()
 		modeLabel.Size, modeLabel.BackgroundTransparency = UDim2.new(1, 0, 1, 0), 1
 		modeLabel.Font, modeLabel.TextScaled = Enum.Font.Arcade, true
 
-		-- 2. Sigil (Fixed Position & 25% Scale)
+		-- 2. Sigil (Quarter-Circle Lock - 25% Scale)
 		local sigil = Instance.new("ImageLabel", sg)
 		sigil.Size = UDim2.new(0.25, 0, 0.25, 0) 
-		sigil.Position = UDim2.new(1, 0, 1, 0) -- Locked to bottom right
-		sigil.AnchorPoint = Vector2.new(1, 1) -- Keeps it on screen
+		sigil.Position = UDim2.new(1, 0, 1, 0) -- Positioned at bottom-right corner
+		sigil.AnchorPoint = Vector2.new(0.5, 0.5) -- Centers the rotation point on the corner
 		sigil.BackgroundTransparency, sigil.Image = 1, "rbxassetid://124888284000698"
-		sigil.ScaleType = Enum.ScaleType.Fit
-		sigil.ZIndex = 0
+		sigil.ScaleType = Enum.ScaleType.Fit; sigil.ZIndex = 0
 		local sigilGradient = Instance.new("UIGradient", sigil)
 
 		-- 3. Floating SciFi Text (Bottom Left)
@@ -2851,26 +2849,24 @@ local function C_c()
 		scifiLabel.Size, scifiLabel.Position = UDim2.new(0.2, 0, 0.06, 0), UDim2.new(0.03, 0, 0.88, 0)
 		scifiLabel.BackgroundTransparency, scifiLabel.Font, scifiLabel.TextScaled = 1, Enum.Font.SciFi, true
 
-		-- 4. Edge Glows (Lower Opacity)
+		-- 4. Edge Glows (Fixed Opacity & Size)
 		local function createEdge(name, size, pos, rot)
 				local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
 				local g = Instance.new("UIGradient", f); g.Rotation = rot
-				-- Set to 0.8 for a much more subtle fade
-				g.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.8), NumberSequenceKeypoint.new(1, 1)})
+				-- 0.9 transparency makes it very subtle; 1 is invisible
+				g.Transparency = NumberSequence.new({
+						NumberSequenceKeypoint.new(0, 0.9), -- Very faint start
+						NumberSequenceKeypoint.new(1, 1)    -- Fade out
+				})
 				return g
 		end
-		local bottomG = createEdge("BG", UDim2.new(1, 0, 0.2, 0), UDim2.new(0, 0, 0.8, 0), 270)
-		local leftG   = createEdge("LG", UDim2.new(0.15, 0, 1, 0), UDim2.new(0, 0, 0, 0), 0)
-		local rightG  = createEdge("RG", UDim2.new(0.15, 0, 1, 0), UDim2.new(0.85, 0, 0, 0), 180)
+		local bottomG = createEdge("BG", UDim2.new(1, 0, 0.15, 0), UDim2.new(0, 0, 0.85, 0), 270)
+		local leftG   = createEdge("LG", UDim2.new(0.1, 0, 1, 0), UDim2.new(0, 0, 0, 0), 0)
+		local rightG  = createEdge("RG", UDim2.new(0.1, 0, 1, 0), UDim2.new(0.9, 0, 0, 0), 180)
 
-		-- Configuration
+		-- Config
 		_G.ModeV = "Purity"
-		local keyBinds = {
-				[Enum.KeyCode.Q] = "Equinox", [Enum.KeyCode.E] = "Chaos", [Enum.KeyCode.R] = "Destiny",
-				[Enum.KeyCode.U] = "Supernova", [Enum.KeyCode.T] = "Corruption", [Enum.KeyCode.M] = "Mayhem",
-				[Enum.KeyCode.Y] = "Divinity"
-		}
-
+		local keyBinds = {[Enum.KeyCode.Q]="Equinox",[Enum.KeyCode.E]="Chaos",[Enum.KeyCode.R]="Destiny",[Enum.KeyCode.U]="Supernova",[Enum.KeyCode.T]="Corruption",[Enum.KeyCode.M]="Mayhem",[Enum.KeyCode.Y]="Divinity"}
 		local modeGradients = {
 				["Purity"] = ColorSequence.new(Color3.new(1,1,1), Color3.fromRGB(150,150,255)),
 				["Equinox"] = ColorSequence.new(Color3.new(0,1,1), Color3.new(0,0,1)),
@@ -2886,19 +2882,12 @@ local function C_c()
 				local mode = tostring(_G.ModeV)
 				local grad = modeGradients[mode] or modeGradients["Purity"]
 				local col = grad.Keypoints[1].Value
-				
 				modeLabel.Text, scifiLabel.Text = "[ "..mode:upper().." ]", mode:upper().."_MODE"
 				modeLabel.TextColor3, mainFrame.BorderColor3, scifiLabel.TextColor3 = col, col, col
 				sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
 		end
 
-		-- Logic & Animation
-		UserInputService.InputBegan:Connect(function(i, gp)
-				if not gp and keyBinds[i.KeyCode] then
-						_G.ModeV = (_G.ModeV == keyBinds[i.KeyCode]) and "Purity" or keyBinds[i.KeyCode]
-				end
-		end)
-
+		-- Render Loop
 		local lastM, count = "", 0
 		RunService.RenderStepped:Connect(function(dt)
 				count = count + dt
@@ -2906,21 +2895,19 @@ local function C_c()
 				scifiLabel.Rotation = math.sin(count * 2) * 5
 				scifiLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(count * 1.5) * 0.02), 0)
 				
-				-- Flicker logic (More subtle)
 				local mode = tostring(_G.ModeV)
 				if mode == "Chaos" or mode == "Corruption" then
-						local vis = math.random() > 0.9 and 1 or math.random(0.7, 0.9)
-						local flicker = NumberSequence.new({NumberSequenceKeypoint.new(0, vis), NumberSequenceKeypoint.new(1, 1)})
-						bottomG.Transparency, leftG.Transparency, rightG.Transparency = flicker, flicker, flicker
+						local vis = math.random() > 0.92 and 1 or math.random(0.85, 0.95)
+						local fSeq = NumberSequence.new({NumberSequenceKeypoint.new(0, vis), NumberSequenceKeypoint.new(1, 1)})
+						bottomG.Transparency, leftG.Transparency, rightG.Transparency = fSeq, fSeq, fSeq
 				else
-						local norm = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.8), NumberSequenceKeypoint.new(1, 1)})
+						local norm = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.9), NumberSequenceKeypoint.new(1, 1)})
 						bottomG.Transparency, leftG.Transparency, rightG.Transparency = norm, norm, norm
 				end
 				
 				if _G.ModeV ~= lastM then lastM = _G.ModeV; updateUI() end
 		end)
-
-
+		UserInputService.InputBegan:Connect(function(i, gp) if not gp and keyBinds[i.KeyCode] then _G.ModeV = (_G.ModeV == keyBinds[i.KeyCode]) and "Purity" or keyBinds[i.KeyCode] end end)
 
 	end)
 end;
