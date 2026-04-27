@@ -2886,14 +2886,26 @@ local function C_c()
 
 		local function updateUI()
 				local modeName = tostring(_G.ModeV)
+				-- This looks for the mode, and if it's not found, it defaults to Purity
 				local grad = modeGradients[modeName] or modeGradients["Purity"]
-				local color = grad.Keypoints.Value
+				
+				-- Safety check: extract the first color from the gradient
+				local color = grad.Keypoints[1].Value
 				
 				modeLabel.Text = "[ " .. modeName:upper() .. " ]"
 				scifiLabel.Text = modeName:upper() .. "_MODE"
-				modeLabel.TextColor3, mainFrame.BorderColor3, scifiLabel.TextColor3 = color, color, color
-				sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
+				
+				-- Apply the colors safely
+				modeLabel.TextColor3 = color
+				mainFrame.BorderColor3 = color
+				scifiLabel.TextColor3 = color
+				
+				sigilGradient.Color = grad
+				bottomG.Color = grad
+				leftG.Color = grad
+				rightG.Color = grad
 		end
+
 
 		-- Input Logic
 		UserInputService.InputBegan:Connect(function(input, gp)
