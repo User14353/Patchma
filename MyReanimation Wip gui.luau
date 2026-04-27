@@ -3037,17 +3037,25 @@ local function C_c()
 			    local fullPath = Path..filename
 			    
 			    if not isfile(fullPath) then
-			        local url = SongLinks
+			        local url = SongLinks[modeName]
 			        if url then
-			            -- Use game:HttpGet instead of game:HttpGetAsync
-			            local success, data = pcall(function()
-			                return game:HttpGet(url)
-			            end)
+			            -- Using 'request' instead of HttpGet to bypass engine blocks
+			            local httpRequest = (syn and syn.request) or (http and http.request) or http_request or request
 			            
-			            if success then
-			                writefile(fullPath, data)
+			            if httpRequest then
+			                local response = httpRequest({
+			                    Url = url,
+			                    Method = "GET"
+			                })
+			                
+			                if response.Success then
+			                    writefile(fullPath, response.Body)
+			                else
+			                    warn("Download failed for " .. modeName .. " - Status: " .. tostring(response.StatusCode))
+			                    return nil
+			                end
 			            else
-			                warn("Failed to download " .. modeName .. ": " .. tostring(data))
+			                warn("Your executor does not support 'request' or 'HttpGet'")
 			                return nil
 			            end
 			        else
@@ -3059,6 +3067,7 @@ local function C_c()
 			    repeat task.wait() until isfile(fullPath)
 			    return getcustomasset(fullPath)
 			end
+
 
 			-- Function to play the sound based on current _G.ModeV
 			local currentSound = nil
