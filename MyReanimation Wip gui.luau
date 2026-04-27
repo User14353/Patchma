@@ -2814,10 +2814,10 @@ local function C_c()
 		-- Cleanup
 		if PlayerGui:FindFirstChild("StarGlitcherSystem") then PlayerGui.StarGlitcherSystem:Destroy() end
 		
-		local sg = Instance.new("ScreenGui", PlayerGui); sg.IgnoreGuiInset = true
+		local sg = Instance.new("ScreenGui", PlayerGui)
 		sg.Name = "StarGlitcherSystem"
 		sg.IgnoreGuiInset = true
-		sg.ResetOnSpawn = false; sg.Name = "StarGlitcherSystem"
+		sg.ResetOnSpawn = false
 		
 		-- 1. Main Mode Label (Center)
 		local mainFrame = Instance.new("Frame", sg)
@@ -2852,7 +2852,7 @@ local function C_c()
 		local rightG = createEdge("RightGlow", UDim2.new(0, 180, 1, 0), UDim2.new(1, -180, 0, 0), 180)
 		
 		-- 8 Mode Gradients
-		_G.ModeV = "Mayhem"
+		_G.ModeV = "Purity"
 		local modeGradients = {
 		    ["Mayhem"] = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
 		    ["Purity"] = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
