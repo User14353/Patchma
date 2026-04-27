@@ -3032,7 +3032,7 @@ local function C_c()
 				local modeName = tostring(_G.ModeV)
 				local grad = modeGradients[modeName] or modeGradients["Purity"]
 				local color = grad.Keypoints[1].Value
-				modeLabel.Text, scifiLabel.Text = "[ "..modeName:upper().." ]", modeName:upper().."_MODE"
+				modeLabel.Text, scifiLabel.Text = "[ "..modeName:upper().." ]", "Q, E, R, T, Y, U, M"
 				modeLabel.TextColor3, mainHUDFrame.BorderColor3, scifiLabel.TextColor3 = color, color, color
 				sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
 			end
