@@ -2979,7 +2979,7 @@ local function C_c()
 				modeL.Size, modeL.BackgroundTransparency, modeL.Font, modeL.TextScaled = UDim2.new(1, 0, 1, 0), 1, Enum.Font.Arcade, true
 
 				local sigil = Instance.new("ImageLabel", sg)
-				sigil.Size, sigil.Position, sigil.BackgroundTransparency = UDim2.new(0.4, 0, 0.4, 0), UDim2.new(1, 0, 1, 0), 1
+				sigil.Size, sigil.Position, sigil.BackgroundTransparency = UDim2.new(0.4, 0, 0.4, 0), UDim2.new(0.82, 0, 0.82, 0), 1
 				sigil.Image, sigil.ScaleType = "rbxassetid://85967406604142", Enum.ScaleType.Fit
 				local sigilG = Instance.new("UIGradient", sigil)
 
