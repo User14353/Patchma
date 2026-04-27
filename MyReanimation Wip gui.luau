@@ -2860,20 +2860,20 @@ local function C_c()
 		local rightG = createEdge("RightGlow", UDim2.new(0, 180, 1, 0), UDim2.new(1, -180, 0, 0), 180)
 		
 		-- 8 Mode Gradients
-		_G.ModeV = "Purity"
+		_G.mode = "default"
 		local modeGradients = {
-		    ["Mayhem"] = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
-		    ["Purity"] = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
-		    ["Corruption"] = ColorSequence.new(Color3.fromRGB(150, 0, 255), Color3.fromRGB(30, 0, 80)),
-		    ["Chaos"] = ColorSequence.new(Color3.fromRGB(87, 75, 58), Color3.fromRGB(53, 34, 26)),
-		    ["Divinity"] = ColorSequence.new(Color3.fromRGB(255, 255, 100), Color3.fromRGB(255, 180, 0)),
-		    ["Equinox"] = ColorSequence.new(Color3.fromRGB(0, 255, 255), Color3.fromRGB(0, 30, 95)),
-		    ["Destiny"] = ColorSequence.new(Color3.fromRGB(217, 0, 255), Color3.fromRGB(59, 0, 60)),
-		    ["Supernova"] = ColorSequence.new(Color3.fromRGB(225, 255, 0), Color3.fromRGB(231, 255, 143))
+		    ["m"] = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
+		    ["default"] = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
+		    ["q"] = ColorSequence.new(Color3.fromRGB(150, 0, 255), Color3.fromRGB(30, 0, 80)),
+		    ["e"] = ColorSequence.new(Color3.fromRGB(87, 75, 58), Color3.fromRGB(53, 34, 26)),
+		    ["r"] = ColorSequence.new(Color3.fromRGB(255, 255, 100), Color3.fromRGB(255, 180, 0)),
+		    ["y"] = ColorSequence.new(Color3.fromRGB(0, 255, 255), Color3.fromRGB(0, 30, 95)),
+		    ["t"] = ColorSequence.new(Color3.fromRGB(217, 0, 255), Color3.fromRGB(59, 0, 60)),
+		    ["u"] = ColorSequence.new(Color3.fromRGB(225, 255, 0), Color3.fromRGB(231, 255, 143))
 		}
 		
 		local function updateUI()
-		    local modeName = tostring(_G.ModeV)
+		    local modeName = tostring(_G.mode)
 		    local grad = modeGradients[modeName] or ColorSequence.new(Color3.new(1,1,1))
 		    local color = grad.Keypoints[1].Value
 		    
@@ -2898,7 +2898,7 @@ local function C_c()
 		    -- Float
 		    scifiLabel.Position = UDim2.new(0, 30, 1, -80 + (math.sin(counter * 1.5) * 12))
 		    
-		    if _G.ModeV ~= lastMode then lastMode = _G.ModeV; updateUI() end
+		    if _G.mode ~= lastMode then lastMode = _G.mode; updateUI() end
 		end)
 	end)
 end;
