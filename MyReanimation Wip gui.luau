@@ -2862,7 +2862,7 @@ local function C_c()
 		local rightG  = createEdge("RGlow", UDim2.new(0.18, 0, 1, 0), UDim2.new(0.82, 0, 0, 0), 180)
 		
 		-- Configuration & Keys
-		_G.ModeV = "Purity" -- Default Start Mode
+		_G.ModeV = "Purity"
 		local keyBinds = {
 		    [Enum.KeyCode.Q] = "Equinox",
 		    [Enum.KeyCode.E] = "Chaos",
@@ -2887,12 +2887,20 @@ local function C_c()
 		local function updateUI()
 		    local modeName = tostring(_G.ModeV)
 		    local grad = modeGradients[modeName] or modeGradients["Purity"]
-		    local color = grad.Keypoints.Value
+		    
+		    local color = grad.Keypoints[1].Value
 		    
 		    modeLabel.Text = "[ " .. modeName:upper() .. " ]"
 		    scifiLabel.Text = modeName:upper() .. "_MODE"
-		    modeLabel.TextColor3, mainFrame.BorderColor3, scifiLabel.TextColor3 = color, color, color
-		    sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
+		    
+		    modeLabel.TextColor3 = color
+		    mainFrame.BorderColor3 = color
+		    scifiLabel.TextColor3 = color
+		    
+		    sigilGradient.Color = grad
+		    bottomG.Color = grad
+		    leftG.Color = grad
+		    rightG.Color = grad
 		end
 		
 		-- Input Logic
@@ -2900,7 +2908,6 @@ local function C_c()
 		    if gp then return end
 		    local target = keyBinds[input.KeyCode]
 		    if target then
-		        -- If already on this mode, return to Purity
 		        _G.ModeV = (_G.ModeV == target) and "Purity" or target
 		    end
 		end)
