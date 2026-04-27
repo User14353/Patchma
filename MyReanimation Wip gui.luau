@@ -3032,23 +3032,32 @@ local function C_c()
 					["Divinity"]   = "https://github.com/bayly098764321/Hat-FE/blob/main/Divinity.mp3?raw=true"
 			}
 
-			-- Downloads and returns the asset ID
 			function getmp3(modeName)
-					local filename = modeName..".mp3"
-					local fullPath = Path..filename
-					
-					if not isfile(fullPath) then
-							local url = SongLinks
-							if url then
-									writefile(fullPath, game:HttpGet(url))
-							else
-									warn("No URL found for mode: " .. modeName)
-									return nil
-							end
-					end
-					
-					repeat task.wait() until isfile(fullPath)
-					return getcustomasset(fullPath)
+			    local filename = modeName..".mp3"
+			    local fullPath = Path..filename
+			    
+			    if not isfile(fullPath) then
+			        local url = SongLinks
+			        if url then
+			            -- Use game:HttpGet instead of game:HttpGetAsync
+			            local success, data = pcall(function()
+			                return game:HttpGet(url)
+			            end)
+			            
+			            if success then
+			                writefile(fullPath, data)
+			            else
+			                warn("Failed to download " .. modeName .. ": " .. tostring(data))
+			                return nil
+			            end
+			        else
+			            warn("No URL found for mode: " .. modeName)
+			            return nil
+			        end
+			    end
+			    
+			    repeat task.wait() until isfile(fullPath)
+			    return getcustomasset(fullPath)
 			end
 
 			-- Function to play the sound based on current _G.ModeV
