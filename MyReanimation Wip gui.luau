@@ -124,14 +124,14 @@ end
 
 --it runs even faster if u call __index and __newindex metamethods directly
 local getMetamethodFromErrorStack=function(userdata,f,test)
-local ret=nil
-xpcall(f,function()
-ret=debug.info(2,"f")
-end,userdata,nil,0)
-if (type(ret)~="function") or not test(ret) then
-return f
-end
-return ret
+	local ret=nil
+	xpcall(f,function()
+		ret=debug.info(2,"f")
+	end,userdata,nil,0)
+	if (type(ret)~="function") or not test(ret) then
+		return f
+	end
+	return ret
 end
 local insSet=getMetamethodFromErrorStack(game,function(a,b,c) a[b]=c end,function(f) local a=i("Folder") local b=rs() f(a,"Name",b) return a.Name==b end)
 local insGet=getMetamethodFromErrorStack(game,function(a,b) return a[b] end,function(f) local a=i("Folder") local b=rs() a.Name=b return f(a,"Name")==b end)
@@ -141,18 +141,20 @@ local cfAdd=getMetamethodFromErrorStack(cf_0,function(a,b) return a+b end,functi
 local v3Get=getMetamethodFromErrorStack(v3_0,function(a,b) return a[b] end,function(f) return v3(1,2,3).Unit==f(v3(1,2,3),"Unit") end)
 local v2Get=getMetamethodFromErrorStack(v2(),function(a,b) return a[b] end,function(f) return f(v2(1,2),"Y")==2 end)
 --multiplying and adding vector3 is faster if you use the * and + operators
+--its faster to multiply X and Y of vector2 than to multiply vector2 and then get X and Y from it
+
 --no need to index instances every time to call their functions
 local Clone=insGet(game,"Clone")
 local ClearAllChildren=insGet(game,"ClearAllChildren")
 local Destroy=insGet(game,"Destroy")
 local IsA=insGet(game,"IsA")
-local FindFirstChild=insGet(game,"FindFirstChild")
 local FindFirstChildOfClass=insGet(game,"FindFirstChildOfClass")
 local FindFirstChildWhichIsA=insGet(game,"FindFirstChildWhichIsA")
 local GetChildren=insGet(game,"GetChildren")
-local GetDescendants=insGet(game,"GetDescendants")
 local IsDescendantOf=insGet(game,"IsDescendantOf")
+local QueryDescendants=insGet(game,"QueryDescendants")
 local GetPropertyChangedSignal=insGet(game,"GetPropertyChangedSignal")
+
 --findfirstchildofclass faster than getservice
 local plrs=FindFirstChildOfClass(game,"Players")
 local rus=FindFirstChildOfClass(game,"RunService")
@@ -160,23 +162,19 @@ local ws=FindFirstChildOfClass(game,"Workspace")
 local uis=FindFirstChildOfClass(game,"UserInputService")
 local gs=FindFirstChildOfClass(game,"GuiService")
 local sg=FindFirstChildOfClass(game,"StarterGui")
-local ts=FindFirstChildOfClass(game,"TweenService")
-local rps=FindFirstChildOfClass(game,"ReplicatedStorage")
 local lp=insGet(plrs,"LocalPlayer")
 local pg=FindFirstChildOfClass(lp,"PlayerGui")
 local mouse=insGet(lp,"GetMouse")(lp)
---local cdsb=insGet(lp,"ConnectDiedSignalBackend")
 local rst=insGet(plrs,"RespawnTime")+0.07 --1/15
 local preanimation=insGet(rus,"PreAnimation")
 local heartbeat=insGet(rus,"Heartbeat")
 local renderstepped=insGet(rus,"RenderStepped")
+
 local GetPlayers=insGet(plrs,"GetPlayers")
-local SetCore=insGet(sg,"SetCore")
 local SetCoreGuiEnabled=insGet(sg,"SetCoreGuiEnabled")
 local GetCoreGuiEnabled=insGet(sg,"GetCoreGuiEnabled")
 local Raycast=insGet(ws,"Raycast")
 local Connect=heartbeat.Connect
-local Once=heartbeat.Once
 local Disconnect=Connect(GetPropertyChangedSignal(game,"CreatorId"),type).Disconnect
 local Wait=heartbeat.Wait
 local GetMouseLocation=insGet(uis,"GetMouseLocation")
@@ -184,13 +182,22 @@ local GetFocusedTextBox=insGet(uis,"GetFocusedTextBox")
 local GetMouseDelta=insGet(uis,"GetMouseDelta")
 local IsMouseButtonPressed=insGet(uis,"IsMouseButtonPressed")
 local IsKeyDown=insGet(uis,"IsKeyDown")
+
 local Inverse=cfGet(cf_0,"Inverse")
 local Lerp=cfGet(cf_0,"Lerp")
-local ToObjectSpace=cfGet(cf_0,"ToObjectSpace")
-local VLerp=v3_0.Lerp
-local ULerp=u2().Lerp
-local CLerp=c3().Lerp
-local QueryDescendants=insGet(game,"QueryDescendants")
+
+local guiTheme={
+	guiTitle="Exire's Reanimation",
+	windowTitleColor=c3(1, 0.631372, 0.333333),
+	windowTopColor=c3(0.168627, 0.101960, 0.078431),
+	windowBottomColor=c3(0, 0, 0),
+	windowMinimizedSize={X=220,Y=60},
+	windowRegularSize={X=220,Y=290},
+	buttonsTextColor=c3(0.960784, 0.525490, 0.325490),
+	labelsTextColor=c3(0.968627, 0.654901, 0.396078),
+	listTopColor=c3(0,0,0),
+	listBottomColor=c3(0.0705882,0.0705882,0.0705882)
+}
 
 local accessorylimbs={
 	{ meshid="110684113028749",textureid="70661572547971",C0=angles(0,0,0),Name="Torso" },
@@ -201,25 +208,25 @@ local accessorylimbs={
 	{ meshid="125405780718494",textureid="136752500636691",C0=angles(0,0,1.5707963267948966),Name="Right Leg" },
 	{ meshid="96333112188696",textureid="18807356481",C0=angles(0,0,0),Name="Left Arm" },
 	{ meshid="96130316788066",textureid="18807356481",C0=angles(0,0,0),Name="Right Arm" },
-	
-	
-	
-	
+
+
+
+
 	{meshid="11263221350",textureid="11263219250",C0=angles(0,0,0),Name="Left Arm"},
-	
+
 	{meshid="11159370334",textureid="11159284657",C0=angles(0,0,0),Name="Right Arm"},
-	
-	
+
+
 	--// Noob Rigs 
-	
+
 	{meshid="137702817952968",textureid="135650240593878",C0=angles(0,0,80.05),Name="Left Arm"},
 	{meshid="137702817952968",textureid="135650240593878",C0=angles(0,0,80.05),Name="Right Arm"},
 	{meshid="137702817952968",textureid="73798034827573",C0=angles(0,0,80.09),Name="Left Leg"},
 	{meshid="137702817952968",textureid="73798034827573",C0=angles(0,0,80.09),Name="Right Leg"},
 	{meshid="126825022897778",textureid="125975972015302",C0=angles(0,0,0),Name="Torso"},
-	
+
 	--// White Rigs 
-	
+
 	{
 	meshid="139733645770094",textureid="130809869695496",C0=angles(0,0,80.09),Name="Left Arm"
 	},
@@ -232,8 +239,8 @@ local accessorylimbs={
 	{
 	meshid="105141400603933",textureid="71060417496309",C0=angles(0,0,80.09),Name="Right Leg"
 	},
-	
-	
+
+
 	{
 	meshid="126825022897778",textureid="130689541138804",C0=angles(0,0,0),Name="Torso"
 	},
@@ -250,34 +257,28 @@ local accessorylimbs={
 	meshid="100128920324073",textureid="97155254696037",C0=angles(rad(-75),rad(15),rad(-20)),Name="Right Arm"
 	},
 	{ meshid = "18919712035", Name = "Torso", C0 = CFrame.identity, textureid = "18430134193" },--95290698984301
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 	{meshid="14255522247",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
 	{meshid="14255522247",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
-	
+
 	{meshid="12344207333",textureid="",C0=angles(2,0,0),Name="Left Arm"},
 	{meshid="12344206657",textureid="",C0=angles(2,0,0),Name="Right Arm"},
-	
+
 	{meshid="13831073174",textureid="",C0=cfMul(cf(0.017,0,-0.23),angles(-1.4835298641951802,-0.15707963267948966,2.199114857512855)),Name="Left Arm"},
 	{meshid="13839903766",textureid="",C0=cfMul(cf(0,-0.62,-0.01),angles(1.6580627893946132,0.15707963267948966,-2.199114857512855)),Name="Right Arm"},
-	
+
 	{meshid="11159370334",textureid="11159285454",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg"},
 	{meshid="12652772399",textureid="12652775021",C0=cf(0,-0.125,0),Name="Right Leg"},
-	
+
 	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Left Leg"},
 	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Right Leg"},
-	
+
 	{meshid="14768666349",textureid="",C0=cf_0,Name="Torso"},
 	{meshid="14241018198",textureid="",C0=cf_0,Name="Torso"},
 	{meshid="13421774668",textureid="",C0=cf_0,Name="Torso"},
-	
+
 	{meshid="4324138105",textureid="4324138210",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(-0.125,0.3,0)),Name="Left Arm"},
 	{meshid="4154474745",textureid="4154474807",C0=cfMul(angles(1.5271630954950384,-1.5707963267948966,0),cf(-0.125,-0.3,0)),Name="Left Arm"},
 	{meshid="3030546036",textureid="3650191503",C0=cfMul(angles(1.5271630954950384,1.5707963267948966,0),cf(0.125,-0.3,0)),Name="Right Arm"},
@@ -289,56 +290,8 @@ local accessorylimbs={
 	{meshid="4324138105",textureid="4391374782",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(0.125,0.3,0)),Name="Right Arm"},
 	{meshid="4324138105",textureid="4391374782",C0=cfMul(angles(-1.6144295580947547,1.5707963267948966,0),cf(0.125,0.3,0)),Name="Right Arm"},
 	{meshid="4819720316",textureid="4819722776",C0=angles(0,0,0.2617993877991494),Name="Torso"},
-	
-	
-	{meshid="117287001096396",textureid="",C0=cf_0,Name="Left Arm"},
-	{meshid="117287001096396",textureid="",C0=cf_0,Name="Right Arm"},
-	
-	{meshid="90736849096372",textureid="",C0=angles(0,0,1.5707963267948966),Name="Left Arm"},
-	{meshid="105141400603933",textureid="",C0=angles(0,0,1.5707963267948966),Name="Right Arm"},
-	
-	{meshid="11263221350",textureid="11263219250",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
-	{meshid="11159370334",textureid="11159284657",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
-	
-	{meshid="14255522247",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
-	{meshid="14255522247",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
-	
-	{meshid="17374767929",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Arm"},
-	{meshid="17374767929",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Arm"},
-	
-	{meshid="12344207333",textureid="",C0=angles(2,0,0),Name="Left Arm"},
-	{meshid="12344206657",textureid="",C0=angles(2,0,0),Name="Right Arm"},
-	
-	{meshid="13831073174",textureid="",C0=cf(0.017,0,-0.23)*angles(-1.4835298641951802,-0.15707963267948966,2.199114857512855),Name="Left Arm"},
-	{meshid="13839903766",textureid="",C0=cf(0,-0.62,-0.01)*angles(1.6580627893946132,0.15707963267948966,-2.199114857512855),Name="Right Arm"},
-	
-	{meshid="121304376791439",textureid="",C0=cf_0,Name="Left Leg"},
-	{meshid="121304376791439",textureid="",C0=cf_0,Name="Right Leg"},
-	
-	{meshid="11159370334",textureid="11159285454",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg"},
-	{meshid="12652772399",textureid="12652775021",C0=cf(0,-0.125,0),Name="Right Leg"},
-	
-	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Left Leg"},
-	{meshid="14768684979",textureid="",C0=angles(0,0,1.5707963267948966),Name="Right Leg"},
-	
-	{meshid="17387586286",textureid="",C0=angles(1.5707963267948966,0,1.5707963267948966),Name="Left Leg"},
-	{meshid="17387586286",textureid="",C0=angles(-1.5707963267948966,0,1.5707963267948966),Name="Right Leg"},
-	
-	{meshid="14768666349",textureid="",C0=cf_0,Name="Torso"},
-	{meshid="14241018198",textureid="",C0=cf_0,Name="Torso"},
-	{meshid="13421774668",textureid="",C0=cf_0,Name="Torso"},
-	{meshid="110684113028749",textureid="",C0=cf_0,Name="Torso"},
-	{meshid="127552124837034",textureid="",C0=angles(0,0,1.5707963267948966),Name="Torso"},
-	
-	{meshid="4324138105",textureid="4324138210",C0=angles(-1.6144295580947547,1.5707963267948966,0)*cf(-0.125,0.3,0),Name="Left Arm"},
-	{meshid="4154474745",textureid="4154474807",C0=angles(1.5271630954950384,-1.5707963267948966,0)*cf(-0.125,-0.3,0),Name="Left Arm"},
-	{meshid="3030546036",textureid="3650191503",C0=angles(1.5271630954950384,1.5707963267948966,0)*cf(0.125,-0.3,0),Name="Right Arm"},
-	{meshid="3030546036",textureid="3443321249",C0=angles(-1.6144295580947547,-1.5707963267948966,0)*cf(0.125,0.3,0),Name="Right Arm"},
-	{meshid="3030546036",textureid="3360974849",C0=angles(1.5271630954950384,1.5707963267948966,0)*cf(-0.125,-0.35,0),Name="Left Leg"},
-	{meshid="3030546036",textureid="3360978739",C0=angles(-1.6144295580947547,-1.5707963267948966,0)*cf(-0.125,0.3,0),Name="Left Leg"},
-	{meshid="3030546036",textureid="3033898741",C0=angles(1.5271630954950384,-1.5707963267948966,0)*cf(0.125,-0.35,0),Name="Right Leg"},
-	{meshid="3030546036",textureid="3409604993",C0=angles(-1.6144295580947547,1.5707963267948966,0)*cf(0.125,0.3,0),Name="Right Leg"},
-	{meshid="4819720316",textureid="4819722776",C0=angles(0,0,0.2617993877991494),Name="Torso"},
+
+
 	{meshid="117287001096396",textureid="",C0=cf_0,Name="Left Arm"},
 	{meshid="117287001096396",textureid="",C0=cf_0,Name="Right Arm"},
 
