@@ -3072,7 +3072,6 @@ local function C_c()
 			local currentSound = nil
 			
 			function playModeMusic()
-			    -- 1. Stop and cleanup the previous song immediately
 			    if currentSound then 
 			        currentSound:Stop()
 			        currentSound:Destroy() 
@@ -3082,34 +3081,32 @@ local function C_c()
 			    local assetId = getmp3(_G.ModeV)
 			    
 			    if assetId then
-			        -- 2. Create the sound object
 			        local sound = Instance.new("Sound")
-			        sound.Name = "ModeMusic_" .. _G.ModeV
+			        sound.Name = "CustomMusic"
 			        sound.SoundId = assetId
 			        sound.Volume = 1
 			        sound.Looped = true
 			        
-			        -- 3. Parent it to SoundService (the best place for background music)
+			        -- Parent to SoundService for global background audio
 			        sound.Parent = game:GetService("SoundService")
 			        
-			        -- 4. Wait for it to "register" the custom asset
-			        -- Local assets sometimes report TimeLength as 0 until they've primed
+			        -- CRITICAL: Wait for the sound to prime. 
+			        -- Local assets often have a 'TimeLength' of 0 until fully ready.
 			        task.spawn(function()
+			            -- Wait up to 3 seconds for the sound to report its length
 			            local timeout = 0
-			            while sound.TimeLength == 0 and timeout < 50 do
+			            while sound.TimeLength == 0 and timeout < 30 do
 			                task.wait(0.1)
 			                timeout = timeout + 1
 			            end
 			            
-			            -- 5. Final play command
 			            sound:Play()
 			            currentSound = sound
-			            print("Now playing: " .. _G.ModeV)
+			            print("Successfully playing: " .. _G.ModeV)
 			        end)
-			    else
-			        warn("Could not get asset ID for: " .. _G.ModeV)
 			    end
 			end
+
 
 			-- Setup Keybinds
 			local UIS = game:GetService("UserInputService")
