@@ -2817,90 +2817,93 @@ local function C_c()
 			end
 		})
 	end)
-			local RunService = game:GetService("RunService")
-		local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-		
-		-- Cleanup
-		if PlayerGui:FindFirstChild("StarGlitcherSystem") then PlayerGui.StarGlitcherSystem:Destroy() end
-		
-		local sg = Instance.new("ScreenGui", PlayerGui)
-		sg.Name = "StarGlitcherSystem"
-		sg.IgnoreGuiInset = true
-		sg.ResetOnSpawn = false
-		
-		-- 1. Main Mode Label (Center)
-		local mainFrame = Instance.new("Frame", sg)
-		mainFrame.Size = UDim2.new(0, 260, 0, 65); mainFrame.Position = UDim2.new(0.5, -130, 0.85, 0)
-		mainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10); mainFrame.BackgroundTransparency = 0.4; mainFrame.BorderSizePixel = 2
-		
-		local modeLabel = Instance.new("TextLabel", mainFrame)
-		modeLabel.Size = UDim2.new(1, 0, 1, 0); modeLabel.BackgroundTransparency = 1
-		modeLabel.Font = Enum.Font.Arcade; modeLabel.TextScaled = true; modeLabel.TextColor3 = Color3.new(1, 1, 1)
-		
-		-- 2. Spinning Sigil (Bottom Right - Constant Counter-Clockwise)
-		local sigil = Instance.new("ImageLabel", sg)
-		sigil.Size = UDim2.new(0, 200, 0, 200); sigil.Position = UDim2.new(1, -210, 1, -210)
-		sigil.BackgroundTransparency = 1; sigil.Image = "rbxassetid://85967406604142"
-		local sigilGradient = Instance.new("UIGradient", sigil)
-		
-		-- 3. Floating SciFi Text (Bottom Left - Oscillating & Mode Matching)
-		local scifiLabel = Instance.new("TextLabel", sg)
-		scifiLabel.Size = UDim2.new(0, 300, 0, 60); scifiLabel.Position = UDim2.new(0, 30, 1, -80)
-		scifiLabel.BackgroundTransparency = 1; scifiLabel.Font = Enum.Font.SciFi
-		scifiLabel.TextScaled = true
-		
-		-- 4. Edge Glows
-		local function createEdge(name, size, pos, rot)
-		    local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
-		    local g = Instance.new("UIGradient", f); g.Rotation = rot
-		    g.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)})
-		    return g
-		end
-		local bottomG = createEdge("BottomGlow", UDim2.new(1, 0, 0, 180), UDim2.new(0, 0, 1, -180), 270)
-		local leftG = createEdge("LeftGlow", UDim2.new(0, 180, 1, 0), UDim2.new(0, 0, 0, 0), 0)
-		local rightG = createEdge("RightGlow", UDim2.new(0, 180, 1, 0), UDim2.new(1, -180, 0, 0), 180)
-		
-		-- 8 Mode Gradients
-		_G.mode = "default"
-		local modeGradients = {
-		    ["m"] = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
-		    ["default"] = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
-		    ["q"] = ColorSequence.new(Color3.fromRGB(150, 0, 255), Color3.fromRGB(30, 0, 80)),
-		    ["e"] = ColorSequence.new(Color3.fromRGB(87, 75, 58), Color3.fromRGB(53, 34, 26)),
-		    ["r"] = ColorSequence.new(Color3.fromRGB(255, 255, 100), Color3.fromRGB(255, 180, 0)),
-		    ["y"] = ColorSequence.new(Color3.fromRGB(0, 255, 255), Color3.fromRGB(0, 30, 95)),
-		    ["t"] = ColorSequence.new(Color3.fromRGB(217, 0, 255), Color3.fromRGB(59, 0, 60)),
-		    ["u"] = ColorSequence.new(Color3.fromRGB(225, 255, 0), Color3.fromRGB(231, 255, 143))
-		}
-		
-		local function updateUI()
-		    local modeName = tostring(_G.mode)
-		    local grad = modeGradients[modeName] or ColorSequence.new(Color3.new(1,1,1))
-		    local color = grad.Keypoints[1].Value
-		    
-		    -- Update Both Labels
-		    modeLabel.Text = "[ " .. modeName:upper() .. " ]"
-		    scifiLabel.Text = modeName:upper() .. "_MODE"
-		    
-		    -- Apply Colors
-		    modeLabel.TextColor3 = color; mainFrame.BorderColor3 = color; scifiLabel.TextColor3 = color
-		    sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
-		end
-		
-		-- Render Loop
-		local lastMode, counter = "", 0
-		RunService.RenderStepped:Connect(function(dt)
-		    counter += dt
-		    
-		    -- Spin & Oscillation
-		    sigil.Rotation -= 140 * dt 
-		    scifiLabel.Rotation = math.sin(counter * 2) * 5 -- 5 Degrees back and forth
-		    
-		    -- Float
-		    scifiLabel.Position = UDim2.new(0, 30, 1, -80 + (math.sin(counter * 1.5) * 12))
-		    updateUI()
-		    if _G.mode ~= lastMode then lastMode = _G.mode; updateUI() end
-		end)
+	local RunService = game:GetService("RunService")
+	local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+	-- Cleanup
+	if PlayerGui:FindFirstChild("StarGlitcherSystem") then PlayerGui.StarGlitcherSystem:Destroy() end
+
+	local sg = Instance.new("ScreenGui", PlayerGui)
+	sg.Name = "StarGlitcherSystem"
+	sg.IgnoreGuiInset = true
+	sg.ResetOnSpawn = false -- Keeps GUI active after death
+
+	-- 1. Main Mode Label (Center Bottom - Responsive)
+	local mainFrame = Instance.new("Frame", sg)
+	mainFrame.Size = UDim2.new(0.2, 0, 0.08, 0) -- 20% width, 8% height
+	mainFrame.Position = UDim2.new(0.4, 0, 0.85, 0) -- 40% from left (centered), 85% down
+	mainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+	mainFrame.BackgroundTransparency = 0.4
+	mainFrame.BorderSizePixel = 2
+
+	local modeLabel = Instance.new("TextLabel", mainFrame)
+	modeLabel.Size = UDim2.new(1, 0, 1, 0)
+	modeLabel.BackgroundTransparency = 1
+	modeLabel.Font = Enum.Font.Arcade
+	modeLabel.TextScaled = true
+	modeLabel.TextColor3 = Color3.new(1, 1, 1)
+
+	-- 2. Spinning Sigil (Bottom Right - Responsive)
+	local sigil = Instance.new("ImageLabel", sg)
+	sigil.Size = UDim2.new(0.15, 0, 0.15, 0) -- 15% of screen size (Aspect ratio handled by ScaleType)
+	sigil.Position = UDim2.new(0.82, 0, 0.82, 0) -- 82% across, 82% down
+	sigil.BackgroundTransparency = 1
+	sigil.Image = "rbxassetid://85967406604142"
+	sigil.ScaleType = Enum.ScaleType.Fit
+	local sigilGradient = Instance.new("UIGradient", sigil)
+
+	-- 3. Floating SciFi Text (Bottom Left - Responsive)
+	local scifiLabel = Instance.new("TextLabel", sg)
+	scifiLabel.Size = UDim2.new(0.2, 0, 0.06, 0)
+	scifiLabel.Position = UDim2.new(0.03, 0, 0.88, 0) -- 3% from left, 88% down
+	scifiLabel.BackgroundTransparency = 1
+	scifiLabel.Font = Enum.Font.SciFi
+	scifiLabel.TextScaled = true
+
+	-- 4. Edge Glows (Responsive Percentages)
+	local function createEdge(name, size, pos, rot)
+			local f = Instance.new("Frame", sg); f.Name = name; f.Size = size; f.Position = pos; f.BackgroundTransparency = 0; f.BorderSizePixel = 0
+			local g = Instance.new("UIGradient", f); g.Rotation = rot
+			g.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)})
+			return g
+	end
+	local bottomG = createEdge("BottomGlow", UDim2.new(1, 0, 0.2, 0), UDim2.new(0, 0, 0.8, 0), 270)
+	local leftG   = createEdge("LeftGlow",   UDim2.new(0.15, 0, 1, 0), UDim2.new(0, 0, 0, 0),    0)
+	local rightG  = createEdge("RightGlow",  UDim2.new(0.15, 0, 1, 0), UDim2.new(0.85, 0, 0, 0),  180)
+
+	-- 8 Mode Gradients
+	_G.mode = "default"
+	local modeGradients = {
+			["m"] = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(80, 0, 0)),
+			["default"] = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 200, 255)),
+			["q"] = ColorSequence.new(Color3.fromRGB(150, 0, 255), Color3.fromRGB(30, 0, 80)),
+			["e"] = ColorSequence.new(Color3.fromRGB(87, 75, 58), Color3.fromRGB(53, 34, 26)),
+			["r"] = ColorSequence.new(Color3.fromRGB(255, 255, 100), Color3.fromRGB(255, 180, 0)),
+			["y"] = ColorSequence.new(Color3.fromRGB(0, 255, 255), Color3.fromRGB(0, 30, 95)),
+			["t"] = ColorSequence.new(Color3.fromRGB(217, 0, 255), Color3.fromRGB(59, 0, 60)),
+			["u"] = ColorSequence.new(Color3.fromRGB(225, 255, 0), Color3.fromRGB(231, 255, 143))
+	}
+	
+	local function updateUI()
+			local modeName = tostring(_G.mode)
+			local grad = modeGradients[modeName] or ColorSequence.new(Color3.new(1,1,1))
+			local color = grad.Keypoints[1].Value
+			
+			modeLabel.Text = "[ " .. modeName:upper() .. " ]"
+			scifiLabel.Text = "Q, E, R, T, Y, U, M"
+			modeLabel.TextColor3 = color; mainFrame.BorderColor3 = color; scifiLabel.TextColor3 = color
+			sigilGradient.Color, bottomG.Color, leftG.Color, rightG.Color = grad, grad, grad, grad
+	end
+
+	-- Render Loop
+	local lastMode, counter = "", 0
+	RunService.RenderStepped:Connect(function(dt)
+			counter += dt
+			sigil.Rotation -= 140 * dt 
+			modeLabel.Rotation = math.sin(counter * 2) * 5
+			modeLabel.Position = UDim2.new(0.03, 0, 0.88 + (math.sin(counter * 1.5) * 0.02), 0) -- Floating in %
+			if _G.mode ~= lastMode then lastMode = _G.mode; updateUI() end
+	end)
 end;
 
 task.spawn(C_c);
